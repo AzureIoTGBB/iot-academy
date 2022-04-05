@@ -10,3 +10,5 @@
   --View Data 
 
   
+# Contact information
+- If you have any questions, please contact: azureiotacademy@microsoft.com
