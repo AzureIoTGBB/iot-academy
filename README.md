@@ -4,7 +4,7 @@ The Azure IoT Academy is a Microsoft training program oriented to accelerate tim
 Microsoft will work with your organization on the priority industry use cases or specific business challenges and help you to design state-of-the-art IoT solutions in Azure to fulfill those priorities and accelerate your transformation.
 Participants in the Academy will work side-by-side with Microsoft expert using the latest IoT technology.
 
-March 2022
+April 2022
 
 ## Target audience
 
@@ -46,9 +46,9 @@ If you have any questions, please contact: azureiotacademy@microsoft.com
 
 ## Azure IoT Academy Timeline
 
-- TBD March/2022, 10am - 5pm CST
-- TBD April/2022, 10am - 5pm CST
-- TBD May/2022, 10am - 5pm CST 
+- April 26th - 28th, 2022 -  10am - 4pm CST
+- May 24th - 26th, 2022 -  10am - 4pm CST
+- June 28th - 30th, 2022 - 10am - 4pm CST 
 
 ## Azure IoT solution
 
