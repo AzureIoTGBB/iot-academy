@@ -18,6 +18,8 @@ https://portal.azure.com/
   - [**Task 2: Creating a VM to host an IoT Edge Device**](#task-2-creating-a-vm-to-host-an-iot-edge-device)
   - [**Task 3: Connecting to your Ubuntu Virtual Machine**](#task-3-connecting-to-your-ubuntu-virtual-machine)
   - [**Task 4: Install the Azure IoT Edge Runtime**](#task-4-install-the-azure-iot-edge-runtime)
+- [**Exercise 3: Deploying Modules** ##](#exercise-3-deploying-modules)
+  - [**Task 1: Temperature Simulated Module** ###](#task-1-temperature-simulated-module)
 
 <!-- /code_chunk_output -->
 
@@ -410,4 +412,40 @@ e.g. `ssh iotacademy@20.122.53.2`
    ```bash
       sudo iotedge list
    ```
+
+## **Exercise 3: Deploying Modules** ##
+
+### **Task 1: Temperature Simulated Module** ###
+
+   1. In Azure Portal, navigate to your IoT Hub created in previous steps, under **Device Management** click **IoT Edge**, then click your Edge Device
+      ![Select Device.](./media/edge-set-module-1.png 'Select Device')
+
+   2. Click **Set Modules**
+      ![Set Modules.](./media/edge-set-module-2.png 'Set Modules')
+
+   3. Click **Add**. Then click **Marketplace Module**
+      ![Add Module.](./media/edge-set-module-add-module.png 'Add Module')
+   
+   4. The search box will appear, type **Simulated Temperature Sensor**, Then click the module to add it
+      ![Add Temp Module.](./media/edge-set-module-add-module-simulated-temp.png 'Add Temp Module')
+
+   5. Review the presentation section **Routes** to learn about IoT Edge routing
+   
+   6. Click **Review + create** at the bottom of the pane. Review the available settings for the Deployment
+   
+   7. After validation passes click **Create** at the bottom of the pane
+
+   8. Review the running modules on your Edge device
+   
+      It may take a few minutes for the module to deploy and come to a running state. 
+      Running modules can be verified in a few ways:
+
+      - On device details review the **Modules** section at the bottom of the pane. 
+         ![Edge Modules.](./media/edge-set-module-module-running.png 'Modules')
+
+      - Using SSH, connect to your VM and run the `iotedge list` command as shown below
+         ```bash
+         sudo iotedge list
+         ```
+         ![Edge Modules.](./media/edge-set-module-module-running-ssh.png 'Modules Running')
 
