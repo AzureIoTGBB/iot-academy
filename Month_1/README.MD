@@ -1,5 +1,6 @@
 # Day 1
 
+- IoT Core Services 
 - IoT Central
   --Overview IoT Central 
   
@@ -10,3 +11,5 @@
   --View Data 
 
   
+# Contact information
+- If you have any questions, please contact: azureiotacademy@microsoft.com
