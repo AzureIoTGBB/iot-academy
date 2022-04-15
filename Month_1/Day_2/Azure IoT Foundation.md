@@ -18,8 +18,8 @@ https://portal.azure.com/
   - [**Task 2: Creating a VM to host an IoT Edge Device**](#task-2-creating-a-vm-to-host-an-iot-edge-device)
   - [**Task 3: Connecting to your Ubuntu Virtual Machine**](#task-3-connecting-to-your-ubuntu-virtual-machine)
   - [**Task 4: Install the Azure IoT Edge Runtime**](#task-4-install-the-azure-iot-edge-runtime)
-- [**Exercise 3: Deploying Modules** ##](#exercise-3-deploying-modules)
-  - [**Task 1: Temperature Simulated Module** ###](#task-1-temperature-simulated-module)
+- [**Exercise 3: Deploying Modules**](#exercise-3-deploying-modules)
+  - [**Task 1: Temperature Simulated Module**](#task-1-temperature-simulated-module)
 
 <!-- /code_chunk_output -->
 
@@ -413,9 +413,9 @@ e.g. `ssh iotacademy@20.122.53.2`
       sudo iotedge list
    ```
 
-## **Exercise 3: Deploying Modules** ##
+## **Exercise 3: Deploying Modules**
 
-### **Task 1: Temperature Simulated Module** ###
+### **Task 1: Temperature Simulated Module**
 
    1. In Azure Portal, navigate to your IoT Hub created in previous steps, under **Device Management** click **IoT Edge**, then click your Edge Device
       ![Select Device.](./media/edge-set-module-1.png 'Select Device')
@@ -448,4 +448,99 @@ e.g. `ssh iotacademy@20.122.53.2`
          sudo iotedge list
          ```
          ![Edge Modules.](./media/edge-set-module-module-running-ssh.png 'Modules Running')
+
+ ## **Exercise 4: Ingesting Telemetry Data with IoT Hub and Azure Data Explorer**
+
+   1. Find the Azure Data Explorer service to create a new cluster
+   
+      - Go to the Azure Portal home page by selecting **Microsoft Azure** at the top of the window. Then click **Azure Data Explorer Clusters**
+
+         ![ADX Search.](./media/telemetry-data-adx-search.png 'ADX Search')
+
+      - Click **Create**
+<br/>
+
+   2. Enter the details for the new ADX cluster then click **Review + create**
+      
+      - Details
+         - Resource group: `rg-iot-academy`
+         - Cluster name: `{prefix|iot|acad|johnd|220427}` e.g. `deciotacadjohnd220427`. This name must be globally unique, alphanumeric only, limited to 22 characters.
+         - Region: `{Your region}` e.g. `East US 2`
+         - Workload: `Dev/test`
+         - Compute specifications: `Dev(No SLA)_Standard_E2a_v4`
+      
+      ![Add Create ADX.](./media/telemetry-data-adx-create.png 'Add Create ADX')
+
+      - After validation passes click **Create**
+
+      - Wait until the cluster is created and click **Go to resource**
+<br/>
+   
+   3. Now on the Overview tab for your new ADX cluster click **Add database**
+
+      ![Add ADX Database.](./media/telemetry-data-adx-add-db.png 'Add ADX Database')
+<br/>
+
+   4. Click **Create**
+
+      ![Add ADX Database Details.](./media/telemetry-data-adx-add-db-details.png 'Add ADX Database Details')
+
+      - After a few moments you'll be back at the overview page. 
+<br/>
+
+   5. Create the tempsensor table with schema and mapping
+
+      - Click Query. Click your **tempsensor** database. Paste the create table code from below into the windows. Then click **Run**.
+
+         ```
+         .create table tempsensor (timeCreated: datetime, temperature: real, humidity: real)
+         ```
+         ![ADX Create Table.](./media/telemetry-data-adx-create-table.png 'ADX Create Table')   
+
+      - A message as follows will be received when successful.
+
+         ![ADX Create Table.](./media/telemetry-data-adx-create-table-complete.png 'ADX Create Table')   
+
+      - Next, create the tempsensor ingestion mapping. Replace the command in the window with the command from the following code block. Then, click **Run**.
+      When successfull a similar result from the last command will be observed.
+
+         ```
+         .create table tempsensor ingestion json mapping 'tempsensorMapping' '[{"column":"timeCreated","path":"$.timeCreated","datatype":"datetime"},{"column":"humidity","path":"$.ambient.humidity","datatype":"real"},{"column":"temperature","path":"$.ambient.temperature","datatype":"real"}]'
+         ```
+<br/>
+
+   6. Add a new Consumer Group to your IoT Hub
+      - Use the Azure Portal search bar, type `vscode`. Your IoT Hub instance will be shown. Click your IoT Hub name to navigate to the resource.
+
+         ![IoT Hub Search.](./media/telemetry-data-iothub-search.png 'IoT Hub Search')
+
+      - Click **Built-in endpoints**. Add a new consumer group under the **Consumer Groups** section. Type `adx` in the box and press tab. When you press tab your entry will be saved.
+
+         ![Create Consumer Group.](./media/telemetry-data-iothub-create-consumer-group.png 'Create Consumer Group')
+
+   7. Create a data connection to ingest your tempsensor telemetry data
+   
+      - Use the Azure Portal search bar to search for `dec`, the standard prefix for Azure Data Explorer resources. Then, click your instance to load the resource.
+      
+      - Click **Create data connection** and select IoT Hub.
+         
+         ![ADX Create Connection.](./media/telemetry-data-adx-ingest-create-connection.png 'ADX Create Connection')
+
+      - Fill in all the fields as follows:
+         - Data connection name: `tempsensor`
+         - Subscription: {Your subscription}
+         - IoT Hub: {Your IoT Hub that includes vscode in the name}
+         - Shared Access Policy: {iothubowner}
+         - Consumer Group: `adx`
+         - Event system properites: Click the dropdown and select `iothub-connection-device-id`
+         - Database Name: `tempsensor`
+         - Table name: `tempsensor`
+         - Data format: `JSON`
+         - Mapping name: `tempsensorMapping`
+
+      - Click **Create**
+         ![ADX Create Connection Details.](./media/telemetry-data-adx-ingest-create-connection-details.png 'ADX Create Connection Details')
+      
+      - Watch for the notification for when the data connection creation is successful.
+         ![ADX Create Connection Notification.](./media/telemetry-data-adx-ingest-create-connection-notification.png 'ADX Create Connection Notification')
 
