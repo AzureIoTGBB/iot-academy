@@ -653,7 +653,7 @@ After you save the IDs and the key, select Close on the dialog box.
 
 ## Exercise 3: Azure Maps ## 
 
-1. Go to Azure Portal: https://ms.portal.azure.com/
+1. Go to Azure Portal: https://portal.azure.com/
 2. Select **Create a Resource**, in the marketplace look for **Azure Maps**, select Azure Maps and then click **create**
 
     ![Command Recall](./media/azure-maps.png 'Command Recall')
