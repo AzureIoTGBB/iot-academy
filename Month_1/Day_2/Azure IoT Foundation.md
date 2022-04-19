@@ -13,13 +13,35 @@ https://portal.azure.com/
   - [**Task 1: Provision IoT Hub through the Portal**](#task-1-provision-iot-hub-through-the-portal)
   - [**Task 2: Provision IoT Hub through CLI**](#task-2-provision-iot-hub-through-cli)
   - [**Task 3: Provision IoT Hub through VS Code**](#task-3-provision-iot-hub-through-vs-code)
-- [**Exercise 2: Devices**](#exercise-2-devices)
-  - [**Task 1: Adding an Azure IoT Edge Device to IoT Hub**](#task-1-adding-an-azure-iot-edge-device-to-iot-hub)
-  - [**Task 2: Creating a VM to host an IoT Edge Device**](#task-2-creating-a-vm-to-host-an-iot-edge-device)
-  - [**Task 3: Connecting to your Ubuntu Virtual Machine**](#task-3-connecting-to-your-ubuntu-virtual-machine)
-  - [**Task 4: Install the Azure IoT Edge Runtime**](#task-4-install-the-azure-iot-edge-runtime)
-- [**Exercise 3: Deploying Modules**](#exercise-3-deploying-modules)
-  - [**Task 1: Temperature Simulated Module**](#task-1-temperature-simulated-module)
+- [**Exercise 2: Azure IoT Hub Device Provisioning Service (DPS)**](#exercise-2-azure-iot-hub-device-provisioning-service-dps)
+  - [**Task 1: Deploy DPS**](#task-1-deploy-dps)
+  - [**Task 2: Connect IoT Hub to DPS**](#task-2-connect-iot-hub-to-dps)
+  - [**Task 3: Create an Individual Enrollment**](#task-3-create-an-individual-enrollment)
+  - [**Task 4: Gather Individual Enrollment Details**](#task-4-gather-individual-enrollment-details)
+- [**Exercise 3: Create an Ubuntu-based Azure IoT Edge Device**](#exercise-3-create-an-ubuntu-based-azure-iot-edge-device)
+  - [**Task 1: Creating a VM to host an IoT Edge Device**](#task-1-creating-a-vm-to-host-an-iot-edge-device)
+  - [**Task 2: Connecting to your Ubuntu Virtual Machine**](#task-2-connecting-to-your-ubuntu-virtual-machine)
+  - [**Task 3: Install the Azure IoT Edge Runtime and Connect the Device**](#task-3-install-the-azure-iot-edge-runtime-and-connect-the-device)
+  - [**Task 4: Observe the Enrollment and Device Status**](#task-4-observe-the-enrollment-and-device-status)
+- [**Exercise 4: Deploy and IoT Edge Module to Simulate Device Telemetry**](#exercise-4-deploy-and-iot-edge-module-to-simulate-device-telemetry)
+  - [**Task 1: Use the IoT Edge Module Marketplace to Provision the Simulated Temperature Sensor Module**](#task-1-use-the-iot-edge-module-marketplace-to-provision-the-simulated-temperature-sensor-module)
+  - [**Task 2: Ensure the Module is Running**](#task-2-ensure-the-module-is-running)
+- [**Exercise 5: Ingesting Telemetry Data with IoT Hub and Azure Data Explorer (ADX)**](#exercise-5-ingesting-telemetry-data-with-iot-hub-and-azure-data-explorer-adx)
+  - [**Task 1: Creating the ADX Cluster**](#task-1-creating-the-adx-cluster)
+  - [**Task 2: Adding an ADX Database**](#task-2-adding-an-adx-database)
+  - [**Task 3: Creating the tempsensor table**](#task-3-creating-the-tempsensor-table)
+  - [**Task 4: Connecting ADX to IoT Hub to Ingest Telemetry**](#task-4-connecting-adx-to-iot-hub-to-ingest-telemetry)
+- [**Exercise 6: Analyzing Data with Azure Data Explorer (ADX)**](#exercise-6-analyzing-data-with-azure-data-explorer-adx)
+  - [**Task 1: Connecting ASA to IoT Hub**](#task-1-connecting-asa-to-iot-hub)
+- [**Exercise 7: Processing Telemetry with Azure Stream Analytics (ASA)**](#exercise-7-processing-telemetry-with-azure-stream-analytics-asa)
+  - [**Task 1: Create a Table in ADX to Hold aggregated data**](#task-1-create-a-table-in-adx-to-hold-aggregated-data)
+  - [**Task 2: Create a new ASA Job**](#task-2-create-a-new-asa-job)
+  - [**Task 3: Creating an ASA Input**](#task-3-creating-an-asa-input)
+  - [**Task 4: Creating an ASA Output**](#task-4-creating-an-asa-output)
+  - [**Task 5: Writing an ASA Query**](#task-5-writing-an-asa-query)
+  - [**Task 6: Start the ASA Job**](#task-6-start-the-asa-job)
+  - [**Task 7: Review Collected Aggregated in ADX**](#task-7-review-collected-aggregated-in-adx)
+- [**Exercise 8: Cleanup**](#exercise-8-cleanup)
 
 <!-- /code_chunk_output -->
 
@@ -129,6 +151,11 @@ During this exercise you will use 3 different tools to create three different Io
    az iot hub delete --name iot-johndoe-cli-220427 --resource-group rg-iot-academy
    ```
 
+   Also, delete the IoT Hub created through the portal
+   ```bash
+   az iot hub delete --name iot-academy-johndoe-220427 --resource-group rg-iot-academy   
+   ```
+
 ### **Task 3: Provision IoT Hub through VS Code**
 
 If you have not yet installed Visual Studio Code download and install from the following link:
@@ -179,38 +206,64 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
       ![Azure Portal IoT Hub Created.](./media/vscode-azureportal-iothub-created.png 'Azure Portal IoT Hub Created')
 
-## **Exercise 2: Devices**
+## **Exercise 2: Azure IoT Hub Device Provisioning Service (DPS)**
+### **Task 1: Deploy DPS**
+
+1. Create a DPS instance by:
+   - Go to the Azure Portal home page
+   - Click **Create a resource**
+   - Search for `device prov`
+   - Click **IoT Hub Device Provisioning Service**
+
+   ![Create DPS.](./media/dps-create.png 'Create DPS')
+
+2. Create Details
+   - Enter the following details
+      - Resource group: `rg-iot-academy`
+      - Name: `provs-iotacad-{SUFFIX}` e.g. `provs-iotacad-johndoe220427`
+      - Region: `your region`
+
+   ![Create DPS.](./media/dps-create-details.png 'Create DPS')
+
+3. Click **Review and Create**, then click **Create**
+
+4. When the deployment completes, click **Go to resource**
+
+5. When the Overview page loads save the **ID Scope** to notepad   
+
+### **Task 2: Connect IoT Hub to DPS**
+
+1. Click **Linked IoT Hubs**, then click **Add**
+2. Fill in the following details, then click **Save**
+3. Click **Manage Allocation Policy**, review the options available
+
+### **Task 3: Create an Individual Enrollment**
+
+1. Click **Add individual enrollment**
+2. Fill in the following details
+   - Mechanism: `Symmetric Key`
+   - Auto-generate keys: `checked`
+   - Registration ID: `iotacademy`
+   - IoT Hub Device ID: `iot-academy-edge-device`
+   - IoT Edge device: `True`
+   - Select the IoT hubs this device can be assigned to: `select your hub`
+   Leave all other values at default
+3. Click **Save** at the top of the page
+
+### **Task 4: Gather Individual Enrollment Details**
+1. Click **Manage enrollments**, then click **Individual Enrollments**, then click your enrollment **iotacademy**
+   ![View Enrollment.](./media/dps-individual-enrollment-view.png 'View Enrollment')
+2. Take note of the following values in your notepad
+   - Registration ID
+   - IoT Hub Device ID
+   - Primary Key (click the copy icon shown in the image below)
+      ![View Enrollment Details.](./media/dps-individual-enrollment-view-details.png 'View Enrollment Details')
+
+## **Exercise 3: Create an Ubuntu-based Azure IoT Edge Device**
 
 During this exercise you will learn how to set up an Azure IoT Edge device and connect it to IoT Hub to start streaming data.
 
-### **Task 1: Adding an Azure IoT Edge Device to IoT Hub**
-
-   - From Azure Portal select the IoT Hub created through VS Code. To do this, you could search for your resource group rg-iot-academy 
-
-  ![Find Resource Group.](./media/add-edge-device-portal-find-resourcegroup.png 'Find Resource Group')
-   
-
-   - scroll down to **Device Management**
-   - click **IoT Edge**
-   - click **Add IoT Edge device**
-
-   ![Create Edge Device.](./media/add-edge-device-portal.png 'Create Edge Device')
-
-   - In the new window enter a name for your device **iot-academy-edge-device** and click **Save**
-
-   ![Create Edge Device Save.](./media/add-edge-device-portal-save.png 'Create Edge Device Save')
-
-   After Creation your device will be available with new information, **Click** on the device
-
- ![Edge Device Created.](./media/add-edge-device-portal-created.png 'Edge Device Created')
-
-   - Copy and paste into a notepad the connection string for your device, you will need this to connect your device to IoT hub, we will use this connection string later.
-
-![Portal Connection String.](./media/edge-device-portal-connectionstring.png 'Device Connection String')
-
-
-
-### **Task 2: Creating a VM to host an IoT Edge Device**
+### **Task 1: Creating a VM to host an IoT Edge Device**
 
 In this exercise we'll set up an IoT Edge device using an Ubuntu based VM.
 
@@ -267,7 +320,7 @@ Add the following two tags
 
 <br/>
 
-### **Task 3: Connecting to your Ubuntu Virtual Machine**
+### **Task 2: Connecting to your Ubuntu Virtual Machine**
 
 An important aspect of building cloud infrastructure is doing it in a secure manner.
 As part of this exercise port 22 could be opened, for SSH, to allow quick connection to the VM. However, this could allow an attacker to attempt to breach this port.
@@ -340,7 +393,7 @@ e.g. `ssh iotacademy@20.122.53.2`
    ![VS Code Terminal Connected.](./media/vscode-terminal-connected.png 'VS Code Terminal Connected')
 <br/>
 
-### **Task 4: Install the Azure IoT Edge Runtime**
+### **Task 3: Install the Azure IoT Edge Runtime and Connect the Device**
 
 1. Now logged into the VM, Install the Edge Runtime
 
@@ -386,19 +439,26 @@ e.g. `ssh iotacademy@20.122.53.2`
       sudo apt-get install iotedge
    ```
 
-4. Edit the IoT Edge config.yaml, updating the connection string
+4. Edit the IoT Edge config.yaml, updating the provisioning information
    
-   Configure the connection to your IoT Hub, we will apply the connection string you copied in Task 1. Open the configuration file in your device to edit the connection string with the following command.
+   - Configure the provisioning section with the information that we saved during the setup of DPS.
 
    ```bash
       sudo nano /etc/iotedge/config.yaml
    ```
 
-   Once in the nano editor, scroll down to **Manual Provisioning configuration using a connection string** then replace the **device_connection-string** variable wit the connection string from the task 1.
+   - Scroll down to **Manual Provisioning with an IoT Hub connection string** then comment out all the uncommented lines using the `#` symbol.
 
    ![Config File.](./media/ssh-edit-iot-edge-connectionstring.png 'Config File')
 
-   After setting your connection string:
+   - Scroll down further to locate the **DPS provisioning with symmetric key attestation** section. Uncomment the section and set the following values
+      - scope_id: saved in notepad
+      - registration_id: saved in notepad
+      - symmetric_key: the primary key saved in notepad
+
+   ![Config File.](./media/ssh-edit-iot-edge-dps-provisioning.png 'Config File')   
+
+   After making the edits:
       - press **CrtL+X** to close the file 
       - select  **Y** to save the changes
       - press enter to accept the file name
@@ -413,9 +473,27 @@ e.g. `ssh iotacademy@20.122.53.2`
       sudo iotedge list
    ```
 
-## **Exercise 3: Deploying Modules**
+   Another command that is useful is **check** that is shown below. The **check** command:
+      - checks the validity of the config.yaml file
+      - the container engine is functional
+      - time is correct
+      - connections to DPS and IoT Hub can be established
 
-### **Task 1: Temperature Simulated Module**
+   ```bash
+      sudo iotedge check
+   ```
+
+### **Task 4: Observe the Enrollment and Device Status**
+   1. Navigate to your DPS instance by searching for `provs` and clicking your instance.
+   2. Click **Manage Enrollments**
+   3. Click **Individual Enrollments**
+   4. Click **iotacademy**
+
+   ![Config File.](./media/dps-registration-status-assigned.png 'Config File')   
+
+## **Exercise 4: Deploy and IoT Edge Module to Simulate Device Telemetry**
+
+### **Task 1: Use the IoT Edge Module Marketplace to Provision the Simulated Temperature Sensor Module**
 
    1. In Azure Portal, navigate to your IoT Hub created in previous steps, under **Device Management** click **IoT Edge**, then click your Edge Device
       ![Select Device.](./media/edge-set-module-1.png 'Select Device')
@@ -435,21 +513,25 @@ e.g. `ssh iotacademy@20.122.53.2`
    
    7. After validation passes click **Create** at the bottom of the pane
 
-   8. Review the running modules on your Edge device
+### **Task 2: Ensure the Module is Running**
+
+   Review the running modules on your Edge device
    
-      It may take a few minutes for the module to deploy and come to a running state. 
-      Running modules can be verified in a few ways:
+   It may take a few minutes for the module to deploy and come to a running state. 
+   Running modules can be verified in a few ways:
 
-      - On device details review the **Modules** section at the bottom of the pane. 
-         ![Edge Modules.](./media/edge-set-module-module-running.png 'Modules')
+   - On device details review the **Modules** section at the bottom of the pane. 
+      ![Edge Modules.](./media/edge-set-module-module-running.png 'Modules')
 
-      - Using SSH, connect to your VM and run the `iotedge list` command as shown below
-         ```bash
-         sudo iotedge list
-         ```
-         ![Edge Modules.](./media/edge-set-module-module-running-ssh.png 'Modules Running')
+   - Using SSH, connect to your VM and run the `iotedge list` command as shown below
+      ```bash
+      sudo iotedge list
+      ```
+      ![Edge Modules.](./media/edge-set-module-module-running-ssh.png 'Modules Running')
 
- ## **Exercise 4: Ingesting Telemetry Data with IoT Hub and Azure Data Explorer**
+## **Exercise 5: Ingesting Telemetry Data with IoT Hub and Azure Data Explorer (ADX)**
+
+### **Task 1: Creating the ADX Cluster**
 
    1. Find the Azure Data Explorer service to create a new cluster
    
@@ -475,41 +557,47 @@ e.g. `ssh iotacademy@20.122.53.2`
 
       - Wait until the cluster is created and click **Go to resource**
 <br/>
+
+### **Task 2: Adding an ADX Database**
    
-   3. Now on the Overview tab for your new ADX cluster click **Add database**
+   1. Now on the Overview tab for your new ADX cluster click **Add database**
 
       ![Add ADX Database.](./media/telemetry-data-adx-add-db.png 'Add ADX Database')
 <br/>
 
-   4. Click **Create**
+   2. Click **Create**
 
       ![Add ADX Database Details.](./media/telemetry-data-adx-add-db-details.png 'Add ADX Database Details')
 
       - After a few moments you'll be back at the overview page. 
 <br/>
 
-   5. Create the tempsensor table with schema and mapping
+### **Task 3: Creating the tempsensor table**
 
-      - Click Query. Click your **tempsensor** database. Paste the create table code from below into the windows. Then click **Run**.
+   Create the tempsensor table with schema and mapping
 
-         ```
-         .create table tempsensor (timeCreated: datetime, temperature: real, humidity: real)
-         ```
-         ![ADX Create Table.](./media/telemetry-data-adx-create-table.png 'ADX Create Table')   
+   - Click Query. Click your **tempsensor** database. Paste the create table code from below into the windows. Then click **Run**.
 
-      - A message as follows will be received when successful.
+      ```
+      .create table tempsensor (timeCreated: datetime, temperature: real, humidity: real)
+      ```
+      ![ADX Create Table.](./media/telemetry-data-adx-create-table.png 'ADX Create Table')   
 
-         ![ADX Create Table.](./media/telemetry-data-adx-create-table-complete.png 'ADX Create Table')   
+   - A message as follows will be received when successful.
 
-      - Next, create the tempsensor ingestion mapping. Replace the command in the window with the command from the following code block. Then, click **Run**.
-      When successfull a similar result from the last command will be observed.
+      ![ADX Create Table.](./media/telemetry-data-adx-create-table-complete.png 'ADX Create Table')   
 
-         ```
-         .create table tempsensor ingestion json mapping 'tempsensorMapping' '[{"column":"timeCreated","path":"$.timeCreated","datatype":"datetime"},{"column":"humidity","path":"$.ambient.humidity","datatype":"real"},{"column":"temperature","path":"$.ambient.temperature","datatype":"real"}]'
-         ```
+   - Next, create the tempsensor ingestion mapping. Replace the command in the window with the command from the following code block. Then, click **Run**.
+   When successfull a similar result from the last command will be observed.
+
+      ```
+      .create table tempsensor ingestion json mapping 'tempsensorMapping' '[{"column":"timeCreated","path":"$.timeCreated","datatype":"datetime"},{"column":"humidity","path":"$.ambient.humidity","datatype":"real"},{"column":"temperature","path":"$.ambient.temperature","datatype":"real"}]'
+      ```
 <br/>
 
-   6. Add a new Consumer Group to your IoT Hub
+### **Task 4: Connecting ADX to IoT Hub to Ingest Telemetry**
+
+   1. Add a new Consumer Group to your IoT Hub
       - Use the Azure Portal search bar, type `vscode`. Your IoT Hub instance will be shown. Click your IoT Hub name to navigate to the resource.
 
          ![IoT Hub Search.](./media/telemetry-data-iothub-search.png 'IoT Hub Search')
@@ -518,7 +606,7 @@ e.g. `ssh iotacademy@20.122.53.2`
 
          ![Create Consumer Group.](./media/telemetry-data-iothub-create-consumer-group.png 'Create Consumer Group')
 
-   7. Create a data connection to ingest your tempsensor telemetry data
+   2. Create a data connection to ingest your tempsensor telemetry data
    
       - Use the Azure Portal search bar to search for `dec`, the standard prefix for Azure Data Explorer resources. Then, click your instance to load the resource.
       
@@ -543,4 +631,157 @@ e.g. `ssh iotacademy@20.122.53.2`
       
       - Watch for the notification for when the data connection creation is successful.
          ![ADX Create Connection Notification.](./media/telemetry-data-adx-ingest-create-connection-notification.png 'ADX Create Connection Notification')
+
+## **Exercise 6: Analyzing Data with Azure Data Explorer (ADX)**
+### **Task 1: Connecting ASA to IoT Hub**
+   
+   1. Restart the temperature sensor module to ensure fresh telemetry is flowing
+
+      The `Simulated Temperature Sensor` module sends 500 telemetry messages, once every 5 seconds. This means ~40 minutes worth of messages. As our lab takes some time to work through we'll restart the module to ensure we have plenty of data to analyze with ADX.
+
+      - Create a 2nd browser tab to have both ADX and IoT Hub open in the Azure Portal. Right click the browser tab and click **Duplicate tab**.
+         ![Edge Duplicate Tab.](./media/edge-duplicate-tab.png 'Edge Duplicate Tab')
+         <br/>
+
+      - Switch to your 2nd tab, then click Microsoft Azure at the top of window to take you to the home page.
+
+      - In your recent resources click your IoT Hub instance such as `iot-academy-johndoe-vscode-220427`
+         ![Recent Resources.](./media/recent-resources-iothub.png 'Recent Resources')
+         <br/>
+      
+      - Click **IoT Edge**, then click your device **iot-academy-edge-device**
+         ![IoT Hub Edge Device.](./media/iot-hub-iot-edge-device.png 'IoT Hub Edge Device')
+         <br/>
+
+      - Click the **Simulated Temperature Sensor** module at the bottom of the window
+         ![IoT Hub Device Module.](./media/iot-hub-device-module.png 'IoT Hub Device Module')
+         <br/>
+      
+      - Click **Restart Simulated Temperature Sensor** 
+         Notice the status that's received `Initializing simulated temperature sensor to send 500 messages, at an interval of 5 seconds`
+         ![Restart Simulated Temperature Sensor.](./media/simulated-temp-sensor-restart.png 'Restart Simulated Temperature Sensor')
+         <br/>
+   
+   2. Review the data received by ADX
+      - Click your 1st browser tab where ADX is still loaded.
+      - Click **Query** and enter the following query. Also, click the `>>` and ensure the `tempsensor` database scope is selected.
+         ```
+         tempsensor
+         | order by timeCreated desc 
+         | limit  10
+         ```
+         ![Query Temp Sensor Data.](./media/adx-query-tempsensor-recent.png 'Query Temp Sensor Data')
+         <br/>
+      - Click the **Run** button. If you're used to SQL don't press F5 as it will refresh your browser.
+         ![Recent Temp Sensor Data.](./media/adx-query-tempsensor-recent-data.png 'Recent Temp Sensor Data')
+         <br/>
+         
+## **Exercise 7: Processing Telemetry with Azure Stream Analytics (ASA)**
+
+### **Task 1: Create a Table in ADX to Hold aggregated data**
+
+   - In another Edge tab navigate to your ADX resource. 
+   - Create a new table named `tempsensoragg` in the `tempsensor` database. Reference Exercise 5 - Task 3 if help is needed.
+
+      ```bash
+      .create table tempsensoragg (WindowEnd: datetime, AverageTemperature: real)
+      ```
+      
+### **Task 2: Create a new ASA Job**
+   1. Go to the Azure Portal home page
+   2. Click **Create a resource**
+   3. Search for `stream analytics job`
+      ![ASA Create.](./media/asa-create.png 'ASA Create')
+   4. Click **Stream Analytics job**
+   5. Click **Create**
+   6. Enter the details for the job:
+      - Job name: `asajob-tempagg`
+      - Resource group: `rg-iot-academy`
+      - Location: `East US 2`
+      - Hosting environment: `Cloud`
+      - Streaming units: `1`
+      
+      ![ASA Create Details.](./media/asa-create-details.png 'ASA Create Details')
+   7. When the deployment is complete click **Go to resource**
+   
+### **Task 3: Creating an ASA Input**
+
+   - In another Edge tab navigate to your IoT Hub resource. 
+   - Create a new consumer group named `asa`. Reference Exercise 5 - Task 4 if help is needed.
+   - Go back to your tab that has your ASA instance.
+   - Click **Inputs**, Click **Add stream input**, Click **IoT Hub**
+      ![New Input.](./media/asa-new-input.png 'New Input')
+   - Enter the input details:
+      ![Input Details.](./media/asa-new-input-details.png 'Input Details')
+      
+### **Task 4: Creating an ASA Output**
+
+   1. Click **Outputs**
+   2. Click **Add**, then click **Azure Data Explorer**
+      ![New Output.](./media/asa-new-output.png 'New Output')
+   
+   3. Enter the details as shown below:
+      - Output alias: `adx`
+      - Cluster: your cluster created earlier
+      - Database: your database created earlier
+      - Table: `tempsensoragg`
+
+      ![New Output Details.](./media/asa-new-output-details.png 'New Output Details')
+   4. Click **Save**
+
+### **Task 5: Writing an ASA Query**
+
+   1. Click **Query**
+   2. Copy and paste the query below into the query window
+```SQL
+SELECT System.Timestamp() AS WindowEnd, avg(ambient.temperature) AverageTemperature
+INTO adx
+FROM vscodeiothub
+GROUP BY TumblingWindow(Duration(minute, 1))
+```
+   3. Click **Save query**
+
+      ![Update Query.](./media/asa-update-query.png 'Update Query')
+   
+   4. In another Edge tab navigate to your IoT Hub Instance
+   5. Reset the **SimulatedTemperatureSensor** module as described in Exercise 6 Task 1 to ensure telmetry being sent
+   6. Now back to your asa job, in the other open Edge tab
+   7. Click **Test Query**
+   8. Review the results in the output under the **Test Results** tab
+
+      ![Test Query.](./media/asa-test-query.png 'Test Query')
+
+### **Task 6: Start the ASA Job**
+   1. Go to the **Overview** tab
+   2. Click **Start**
+      ![Start Job.](./media/asa-start-job.png 'Start Job')
+   3. Click **Start** once more
+      ![Start Job Details.](./media/asa-start-job-details.png 'Start Job Details')
+   4. Watch the notification to ensure that the ASA job starts successfully.
+      ![Start Job Success.](./media/asa-start-job-success.png 'Start Job Success')
+   
+### **Task 7: Review Collected Aggregated in ADX**
+   1. Navigate to your ADX resource in another Edge tab
+   2. Click **Query**
+   3. Enter the query below
+      ```
+      tempsensoragg
+      | take 10 
+      | order by WindowEnd desc 
+      ```
+   4. Click **Run**
+   5. Continue clicking **Run** occassionally for 10 - 15 minutes until you see your data appear in the results as shown
+      ![Tempsensoragg-results.](./media/adx-tempsensoragg-results.png 'Tempsensoragg-results')
+
+## **Exercise 8: Cleanup**
+
+   It's important to not leave your Azure resources provisioned until the next Azure IoT Academy session as there may not be enough Azure credit for the next sessions.
+
+   1. Navigate to the Azure Portal home page
+   2. Click **Resource groups**
+   3. Click **rg-iot-academy**
+   4. Click **Delete resource group**
+      ![Delete Resource Group.](./media/resource-group-delete.png 'Delete Resource Group')
+   
+
 
