@@ -516,7 +516,7 @@ Once your device in registered through VS Code, you should see in your IoT Centr
 
  ![Command Recall](./media/device-provisioned.png 'Command Recall')
 
-At this point in the Track View dashboard you should see data flowing thorught it, the map should show a blue dot with your truck and the chart receiving telemetry data should show some data points already.
+At this point in the Truck View dashboard in IoT Central you should see data flowing thorught it, the map should show a blue dot with your truck and the chart receiving telemetry data should show some data points already.
 
 3. Select the device's **Commands** tab. This control should be under the truck name, to the right of the Truck view control.
 
