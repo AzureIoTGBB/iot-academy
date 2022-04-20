@@ -9,6 +9,9 @@ https://portal.azure.com/
 
 <!-- code_chunk_output -->
 
+- [**Prerequisites**](#prerequisites)
+  - [**Task 1: Install VS Code**](#task-1-install-vs-code)
+  - [**Task 2: Install VS Code Extensions**](#task-2-install-vs-code-extensions)
 - [**Exercise 1: IoT Hub provisioning**](#exercise-1-iot-hub-provisioning)
   - [**Task 1: Provision IoT Hub through the Portal**](#task-1-provision-iot-hub-through-the-portal)
   - [**Task 2: Provision IoT Hub through CLI**](#task-2-provision-iot-hub-through-cli)
@@ -19,10 +22,11 @@ https://portal.azure.com/
   - [**Task 3: Create an Individual Enrollment**](#task-3-create-an-individual-enrollment)
   - [**Task 4: Gather Individual Enrollment Details**](#task-4-gather-individual-enrollment-details)
 - [**Exercise 3: Create an Ubuntu-based Azure IoT Edge Device**](#exercise-3-create-an-ubuntu-based-azure-iot-edge-device)
-  - [**Task 1: Creating a VM to host an IoT Edge Device**](#task-1-creating-a-vm-to-host-an-iot-edge-device)
-  - [**Task 2: Connecting to your Ubuntu Virtual Machine**](#task-2-connecting-to-your-ubuntu-virtual-machine)
-  - [**Task 3: Install the Azure IoT Edge Runtime and Connect the Device**](#task-3-install-the-azure-iot-edge-runtime-and-connect-the-device)
-  - [**Task 4: Observe the Enrollment and Device Status**](#task-4-observe-the-enrollment-and-device-status)
+  - [**Task 1: Ensure the Azure Resource Provider is Registered**](#task-1-ensure-the-azure-resource-provider-is-registered)
+  - [**Task 2: Creating a VM to host an IoT Edge Device**](#task-2-creating-a-vm-to-host-an-iot-edge-device)
+  - [**Task 3: Connecting to your Ubuntu Virtual Machine**](#task-3-connecting-to-your-ubuntu-virtual-machine)
+  - [**Task 4: Install the Azure IoT Edge Runtime and Connect the Device**](#task-4-install-the-azure-iot-edge-runtime-and-connect-the-device)
+  - [**Task 5: Observe the Enrollment and Device Status**](#task-5-observe-the-enrollment-and-device-status)
 - [**Exercise 4: Deploy and IoT Edge Module to Simulate Device Telemetry**](#exercise-4-deploy-and-iot-edge-module-to-simulate-device-telemetry)
   - [**Task 1: Use the IoT Edge Module Marketplace to Provision the Simulated Temperature Sensor Module**](#task-1-use-the-iot-edge-module-marketplace-to-provision-the-simulated-temperature-sensor-module)
   - [**Task 2: Ensure the Module is Running**](#task-2-ensure-the-module-is-running)
@@ -45,6 +49,17 @@ https://portal.azure.com/
 
 <!-- /code_chunk_output -->
 
+## **Prerequisites**
+
+### **Task 1: Install VS Code**
+https://code.visualstudio.com/Download
+
+### **Task 2: Install VS Code Extensions**
+   1. Click extensions
+   2. Search for `azure iot`
+   3. Click install for the `Azure IoT Tools` extension pack
+
+   ![VS Code IoT Tools.](./media/vscode-azure-iot-tools.png 'VS Code IoT Tools')
 
 ## **Exercise 1: IoT Hub provisioning**
 
@@ -52,7 +67,7 @@ https://portal.azure.com/
 
 During this exercise you will use 3 different tools to create three different IoT Hubs, after this exercise we will delete two and continue the rest of the workshop with the first IoT Hub created through the Portal.
 
-1. In your browser, navigate to the [Azure portal](https://portal.azure.com), select **+Create a resource** in the navigation pane, enter `iot` into the **Search the Marketplace** box.
+1. In your browser, navigate to the [Azure portal](https://portal.azure.com), select **+Create a resource** in the navigation pane, enter `iot hub` into the **Search the Marketplace** box.
 
    ![+Create a resource is shown on the Azure Portal home page.](./media/create-resource.png 'Create a resource')
 
@@ -76,8 +91,6 @@ During this exercise you will use 3 different tools to create three different Io
 
      ![After clicking create new under resource group enter your new resource group name.](./media/iot-hub-basics-blade-create-resource-group.png 'Create IoT Hub New Resource Group')
 
-   - **Region**: Select the location you are using for this hands-on lab.
-
    - **IoT Hub Name**: Enter a unique name, such as `iot-academy-johndoe-220427`. 
    The name follows best practices for naming resources in Azure.
    Note: 
@@ -90,22 +103,27 @@ During this exercise you will use 3 different tools to create three different Io
 
      ![The Basics blade for IoT Hub is displayed, with the values specified above entered into the appropriate fields.](./media/iot-hub-basics-blade.png 'Create IoT Hub Basic blade')
 
+   - **Region**: Select the location you are using for this hands-on lab.
+
    - Click **Next: Networking**.
 
-   - On the **Networking** tab ensure Public is selected
+   - On the **Networking** tab ensure `Public` is selected
 
    - Click **Next: Management**.
 
    - On the **Management** tab
-      1. **Pricing and scale tier**: ensure **S1: Standard tier** is selected
-      2. **Number of S1 IoT hub units**: ensure **1** is selected
-      3. **Defender for IoT**: set to **On**
+      1. **Pricing and scale tier**: ensure `S1: Standard tier` is selected
+      2. **Number of S1 IoT hub units**: ensure `1` is selected
+      3. **Defender for IoT**: set to `On`
       4. **Assign me to the IoT Hub Data Contributor role**: select the check box
-      5. **Device-to-cloud partitions**: leave the default setting of **4**
+      5. **Device-to-cloud partitions**: leave the default setting of `4`
 
    - Click **Review + create**.
 
    - Ensure validation passes and click **Create**.
+
+   ![IoT Hub Create Details 1.](./media/iot-hub-create-details-management-1.png 'IoT Hub Create Details 1')
+   ![IoT Hub Create Details 2.](./media/iot-hub-create-details-management-2.png 'IoT Hub Create Details 2')
 
 5. After clicking create you were directed to a deployment overview page. When the deployment completes click the **Go to resource** button.
 
@@ -113,17 +131,25 @@ During this exercise you will use 3 different tools to create three different Io
 
 ### **Task 2: Provision IoT Hub through CLI**
 
-1. Open cloud with the below link
+1. Open the Azure Cloud Shell with the below link
 
     https://shell.azure.com/
 
-   If you've never used the Azure Cloud Shell before you will be prompted to mount a storage account, click **Create Storage** to continue. If you used Azure Cloud Shell before, you will skip this step.
+   If you've never used the Azure Cloud 
 
-   ![Mount Storage Account.](./media/mount-storage.png 'Mount Storage Account')
+   If you've never used the Azure Cloud Shell before:
+      1. You will be prompted to select Bash or Powershell, select `Bash`
+      
+         ![Cloud Shell Bash.](./media/cloud-shell-1.png 'Cloud Shell Bash')
 
-2. Change to **Bash** access
+      3. You will be prompted to mount a storage account, click **Create Storage** to continue. If you used Azure Cloud Shell before, you will skip this step.
+         - Click **Create storage**
 
-   ![Screenshot of Bash access.](./media/bash.png 'Access Bash Link')
+            ![Mount Storage Account.](./media/mount-storage.png 'Mount Storage Account')
+
+2. If **Bash** isn't already selected switch to it
+
+   ![Bash access.](./media/bash.png 'Access Bash Link')
 
 3. Once you are login run the following command to create an IoT Hub.
 
@@ -135,26 +161,43 @@ During this exercise you will use 3 different tools to create three different Io
 
    As the command runs you'll observe the following result.
 
-   ![Screenshot of IoT Hub create running.](./media/iot-hub-create-cli-running.png 'IoT Hub create running')
+   ![IoT Hub create running.](./media/iot-hub-create-cli-running.png 'IoT Hub create running')
 
    When the command completes you'll see output as follows
    
-   ![Screenshot of IoT Hub create complete.](./media/iot-hub-create-cli-complete.png 'IoT Hub create complete')
+   ![IoT Hub create complete.](./media/iot-hub-create-cli-complete.png 'IoT Hub create complete')
 
 
-4. Browse to the [Azure Portal](https://portal.azure.com) to verify your newly created IoT Hub. 
+4. In a new Edge tab, browse to the [Azure Portal](https://portal.azure.com) to verify your newly created IoT Hub.
+   1. From the Azure Portal home page click **All resources**, under the Navigate section.
+      ![All Resources IoT Hub.](./media/portal-all-resources-iot-hub.png 'All Resources IoT Hub')      
+   2. Verify you see your two created IoT Hubs in the list of resorces
+      ![All Resources IoT Hub.](./media/portal-all-resources-iot-hub-details.png 'All Resources IoT Hub')
 
 5. Delete the IoT Hub just created using the delete command.
+   - Go back to your Cloud Shell tab
 
-   Again, replace johndoe and the appropriate date
-   ```bash 
-   az iot hub delete --name iot-johndoe-cli-220427 --resource-group rg-iot-academy
-   ```
+   - Run the following command to list your IoT Hubs
+      ```bash 
+      az iot hub list -o table
+      ```
+  
+   - Run the following two commands in the Cloud Shell
+    
+      Again, replace johndoe and the appropriate date. You could also copy and paste the names from the previous `list` command
+      ```bash 
+      az iot hub delete --name iot-johndoe-cli-220427 --resource-group rg-iot-academy
+      ```
 
-   Also, delete the IoT Hub created through the portal
-   ```bash
-   az iot hub delete --name iot-academy-johndoe-220427 --resource-group rg-iot-academy   
-   ```
+      Also, delete the IoT Hub created through the portal
+      ```bash
+      az iot hub delete --name iot-academy-johndoe-220427 --resource-group rg-iot-academy   
+      ```
+
+   - Run the list command one more time to ensure your IoT Hub instances were deleted
+      ```bash 
+      az iot hub list -o table
+      ```
 
 ### **Task 3: Provision IoT Hub through VS Code**
 
@@ -171,11 +214,33 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
       ![VS Code Install IoT Tools Extension Pack.](./media/vscode-install-azure-iot-tools.png 'VS Code Install IoT Tools Extension Pack')
 
-2. Click the View Menu and then Explorer
+2. Sign in to your Azure account
+   - Click the **View** menu on the top toolbar then select **Command Palette**. 
+   - Type 'azure sign'
+   - Click the `Azure: Sign in to Azure Cloud` command
+   - Click `Azure (Current)` (or press enter)
+
+      ![Sign in.](./media/vscode-azure-sign-in.png 'Sign in')
+
+   - After redirection to the browser select your account
+
+      ![Pick Account.](./media/vscode-azure-sign-in-pick-account.png 'Pick Account')
+   
+   - Close the browser tab after seeing `You are signed in now and can close this page.`
+
+2. Ensure your subscription is selected
+   - Open the **Command Palette** (menu or shortcut)
+   - Type 'azure sub' and select `Azure: Select Subscriptions`
+      ![Select Subscriptions Search.](./media/vscode-select-subscription-search.png 'Select Subscriptions Search')
+   - To avoid confusion ensure your subscription is the only one selected during this hands on lab.
+      ![Select Subscriptions Select.](./media/vscode-select-subscription-select.png 'Select Subscriptions Select')
+   
+
+3. Click the View Menu and then Explorer
 
    ![VS Code View Explorer.](./media/vscode-view-explorer.png 'VS Code View Explorer')
 
-   - Now you should be able to see the **Azure IoT Hub**
+   - Ensure **Azure IoT Hub** is seen in the Explorer view
 
       ![VS Code IoT Hub.](./media/vscode-view-explorer-iothub.png 'VS Code IoT Hub')
 
@@ -217,7 +282,9 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
    ![Create DPS.](./media/dps-create.png 'Create DPS')
 
-2. Create Details
+2. Click **Create**
+   
+3. Create Details
    - Enter the following details
       - Resource group: `rg-iot-academy`
       - Name: `provs-iotacad-{SUFFIX}` e.g. `provs-iotacad-johndoe220427`
@@ -225,37 +292,49 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
    ![Create DPS.](./media/dps-create-details.png 'Create DPS')
 
-3. Click **Review and Create**, then click **Create**
+4. Click **Review and Create**, then click **Create**
+   
+5. When the deployment completes, click **Go to resource**
 
-4. When the deployment completes, click **Go to resource**
-
-5. When the Overview page loads save the **ID Scope** to notepad   
+6. When the Overview page loads save the **ID Scope** to notepad   
 
 ### **Task 2: Connect IoT Hub to DPS**
 
 1. Click **Linked IoT Hubs**, then click **Add**
+
+   ![](./media/dps-link-iothub.png)
 2. Fill in the following details, then click **Save**
+
+   ![](./media/dps-link-iothub-details.png)
 3. Click **Manage Allocation Policy**, review the options available
+   
+   ![](./media/dps-manage-allocation-policy.png)
 
 ### **Task 3: Create an Individual Enrollment**
 
-1. Click **Add individual enrollment**
-2. Fill in the following details
-   - Mechanism: `Symmetric Key`
-   - Auto-generate keys: `checked`
-   - Registration ID: `iotacademy`
-   - IoT Hub Device ID: `iot-academy-edge-device`
-   - IoT Edge device: `True`
-   - Select the IoT hubs this device can be assigned to: `select your hub`
-   Leave all other values at default
-3. Click **Save** at the top of the page
+   1. Click **Manage enrollments**
+   2. Click **Add individual enrollment**
+
+      ![](./media/dps-manage-enrollments-add-individual.png)
+
+   3. Fill in the following details
+      - Mechanism: `Symmetric Key`
+      - Auto-generate keys: `checked`
+      - Registration ID: `iotacademy`
+      - IoT Hub Device ID: `iot-academy-edge-device`
+      - IoT Edge device: `True`
+      - Select the IoT hubs this device can be assigned to: `select your hub`
+      - Leave all other values at default
+   4. Click **Save** at the top of the page
+
+
 
 ### **Task 4: Gather Individual Enrollment Details**
 1. Click **Manage enrollments**, then click **Individual Enrollments**, then click your enrollment **iotacademy**
    ![View Enrollment.](./media/dps-individual-enrollment-view.png 'View Enrollment')
 2. Take note of the following values in your notepad
-   - Registration ID
-   - IoT Hub Device ID
+   - Registration ID: `iotacademy`
+   - IoT Hub Device ID: `iot-academy-edge-device`
    - Primary Key (click the copy icon shown in the image below)
       ![View Enrollment Details.](./media/dps-individual-enrollment-view-details.png 'View Enrollment Details')
 
@@ -263,7 +342,22 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
 During this exercise you will learn how to set up an Azure IoT Edge device and connect it to IoT Hub to start streaming data.
 
-### **Task 1: Creating a VM to host an IoT Edge Device**
+### **Task 1: Ensure the Azure Resource Provider is Registered**
+   1. Go back to your tab in Edge which has the Azure Cloud Shell, or open https://shell.azure.com
+   2. Run the following command
+      ```Bash
+      az provider show -n Microsoft.Compute -o table
+      ```
+      ![](./media/cloud-shell-resource-provider-not-registered.png)
+   3. If your status is `Registered` continue to Task 2
+   4. If the status is `NotRegistered`, run the following command to Register the Resource Provider
+      ```Bash
+      az provider register -n 'Microsoft.Compute' --wait -o table
+      ```
+      ![](./media/cloud-shell-resource-provider-not-registered.p)
+    
+      
+### **Task 2: Creating a VM to host an IoT Edge Device**
 
 In this exercise we'll set up an IoT Edge device using an Ubuntu based VM.
 
@@ -274,17 +368,33 @@ In this exercise we'll set up an IoT Edge device using an Ubuntu based VM.
 
 2. Then you will need to complete the following parameters in the **Basics** tab:
 
+   <span style="color:rgb(203,65,84);font-weight:700;font-size:20px">    
+
+   Note: For the ``Region`` and ``Size`` options below. At the time of this writing there is a shortage of many VM sizes in various Azure regions for new subscriptions. This is believed to be from increased demand.
+
+   The available VM skus are based on the region, or location, you're creating a VM resource within. 
+
+   For ``Location`` you may need to look outside of your region your other resources are in. At the time of this writing `Sweden Central` seems to have many VM skus available and was used for this demonstration.
+
+   Having your resources spread across different regions is not ideal as it can incur extra costs due to network usage. With the small scale and scope of this demo it won't have a meaningful impact on cost.
+
+   For ``Size`` look for a VM sku that costs < $40 USD/month.
+
+   A good small size to make the most of your Azure credit is `B1s` which includes free hours and is also < $8 USD/month
+  
+   </span>
+
    - **Subscription**: Select the subscription you are using for this hands-on lab.
    - **Resource group**: Use existing and select your resource group, `rg-iot-academy`.
    - **Virtual Machine Name**: edgedevice+SUFFIX e.g. `edgedevice-johndoe-220427`
-   - **Region**: Select the location you are using for resources in this hands-on lab.
-   - **Availability Options**: Select **No Infrastructure redundancy required**.
+   - **Region**: Refer to <span style="color:rgb(203,65,84)">Note</span>
+   - **Availability Options**: Select `No Infrastructure redundancy required`.
    - **Image**: Keep default
-   - **Size**: Keep default
-   - **Authentication Type**: Select **Password**
-   - **Username**: iotacademy
-   - **Password**: MSFTacademy01!
-   - **Public inbound ports**: None
+   - **Size**: Refer to <span style="color:rgb(203,65,84)">Note</span>
+   - **Authentication Type**: Select `Password`
+   - **Username**: `iotacademy`
+   - **Password**: `MSFTacademy01!` (For higher security you could create your own strong password)
+   - **Public inbound ports**: `None`
 <br/>
 
 3. Click the **Management** tab at the top of the pane.
@@ -320,7 +430,7 @@ Add the following two tags
 
 <br/>
 
-### **Task 2: Connecting to your Ubuntu Virtual Machine**
+### **Task 3: Connecting to your Ubuntu Virtual Machine**
 
 An important aspect of building cloud infrastructure is doing it in a secure manner.
 As part of this exercise port 22 could be opened, for SSH, to allow quick connection to the VM. However, this could allow an attacker to attempt to breach this port.
@@ -377,6 +487,7 @@ For simplicity the 2nd option will be used.
 e.g. `ssh iotacademy@20.122.53.2`
 
 <br/>
+   
    If this is your first time connecting you'll see a prompt asking `Are you sure you want to continue connecting?`. Enter `yes` and press enter.
 
    ![VS Code Terminal Continue Connecting.](./media/vscode-terminal-fingerprint-yes.png 'VS Code Terminal Continue Connecting')
@@ -393,7 +504,7 @@ e.g. `ssh iotacademy@20.122.53.2`
    ![VS Code Terminal Connected.](./media/vscode-terminal-connected.png 'VS Code Terminal Connected')
 <br/>
 
-### **Task 3: Install the Azure IoT Edge Runtime and Connect the Device**
+### **Task 4: Install the Azure IoT Edge Runtime and Connect the Device**
 
 1. Now logged into the VM, Install the Edge Runtime
 
@@ -447,13 +558,13 @@ e.g. `ssh iotacademy@20.122.53.2`
       sudo nano /etc/iotedge/config.yaml
    ```
 
-   - Scroll down to **Manual Provisioning with an IoT Hub connection string** then comment out all the uncommented lines using the `#` symbol.
+   - Scroll down to **Manual Provisioning with an IoT Hub connection string** then comment out all the uncommented lines using the `#` symbol. You may have to use your arrow keys to navigate within Nano.
 
    ![Config File.](./media/ssh-edit-iot-edge-connectionstring.png 'Config File')
 
-   - Scroll down further to locate the **DPS provisioning with symmetric key attestation** section. Uncomment the section and set the following values
-      - scope_id: saved in notepad
-      - registration_id: saved in notepad
+   - Scroll down further to locate the **DPS provisioning with symmetric key attestation** section. Uncomment the section and set the following values. Note: It's important that there are exactly two spaces for indentation used. When working with the template file the `#` and a space will need to be removed from each line.
+      - scope_id: saved in notepad (e.g. `0ne115AEAFD`)
+      - registration_id: `iotacademy`, saved in notepad
       - symmetric_key: the primary key saved in notepad
 
    ![Config File.](./media/ssh-edit-iot-edge-dps-provisioning.png 'Config File')   
@@ -468,10 +579,20 @@ e.g. `ssh iotacademy@20.122.53.2`
       sudo systemctl restart iotedge
    ```
 
-   In a few minutes you should receive a **Running** status after executing the following command. You may need to run the command several times if enough time has not passed since restarting the IoT Edge runtime.
+   In a few minutes you should receive a **Running** status after executing the following command. 
+
+   <span style="color:yellow;font-weight:700;font-size:20px">    
+      The following comman may need to be run several times if enough time has not passed since restarting the IoT Edge runtime.  
+
+      Periodically re-run the command, for up to 10 minutes.
+
+   </span>
+
    ```bash
       sudo iotedge list
    ```
+
+   ![](./media/iot-edge-runtime-edge-agent-running.png)
 
    Another command that is useful is **check** that is shown below. The **check** command:
       - checks the validity of the config.yaml file
@@ -482,12 +603,17 @@ e.g. `ssh iotacademy@20.122.53.2`
    ```bash
       sudo iotedge check
    ```
+   
+   Note that it's normal to have some <span style="color:yellow">warnings</span> and <span style="color:red">errors</span>
+   
+   ![](./media/iot-edge-runtime-edge-agent-check.png)
 
-### **Task 4: Observe the Enrollment and Device Status**
-   1. Navigate to your DPS instance by searching for `provs` and clicking your instance.
-   2. Click **Manage Enrollments**
-   3. Click **Individual Enrollments**
-   4. Click **iotacademy**
+### **Task 5: Observe the Enrollment and Device Status**
+   1. Head back to the Azure Portal home page
+   2. Navigate to your DPS instance by searching for `provs` and clicking your instance.
+   3. Click **Manage Enrollments**
+   4. Click **Individual Enrollments**
+   5. Click **iotacademy**
 
    ![Config File.](./media/dps-registration-status-assigned.png 'Config File')   
 
