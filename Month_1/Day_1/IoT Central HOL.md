@@ -489,8 +489,7 @@ dotnet add package System.Text.Json
 
 ```
 
-5. From the File menu, open the Program.cs file just created. Then replace the whole content copying and pasting from the file **Program.cs** you will find in  
-**code_sample** folder.
+5. From the File menu, open the Program.cs file just created. On the github repo month 1/day 1 there is a folder titled Code-Sample: https://github.com/AzureIoTGBB/iot-academy/tree/main/Month_1/Day_1/Code_sample Copy this content from the Prgram.cs file and paste into your Visual Studio code Program.cs file. This will replace the whole content.
 
 6. Once you replace the content of the files, we need to add our keys to connect with our services. Look for lines **123** to **126**. Replace accordingly based on the keys you were adding to your notepad in previous exercises.
 
