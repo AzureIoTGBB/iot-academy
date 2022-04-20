@@ -831,7 +831,8 @@ e.g. `ssh iotacademy@20.122.53.2`
 
 ### **Task 1: Create a Table in ADX to Hold aggregated data**
 
-   - In another Edge tab navigate to your ADX resource. 
+   - Replace the contents of the query window with the create table statement below.
+
    - Create a new table named `tempsensoragg` in the `tempsensor` database. Reference Exercise 5 - Task 3 if help is needed.
 
       ```bash
@@ -850,7 +851,7 @@ e.g. `ssh iotacademy@20.122.53.2`
    6. Enter the details for the job:
       - Job name: `asajob-tempagg`
       - Resource group: `rg-iot-academy`
-      - Location: `East US 2`
+      - Location: your region e.g. `East US 2`
       - Hosting environment: `Cloud`
       - Streaming units: `1`
       
@@ -868,9 +869,19 @@ e.g. `ssh iotacademy@20.122.53.2`
       ![New Input.](./media/asa-new-input.png 'New Input')
 
    - Enter the input details:
+     - Subscription: your subscription
+     - IoT Hub: your IoT Hub instance
+     - Input alias: `vscodeiothub`
+     - Consumer group: `asa`
+     - Endpoint: `Messaging`
+     - All other values: default
+
+      <br/>
 
       ![Input Details.](./media/asa-new-input-details.png 'Input Details')
       
+   - Click **Save**
+ 
 ### **Task 4: Creating an ASA Output**
 
    1. Click **Outputs**
@@ -946,6 +957,7 @@ GROUP BY TumblingWindow(Duration(minute, 1))
    2. Click **Resource groups**
    3. Click **rg-iot-academy**
    4. Click **Delete resource group**
+
       ![Delete Resource Group.](./media/resource-group-delete.png 'Delete Resource Group')
    
 
