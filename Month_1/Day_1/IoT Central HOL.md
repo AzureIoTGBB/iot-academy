@@ -66,7 +66,7 @@ Open Azure IoT Central: https://apps.azureiotcentral.com/
 
  ![Create a Custom App](./media/iotc-custom-app.png 'Create a Custom App')
 
-Selct the build icon on the left, then select Create app within Custom app, you should fill the fields in the Application Form:
+Selct the build icon on the left, then select Create app within Custom app. You should fill the fields in the Application Form:
 
  ![Create a Custom App](./media/iotc-new-app.png 'Create a Custom App')
 
