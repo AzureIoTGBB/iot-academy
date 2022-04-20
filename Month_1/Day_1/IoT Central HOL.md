@@ -570,7 +570,7 @@ Leave Time aggregation as Off.
 
 For **Actions**, click on **+ Email**.
 
-In Display name, enter a title for the email, perhaps "Cooling system failed"!
+In Display name, enter a title for the email, perhaps "Cooling system failed!"
 
 For To, enter the email you've used for your IoT Central account. And for Note enter some descriptive text that will form the body of the email.
 
