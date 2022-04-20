@@ -470,9 +470,11 @@ Once Azure Maps resource is created, click **Go to resource** then find the key 
 
 2. On the top bar select **Terminal** and then **New Terminal** in Visual Studio Code. 
 
+3. Pleae make sure you are in the correct folder directory as you will be creating a directory. (cd.. to change directory location locally)
+
 ![Terminal](./media/vs-code-mkdir.png 'Terminal')
 
-3. Run the following commands to create a directory, set up a dotnet environment, and install required libraries:
+4. Run the following commands to create a directory, set up a dotnet environment, and install required libraries:
 
 ```
 mkdir RefrigeratedTruck
