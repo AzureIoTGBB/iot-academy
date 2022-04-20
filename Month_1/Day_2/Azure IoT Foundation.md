@@ -581,8 +581,8 @@ e.g. `ssh iotacademy@20.122.53.2`
 
    In a few minutes you should receive a **Running** status after executing the following command. 
 
-   <span style="color:yellow;font-weight:700;font-size:20px">    
-      The following comman may need to be run several times if enough time has not passed since restarting the IoT Edge runtime.  
+   <span style="color:rgb(203,65,84);font-weight:700;font-size:20px">    
+      The following command may need to be run several times if enough time has not passed since restarting the IoT Edge runtime.  
 
       Periodically re-run the command, for up to 10 minutes.
 
@@ -604,7 +604,7 @@ e.g. `ssh iotacademy@20.122.53.2`
       sudo iotedge check
    ```
    
-   Note that it's normal to have some <span style="color:yellow">warnings</span> and <span style="color:red">errors</span>
+   Note that it's normal to have some <span style="color:yellow;background-color:black">warnings</span> and <span style="color:red;background-color:black">errors</span>
    
    ![](./media/iot-edge-runtime-edge-agent-check.png)
 
