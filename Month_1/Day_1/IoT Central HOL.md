@@ -629,6 +629,9 @@ At this point you should see all the rules listed as below:
 At this point it is time to test your Rules Go to your Device Dashboard, sent a Command to trigger a new Customer trip, remember use numbers from 1 to 9.
 In a few minutes you should start receiving emails.
 
+**Note**: To receive emails the account you select has to be login to IoT central at least one time, otherwise you will not receive any emails.
+
+
 ## Exercise 6: Clean up ## 
 
 Once you completed all the exercises, go to Azure Portal, look for the azure IoT Central Application and delete resource.
