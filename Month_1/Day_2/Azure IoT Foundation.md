@@ -960,5 +960,8 @@ GROUP BY TumblingWindow(Duration(minute, 1))
 
       ![Delete Resource Group.](./media/resource-group-delete.png 'Delete Resource Group')
    
+   5. Type the type the name of your resource group and click **Delete**
+
+      ![](./media/resource-group-delete-confirm.png '')
 
 
