@@ -495,7 +495,7 @@ dotnet add package System.Text.Json
 
  ![Command Recall](./media/vscode-replace-keys.png 'Command Recall')
 
-After the changes are made, save the file with **Ctrl+S**
+After the changes are made, save the file. Click **File - Save **
 ### **Task 2: Launch your device** ### 
 
 1. To begin testing, first open the Azure IoT Central app in a browser: https://app.azureiotcentral.com/
