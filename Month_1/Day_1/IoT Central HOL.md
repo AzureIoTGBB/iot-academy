@@ -470,9 +470,11 @@ Once Azure Maps resource is created, click **Go to resource** then find the key 
 
 2. On the top bar select **Terminal** and then **New Terminal** in Visual Studio Code. 
 
+3. Please make sure you are in the local directory where you want to create a new directory. (cd.. to change directory location locally)
+
 ![Terminal](./media/vs-code-mkdir.png 'Terminal')
 
-3. Run the following commands to create a directory, set up a dotnet environment, and install required libraries:
+4. Run the following commands to create a directory, set up a dotnet environment, and install required libraries:
 
 ```
 mkdir RefrigeratedTruck
@@ -487,10 +489,10 @@ dotnet add package System.Text.Json
 
 ```
 
-6. From the File menu, open the Program.cs file just created. Then replace the whole content copying and pasting from the file **Program.cs** you will find in  
+5. From the File menu, open the Program.cs file just created. Then replace the whole content copying and pasting from the file **Program.cs** you will find in  
 **code_sample** folder.
 
-7. Once you replace the content of the files, we need to add our keys to connect with our services. Look for lines **123** to **126**. Replace accordingly based on the keys you were adding to your notepad in previous exercises.
+6. Once you replace the content of the files, we need to add our keys to connect with our services. Look for lines **123** to **126**. Replace accordingly based on the keys you were adding to your notepad in previous exercises.
 
  ![Command Recall](./media/vscode-replace-keys.png 'Command Recall')
 
