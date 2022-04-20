@@ -470,7 +470,7 @@ Once Azure Maps resource is created, click **Go to resource** then find the key 
 
 2. On the top bar select **Terminal** and then **New Terminal** in Visual Studio Code. 
 
-3. Please make sure you are in the correct folder directory locally, where you want to create a new directory. (cd.. to change directory location locally)
+3. Please make sure you are in the local directory where you want to create a new directory. (cd.. to change directory location locally)
 
 ![Terminal](./media/vs-code-mkdir.png 'Terminal')
 
