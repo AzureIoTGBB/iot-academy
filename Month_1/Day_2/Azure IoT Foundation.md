@@ -1,59 +1,74 @@
-# Internet of Things
+# Azure IoT Foundation
 
-1) Azure IoT Foundation, theory
+This hands on lab seeks to introduce the student to the following core Azure IoT services:
+   - Azure IoT Hub
+   - Azure Device Provisioning Service (DPS)
+   - Azure IoT Edge, IoT Edge Runtime & Edge Modules
+   - Azure Data Explorer (ADX)
+   - Azure Stream Analytics (ASA)
 
-2) Getting familiar with Azure Portal
-https://portal.azure.com/
+Experience will also be gained with the following technologies:
+   - Visual Studio Code
+   - Azure Virtual Machines
+   - Ubuntu 18
+   - Bash 
+
+These services are explored as they're often part of overall IoT solutions. A simplistic approach is taken with this lab to allow to reach many audiences of varying technical experience.
+
+Ideally students taking this course have familiarity with the Azure Portal. [https://portal.azure.com](https://portal.azure.com/)
+
+A good way to become familiar with Azure is to use the Microsoft Learn content and learning paths as part of the Azure Fundamentals certification. You can read more at the following link: [https://docs.microsoft.com/en-us/learn/certifications/exams/az-900](https://docs.microsoft.com/en-us/learn/certifications/exams/az-900)
+
+Course Content
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [Internet of Things](#internet-of-things)
-  - [**Prerequisites**](#prerequisites)
-    - [**Task 1: Install VS Code**](#task-1-install-vs-code)
-    - [**Task 2: Install VS Code Extensions**](#task-2-install-vs-code-extensions)
-  - [**Exercise 1: IoT Hub provisioning**](#exercise-1-iot-hub-provisioning)
-    - [**Task 1: Provision IoT Hub through the Portal**](#task-1-provision-iot-hub-through-the-portal)
-    - [**Task 2: Provision IoT Hub through CLI**](#task-2-provision-iot-hub-through-cli)
-    - [**Task 3: Provision IoT Hub through VS Code**](#task-3-provision-iot-hub-through-vs-code)
-  - [**Exercise 2: Azure IoT Hub Device Provisioning Service (DPS)**](#exercise-2-azure-iot-hub-device-provisioning-service-dps)
-    - [**Task 1: Deploy DPS**](#task-1-deploy-dps)
-    - [**Task 2: Connect IoT Hub to DPS**](#task-2-connect-iot-hub-to-dps)
-    - [**Task 3: Create an Individual Enrollment**](#task-3-create-an-individual-enrollment)
-    - [**Task 4: Gather Individual Enrollment Details**](#task-4-gather-individual-enrollment-details)
-  - [**Exercise 3: Create an Ubuntu-based Azure IoT Edge Device**](#exercise-3-create-an-ubuntu-based-azure-iot-edge-device)
-    - [**Task 1: Ensure the Azure Resource Provider is Registered**](#task-1-ensure-the-azure-resource-provider-is-registered)
-    - [**Task 2: Creating a VM to host an IoT Edge Device**](#task-2-creating-a-vm-to-host-an-iot-edge-device)
-    - [**Task 3: Connecting to your Ubuntu Virtual Machine**](#task-3-connecting-to-your-ubuntu-virtual-machine)
-    - [**Task 4: Install the Azure IoT Edge Runtime and Connect the Device**](#task-4-install-the-azure-iot-edge-runtime-and-connect-the-device)
-    - [**Task 5: Observe the Enrollment and Device Status**](#task-5-observe-the-enrollment-and-device-status)
-  - [**Exercise 4: Deploy an IoT Edge Module to Simulate Device Telemetry**](#exercise-4-deploy-an-iot-edge-module-to-simulate-device-telemetry)
-    - [**Task 1: Use the IoT Edge Module Marketplace to Provision the Simulated Temperature Sensor Module**](#task-1-use-the-iot-edge-module-marketplace-to-provision-the-simulated-temperature-sensor-module)
-    - [**Task 2: Ensure the Module is Running**](#task-2-ensure-the-module-is-running)
-  - [**Exercise 5: Ingesting Telemetry Data with IoT Hub and Azure Data Explorer (ADX)**](#exercise-5-ingesting-telemetry-data-with-iot-hub-and-azure-data-explorer-adx)
-    - [**Task 1: Creating the ADX Cluster**](#task-1-creating-the-adx-cluster)
-    - [**Task 2: Adding an ADX Database**](#task-2-adding-an-adx-database)
-    - [**Task 3: Creating the tempsensor table**](#task-3-creating-the-tempsensor-table)
-    - [**Task 4: Connecting ADX to IoT Hub to Ingest Telemetry**](#task-4-connecting-adx-to-iot-hub-to-ingest-telemetry)
-  - [**Exercise 6: Analyzing Data with Azure Data Explorer (ADX)**](#exercise-6-analyzing-data-with-azure-data-explorer-adx)
-    - [**Task 1: Connecting ASA to IoT Hub**](#task-1-connecting-asa-to-iot-hub)
-  - [**Exercise 7: Processing Telemetry with Azure Stream Analytics (ASA)**](#exercise-7-processing-telemetry-with-azure-stream-analytics-asa)
-    - [**Task 1: Create a Table in ADX to Hold aggregated data**](#task-1-create-a-table-in-adx-to-hold-aggregated-data)
-    - [**Task 2: Create a new ASA Job**](#task-2-create-a-new-asa-job)
-    - [**Task 3: Creating an ASA Input**](#task-3-creating-an-asa-input)
-    - [**Task 4: Creating an ASA Output**](#task-4-creating-an-asa-output)
-    - [**Task 5: Writing an ASA Query**](#task-5-writing-an-asa-query)
-    - [**Task 6: Start the ASA Job**](#task-6-start-the-asa-job)
-    - [**Task 7: Review Collected Aggregated in ADX**](#task-7-review-collected-aggregated-in-adx)
-  - [**Exercise 8: Cleanup**](#exercise-8-cleanup)
+- [**Prerequisites**](#prerequisites)
+  - [**Task 1: Install VS Code**](#task-1-install-vs-code)
+  - [**Task 2: Install VS Code Extensions**](#task-2-install-vs-code-extensions)
+- [**Exercise 1: IoT Hub provisioning**](#exercise-1-iot-hub-provisioning)
+  - [**Task 1: Provision IoT Hub through the Portal**](#task-1-provision-iot-hub-through-the-portal)
+  - [**Task 2: Provision IoT Hub through CLI**](#task-2-provision-iot-hub-through-cli)
+  - [**Task 3: Provision IoT Hub through VS Code**](#task-3-provision-iot-hub-through-vs-code)
+- [**Exercise 2: Azure IoT Hub Device Provisioning Service (DPS)**](#exercise-2-azure-iot-hub-device-provisioning-service-dps)
+  - [**Task 1: Deploy DPS**](#task-1-deploy-dps)
+  - [**Task 2: Connect IoT Hub to DPS**](#task-2-connect-iot-hub-to-dps)
+  - [**Task 3: Create an Individual Enrollment**](#task-3-create-an-individual-enrollment)
+  - [**Task 4: Gather Individual Enrollment Details**](#task-4-gather-individual-enrollment-details)
+- [**Exercise 3: Create an Ubuntu-based Azure IoT Edge Device**](#exercise-3-create-an-ubuntu-based-azure-iot-edge-device)
+  - [**Task 1: Ensure the Azure Resource Provider is Registered**](#task-1-ensure-the-azure-resource-provider-is-registered)
+  - [**Task 2: Creating a VM to host an IoT Edge Device**](#task-2-creating-a-vm-to-host-an-iot-edge-device)
+  - [**Task 3: Connecting to your Ubuntu Virtual Machine**](#task-3-connecting-to-your-ubuntu-virtual-machine)
+  - [**Task 4: Install the Azure IoT Edge Runtime and Connect the Device**](#task-4-install-the-azure-iot-edge-runtime-and-connect-the-device)
+  - [**Task 5: Observe the Enrollment and Device Status**](#task-5-observe-the-enrollment-and-device-status)
+- [**Exercise 4: Deploy an IoT Edge Module to Simulate Device Telemetry**](#exercise-4-deploy-an-iot-edge-module-to-simulate-device-telemetry)
+  - [**Task 1: Use the IoT Edge Module Marketplace to Provision the Simulated Temperature Sensor Module**](#task-1-use-the-iot-edge-module-marketplace-to-provision-the-simulated-temperature-sensor-module)
+  - [**Task 2: Ensure the Module is Running**](#task-2-ensure-the-module-is-running)
+- [**Exercise 5: Ingesting Telemetry Data with IoT Hub and Azure Data Explorer (ADX)**](#exercise-5-ingesting-telemetry-data-with-iot-hub-and-azure-data-explorer-adx)
+  - [**Task 1: Creating the ADX Cluster**](#task-1-creating-the-adx-cluster)
+  - [**Task 2: Adding an ADX Database**](#task-2-adding-an-adx-database)
+  - [**Task 3: Creating the tempsensor table**](#task-3-creating-the-tempsensor-table)
+  - [**Task 4: Connecting ADX to IoT Hub to Ingest Telemetry**](#task-4-connecting-adx-to-iot-hub-to-ingest-telemetry)
+- [**Exercise 6: Analyzing Data with Azure Data Explorer (ADX)**](#exercise-6-analyzing-data-with-azure-data-explorer-adx)
+  - [**Task 1: Connecting ASA to IoT Hub**](#task-1-connecting-asa-to-iot-hub)
+- [**Exercise 7: Processing Telemetry with Azure Stream Analytics (ASA)**](#exercise-7-processing-telemetry-with-azure-stream-analytics-asa)
+  - [**Task 1: Create a Table in ADX to Hold aggregated data**](#task-1-create-a-table-in-adx-to-hold-aggregated-data)
+  - [**Task 2: Create a new ASA Job**](#task-2-create-a-new-asa-job)
+  - [**Task 3: Creating an ASA Input**](#task-3-creating-an-asa-input)
+  - [**Task 4: Creating an ASA Output**](#task-4-creating-an-asa-output)
+  - [**Task 5: Writing an ASA Query**](#task-5-writing-an-asa-query)
+  - [**Task 6: Start the ASA Job**](#task-6-start-the-asa-job)
+  - [**Task 7: Review Collected Aggregated in ADX**](#task-7-review-collected-aggregated-in-adx)
+- [**Exercise 8: Cleanup**](#exercise-8-cleanup)
 
 <!-- /code_chunk_output -->
 
 ## **Prerequisites**
 
 ### **Task 1: Install VS Code**
-https://code.visualstudio.com/Download
+[Visual Studio Code Download](https://code.visualstudio.com/Download)
 
 ### **Task 2: Install VS Code Extensions**
    1. Click extensions
