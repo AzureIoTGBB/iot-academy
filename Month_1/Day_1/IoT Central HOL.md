@@ -609,6 +609,8 @@ Now, enter the following conditions.
 - Location / Longitude: doesn't equal => **-122.130137**
 - Truck state: Equals => **enroute**
 
+2. Again, enter an appropriate **email action**, and click **Save**.
+
 ### **Task 4: Temperature of the contents** ###
 
 1. Enter a rule with a name such as **"Truck contents OK"**.
