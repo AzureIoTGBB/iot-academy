@@ -57,4 +57,5 @@ Internet of Things, Partner Enablement Team at Microsoft, USA.
 
 ## Office Hours
 
-TBD
+April 18th 8am - 9:30am PST
+April 22nd 8am - 9:30am PST
