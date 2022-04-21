@@ -634,4 +634,4 @@ In a few minutes you should start receiving emails.
 
 ## Exercise 6: Clean up ## 
 
-Once you completed all the exercises, go to Azure Portal, look for the azure IoT Central Application and delete resource.
+**Once you completed all the exercises, go to Azure Portal, look for the azure IoT Central Application and delete resource.
