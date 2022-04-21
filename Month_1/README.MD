@@ -1,12 +1,11 @@
 # Day 1
 
-- IoT Core Services 
-- IoT Central
-  --Overview IoT Central 
-  
-  - Create IoT Central Application 
-  - Create Device – refrigerated truck 
-  - View Data 
+   - IoT Core Services 
+   - IoT Central
+      --Overview IoT Central 
+      - Create IoT Central Application 
+      - Create Device – refrigerated truck 
+      - View Data 
 
 # Day 2
 
