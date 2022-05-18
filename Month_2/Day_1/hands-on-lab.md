@@ -80,7 +80,7 @@ You'll see in the file:
 ![](./media/bicep_file.png)
 
 ### 1.2.2. Use the Bicep visualizer to review the resources
-1. Trigger the command pallette Ctrl+Shift+P
+1. Within VS Code trigger the command pallette Ctrl+Shift+P, or click View, command pallette from the menu.
 2. Type `visual` and select the `Bicep: Open Bicep Visualizer to the Side` entry, press enter.
 3. Select your Bicep file and review the diagram as seen below
    ![](./media/bicep_visualizer.png)
