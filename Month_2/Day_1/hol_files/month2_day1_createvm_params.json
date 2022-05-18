@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "first_name": {
+      "value": "John"
+    },
+    "last_name": {
+      "value": "Doe"
+    },
+    "favorite_animal": {
+      "value": "rabbit"
+    },
+    "vm_admin_username": {
+      "value": "iotacademy"
+    },
+    "vm_admin_password": {
+      "value": "iot!academy2022"
+    },
+    "vm_size": {
+      "value": "Standard_B2ms"
+    },
+    "vm_os_version": {
+      "value": "win10-21h2-pro-g2"
+    },
+    "client_ipaddress": {
+      "value": "72.238.169.241"
+    }
+  }
+}
