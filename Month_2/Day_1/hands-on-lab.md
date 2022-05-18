@@ -7,7 +7,7 @@ This hands on lab seeks to introduce the student to the following Azure Services
    - Azure Virtual Machines
    - Azure Edge for Linux on Windows (EFLOW)
    - Azure IoT Edge Routing
-   - ??Azure IoT Edge Stream Analytics (ASA) Module
+   - Azure IoT Edge Stream Analytics (ASA) Module
    - Azure Logic Apps
    - Azure Monitor & Azure Log Analytics
    
@@ -51,7 +51,10 @@ Course Content
    - [https://docs.microsoft.com/en-us/cli/azure/install-azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 ### 1.1.4. Install Azure CLI Bicep Extension
-### 1.1.5. Supporting Materials
+
+### 1.1.5. Please ensure you cloned the IoT Academy Repo locally to your machine
+
+### 1.1.6. Supporting Materials
    - [https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)  
 
    Open your terminal in VS Code and run the following commands
