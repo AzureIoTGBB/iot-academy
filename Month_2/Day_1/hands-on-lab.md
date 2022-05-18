@@ -70,8 +70,8 @@ Course Content
 ### 1.2.2. Review the Bicep file
 [https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters)
 
-1. Locate the file at the following location and review the contents.
-`Month_2/Day_1/hol_files_new/month2_day1.bicep`
+1. Within the github repo: (https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/tree/main/Month_2/Day_1/hol_files) 
+2. Locate the file at the following location and review the contents.`Month_2/Day_1/hol_files_new/month2_day1.bicep`
    
 You'll see in the file:
 - two resources
