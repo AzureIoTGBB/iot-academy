@@ -7,7 +7,7 @@ This hands on lab seeks to introduce the student to the following Azure Services
    - Azure Virtual Machines
    - Azure Edge for Linux on Windows (EFLOW)
    - Azure IoT Edge Routing
-   - ??Azure IoT Edge Stream Analytics (ASA) Module
+   - Azure IoT Edge Stream Analytics (ASA) Module
    - Azure Logic Apps
    - Azure Monitor & Azure Log Analytics
    
@@ -27,7 +27,8 @@ Course Content
     - [1.1.2. Install VS Code Extensions](#112-install-vs-code-extensions)
     - [1.1.3. Install Azure CLI](#113-install-azure-cli)
     - [1.1.4. Install Azure CLI Bicep Extension](#114-install-azure-cli-bicep-extension)
-    - [1.1.5. Supporting Materials](#115-supporting-materials)
+    - [1.1.5. Please ensure you cloned the IoT Academy Repo locally to your machine](#115-please-ensure-you-cloned-the-iot-academy-repo-locally-to-your-machine)
+    - [1.1.6. Supporting Materials](#116-supporting-materials)
   - [1.2. Exercise: Deploy Azure IoT Hub and DPS with Bicep](#12-exercise-deploy-azure-iot-hub-and-dps-with-bicep)
     - [1.2.1. Supporting Materials](#121-supporting-materials)
     - [1.2.2. Review the Bicep file](#122-review-the-bicep-file)
@@ -53,7 +54,10 @@ Course Content
    - [https://docs.microsoft.com/en-us/cli/azure/install-azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 ### 1.1.4. Install Azure CLI Bicep Extension
-### 1.1.5. Supporting Materials
+
+### 1.1.5. Please ensure you cloned the IoT Academy Repo locally to your machine
+
+### 1.1.6. Supporting Materials
    - [https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)  
 
    Open your terminal in VS Code and run the following commands
@@ -72,8 +76,8 @@ Course Content
 ### 1.2.2. Review the Bicep file
 [https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters)
 
-1. Locate the file at the following location and review the contents.
-`Month_2/Day_1/hol_files_new/month2_day1.bicep`
+1. Within the github repo: (https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/tree/main/Month_2/Day_1/hol_files) 
+2. Locate the file at the following location and review the contents.`Month_2/Day_1/hol_files_new/month2_day1.bicep`
    
 You'll see in the file:
 - two resources
@@ -82,7 +86,7 @@ You'll see in the file:
 ![](./media/bicep_file.png)
 
 ### 1.2.2. Use the Bicep visualizer to review the resources
-1. Trigger the command pallette Ctrl+Shift+P
+1. Within VS Code trigger the command pallette Ctrl+Shift+P, or click View, command pallette from the menu.
 2. Type `visual` and select the `Bicep: Open Bicep Visualizer to the Side` entry, press enter.
 3. Select your Bicep file located at `Month_2/Day_1/hol_files_new/month2_day1.bicep`
 4. Review the diagram as seen below
