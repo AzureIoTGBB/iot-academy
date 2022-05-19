@@ -119,14 +119,8 @@ Azure Digital Twins Explorer will upload these model files to your Azure Digital
 You can select **View Model** for either model to see the DTDL code behind it.
 
 :::row:::
-    :::column:::
        ![](.media/quickstart-azure-digital-twins-explorer/model-info.png) 
        ![](.media/quickstart-azure-digital-twins-explorer/model-info.png)
-    :::column-end:::
-    :::column:::
-    :::column-end:::
-    :::column:::
-    :::column-end:::
 :::row-end:::
 
 ### Twins and the twin graph
@@ -166,10 +160,7 @@ Follow these steps to import the graph (the *.xlsx* file you downloaded earlier)
     :::column:::
         ![](.media/quickstart-azure-digital-twins-explorer/import-success.png) 
         ![](.media/quickstart-azure-digital-twins-explorer/import-success.png)
-    :::column-end:::
-    :::column:::
-    :::column-end:::
-   :::row-end:::
+     :::row-end:::
 
     Select **Close**.
 
@@ -198,12 +189,9 @@ You can select a twin to see a list of its properties and their values in the **
 Here are the properties of Room0:
 
 :::row:::
-    :::column:::
         ![](.media/quickstart-azure-digital-twins-explorer/properties-room0.png) 
         ![](.media/quickstart-azure-digital-twins-explorer/properties-room0.png)
-    :::column-end:::
-    :::column:::
-    :::column-end:::
+
 :::row-end:::
 
 Room0 has a temperature of 70.
@@ -211,12 +199,9 @@ Room0 has a temperature of 70.
 Here are the properties of Room1:
 
 :::row:::
-    :::column:::
         ![](.media/quickstart-azure-digital-twins-explorer/properties-room1.png) 
         ![](.media/quickstart-azure-digital-twins-explorer/properties-room1.png)
-    :::column-end:::
-    :::column:::
-    :::column-end:::
+
 :::row-end:::
 
 Room1 has a temperature of 80.
@@ -256,23 +241,17 @@ Select **Room0** to bring up its property list in the **Twin Properties** panel.
 The properties in this list are editable. Select the temperature value of **70** to enable entering a new value. Enter *76* and select the **Save** icon to update the temperature.
 
 :::row:::
-    :::column:::
         ![](.media/quickstart-azure-digital-twins-explorer/new-properties-room0.png) 
         ![](.media/quickstart-azure-digital-twins-explorer/new-properties-room0.png)
-    :::column-end:::
-    :::column:::
-    :::column-end:::
+ 
 :::row-end:::
 
 After a successful property update, you'll see a **Patch Information** box showing the patch code that was used behind the scenes with the [Azure Digital Twins APIs](concepts-apis-sdks.md) to make the update.
 
 :::row:::
-    :::column:::
         ![](.media/quickstart-azure-digital-twins-explorer/patch-information.png)
         ![](.media/quickstart-azure-digital-twins-explorer/patch-information.png)
-    :::column-end:::
-    :::column:::
-    :::column-end:::
+   
 :::row-end:::
 
 **Close** the patch information. 
