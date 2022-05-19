@@ -35,7 +35,7 @@ Course Content
     - [1.2.3. Edit your bicep parameters file](#123-edit-your-bicep-parameters-file)
     - [Ensure you've selected your subscription and correct tenant](#ensure-youve-selected-your-subscription-and-correct-tenant)
     - [Create an Azure Resource Group](#create-an-azure-resource-group)
-    - [1.2.3. Create an Azure Resource Manager Deployment](#123-create-an-azure-resource-manager-deployment)
+    - [1.2.3. Deploy IoT Hub and DPS with an Azure Resource Manager Deployment](#123-deploy-iot-hub-and-dps-with-an-azure-resource-manager-deployment)
 
 ## 1.1. Prerequisites
 
@@ -46,6 +46,8 @@ Course Content
    1. Click extensions
    2. Search for `azure iot`
    3. Click install for the `Azure IoT Tools` extension pack
+   4. Search for `bicep`
+   5. Click install for the `Bicep` 
 
 ### 1.1.3. Install Azure CLI
    - [https://docs.microsoft.com/en-us/cli/azure/install-azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
@@ -82,7 +84,8 @@ You'll see in the file:
 ### 1.2.2. Use the Bicep visualizer to review the resources
 1. Trigger the command pallette Ctrl+Shift+P
 2. Type `visual` and select the `Bicep: Open Bicep Visualizer to the Side` entry, press enter.
-3. Select your Bicep file and review the diagram as seen below
+3. Select your Bicep file located at `Month_2/Day_1/hol_files_new/month2_day1.bicep`
+4. Review the diagram as seen below
    ![](./media/bicep_visualizer.png)
 
 ### 1.2.3. Edit your bicep parameters file 
@@ -122,7 +125,7 @@ After the command is run `"provisioningState": "Succeeded"` can be observed in t
 az group create --name rg-iotacademy --location northcentralus
 ```
 
-### 1.2.3. Create an Azure Resource Manager Deployment
+### 1.2.3. Deploy IoT Hub and DPS with an Azure Resource Manager Deployment
 
 [https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/)
 
