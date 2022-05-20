@@ -1,6 +1,6 @@
 # Quickstart - Get started with a sample scenario in Azure Digital Twins Explorer
 
-In this quickstart, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](concepts-azure-digital-twins-explorer.md). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
+In this quickstart, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
 
 With Azure Digital Twins, you can create and interact with live models of your real-world environments, which can be part of wider IoT solutions. First, you model individual elements as digital twins. Then you connect them into a knowledge graph that can respond to live events and be queried for information.
 
@@ -41,7 +41,9 @@ The rest of this section walks you through the instance creation.
 
 ### Create an Azure Digital Twins instance
 
-[!INCLUDE [digital-twins-setup-portal.md](../../includes/digital-twins-setup-portal.md)]
+![](./media/quickstart-azure-digital-twins-explorer/portal1.png)
+![](./media/quickstart-azure-digital-twins-explorer/portal2.png)
+![](./media/quickstart-azure-digital-twins-explorer/portal3.png)
 
 3. Fill in the fields on the **Basics** tab of setup, including your Subscription, Resource group, a Resource name for your new instance, and Region. Check the **Assign Azure Digital Twins Data Owner Role** box to give yourself permissions to manage data in the instance.
 
@@ -58,7 +60,7 @@ The rest of this section walks you through the instance creation.
 
 This will take you to an Overview page tracking the deployment status of the instance.
 
-:::image type="content" source="media/quickstart-azure-digital-twins-explorer/deployment-in-progress.png" alt-text="Screenshot of the deployment page for Azure Digital Twins in the Azure portal. The page indicates that deployment is in progress.":::
+![Screenshot of the deployment page for Azure Digital Twins in the Azure portal](./media/quickstart-azure-digital-twins-explorer/deployment-in-progress.png 'The page indicates that deployment is in progress')
 
 Wait for the page to say that your deployment is complete.
 
@@ -66,7 +68,7 @@ Wait for the page to say that your deployment is complete.
 
 After deployment completes, use the **Go to resource** button to navigate to the instance's Overview page in the portal.
 
-:::image type="content" source="media/quickstart-azure-digital-twins-explorer/deployment-complete.png" alt-text="Screenshot of the deployment page for Azure Digital Twins in the Azure portal. The page indicates that deployment is complete.":::
+![](./media/quickstart-azure-digital-twins-explorer/deployment-complete.png 'Screenshot of the deployment page for Azure Digital Twins in the Azure portal')
 
 [!INCLUDE [digital-twins-access-explorer.md](../../includes/digital-twins-access-explorer.md)]
 
