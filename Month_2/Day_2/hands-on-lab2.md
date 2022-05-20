@@ -7,11 +7,11 @@ This Azure Digital Twins lab describes how to build out an end-to-end solution t
 In this tutorial, you will...
 
  * Set up an Azure Digital Twins instance
-> * Learn about the sample building scenario and instantiate the pre-written components
-> * Use an [Azure Functions](../azure-functions/functions-overview.md) app to route simulated telemetry from an [IoT Hub](../iot-hub/about-iot-hub.md) device into digital twin properties
-> * Propagate changes through the twin graph by processing digital twin notifications with Azure Functions, endpoints, and routes
+ * Learn about the sample building scenario and instantiate the pre-written components
+ * Use an [Azure Functions](../azure-functions/functions-overview.md) app to route simulated telemetry from an [IoT Hub](../iot-hub/about-iot-hub.md) device into digital twin properties
+ * Propagate changes through the twin graph by processing digital twin notifications with Azure Functions, endpoints, and routes
 
-The tutorial is driven by an [Azure Digital Twins end-to-end sample project written in C#](https://docs.microsoft.com/en-us/samples/azure-samples/digital-twins-samples/digital-twins-samples). Get the sample project on your machine by navigating to the sample link, and selecting the <b>Browse</b> code button underneath the title. This will take you to the GitHub repo for the samples, which you can download as a .zip by selecting the <b>Code</b> button followed by <b>Download ZIP.</b>
+The tutorial is driven by an [Azure Digital Twins end-to-end sample project written in C#](https://github.com/Azure-Samples/digital-twins-samples). Get the sample project on your machine by navigating to the sample link, and selecting the <b>Browse</b> code button underneath the title. This will take you to the GitHub repo for the samples, which you can download as a .zip by selecting the <b>Code</b> button followed by <b>Download ZIP.</b>
 
 ![](./media/tutorial-end-to-end/zip.png)
 
@@ -31,20 +31,13 @@ You now have an Azure Digital Twins instance ready to go. Next, you'll give the 
 
 # Prepare your environment for the Azure CLI
 
-Use the Bash environment in [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart). 
+Use the Bash environment in Azure Cloud Shell. Right click the image below and open in a new window. 
 
 [<b>![Launch Cloud Shell](./media/tutorial-end-to-end/launch.png)](https://portal.azure.com/#cloudshell/)</b>
 
 
 # Set up CLI session
 
-To start working with Azure Digital Twins in the CLI, the first thing to do is log in and set the CLI context to your subscription for this session. Run these commands in your CLI window:
-If this is the first time you've used this subscription with Azure Digital Twins, run this command to register with the Azure Digital Twins namespace. (If you're not sure, it's ok to run it again even if you've done it sometime in the past.)
-
-```
-az login
-az account set --subscription "<your-Azure-subscription-ID>"
-```
 
 If this is the first time you've used this subscription with Azure Digital Twins, run this command to register with the Azure Digital Twins namespace. (If you're not sure, it's ok to run it again even if you've done it sometime in the past.)
 
@@ -100,7 +93,7 @@ You'll first create the Azure Digital Twins instance (**section A** in the diagr
 
 To work through the scenario, you'll interact with components of the pre-written sample app you downloaded earlier.
 
-Here are the components implemented by the building scenario AdtSampleApp sample app:
+Here is a breakdown of the components that are implemented by the building scenario AdtSampleApp sample app:
 * Device authentication 
 * [.NET (C#) SDK](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/digitaltwins/client?view=azure-dotnet&preserve-view=true) usage examples (found in *CommandLoop.cs*)
 * Console interface to call the Azure Digital Twins API
@@ -111,7 +104,7 @@ Here are the components implemented by the building scenario AdtSampleApp sample
 
 First, you'll use the AdtSampleApp solution from the sample project to build the Azure Digital Twins piece of the end-to-end scenario (**section A**):
 
-:::image type="content" source="media/tutorial-end-to-end/building-scenario-a.png" alt-text="Diagram of an excerpt from the full building scenario diagram highlighting the Azure Digital Twins instance section.":::
+![](./media/tutorial-end-to-end/building-scenario-a.png 'Diagram of an excerpt from the full building scenario diagram highlighting the Azure Digital Twins instance section')
 
 In your Visual Studio window where the *AdtE2ESample.sln* solution is open, run the SampleClientApp project with this button in the toolbar:
 
