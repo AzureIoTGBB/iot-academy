@@ -14,7 +14,7 @@ You'll complete the following steps:
 
 The Azure Digital Twins example graph you'll be working with represents a building with two floors and two rooms. Floor0 contains Room0, and Floor1 contains Room1. The graph will look like this image:
 
-![Screenshot of a graph made of four circular nodes connected by arrows in Azure Digital Twins Explorer](.media/quickstart-azure-digital-twins-explorer/graph-view-full.png)
+![](./media/quickstart-azure-digital-twins-explorer/graph-view-full.png)
 
 >[!NOTE]
 >This quickstart is for exploring a prebuilt graph to understand how Azure Digital Twins represents data. For simplicity, the quickstart does not cover setting up connections between IoT Hub devices and their graph representations. To set up a connected end-to-end flow for your graph, move ahead to the tutorials: [Connect an end-to-end solution](tutorial-end-to-end.md).
