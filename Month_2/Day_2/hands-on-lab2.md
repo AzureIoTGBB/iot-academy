@@ -150,7 +150,7 @@ Before publishing the app, it's a good idea to make sure your dependencies are u
 
 In the **Solution Explorer** pane, expand **SampleFunctionsApp > Dependencies**. Right-select **Packages** and choose **Manage NuGet Packages...**.
 
-:::image type="content" source="media/tutorial-end-to-end/update-dependencies-1.png" alt-text="Screenshot of Visual Studio showing the 'Manage NuGet Packages' menu button for the SampleFunctionsApp project." border="false":::
+![](./media/tutorial-end-to-end/update-dependencies-1.png 'Screenshot of Visual Studio showing the Manage NuGet Packages menu button')
 
 Doing so will open the NuGet Package Manager. Select the **Updates** tab and if there are any packages to be updated, check the box to **Select all packages**. Then select **Update**.
 
@@ -160,7 +160,7 @@ Doing so will open the NuGet Package Manager. Select the **Updates** tab and if 
 
 To publish the function app to Azure, you'll first need to create a storage account, then create the function app in Azure, and finally publish the functions to the Azure function app. This section completes these actions using the Azure CLI.
 
-1. Create an Azure storage account by running the following command:
+1. Create an Azure storage account by running the following command. Make sure you update the storage account and resource group with your existing RG group name:
 
     ```azurecli-interactive
     az storage account create --name <name-for-new-storage-account> --location <location> --resource-group <resource-group> --sku Standard_LRS
