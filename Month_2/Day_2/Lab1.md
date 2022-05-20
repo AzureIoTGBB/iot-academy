@@ -1,6 +1,6 @@
-# Quickstart - Get started with a sample scenario in Azure Digital Twins Explorer
+# Lab One - Get started with a sample scenario in Azure Digital Twins Explorer
 
-In this quickstart, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
+In this lab, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
 
 With Azure Digital Twins, you can create and interact with live models of your real-world environments, which can be part of wider IoT solutions. First, you model individual elements as digital twins. Then you connect them into a knowledge graph that can respond to live events and be queried for information.
 
@@ -40,7 +40,12 @@ The rest of this section walks you through the instance creation.
 ### Create an Azure Digital Twins instance
 
 ![](./media/quickstart-azure-digital-twins-explorer/portal1.png)
+
+
 ![](./media/quickstart-azure-digital-twins-explorer/portal2.png)
+
+Select the resource group that you created during Day 1: rg-iotacademy
+
 ![](./media/quickstart-azure-digital-twins-explorer/portal3.png)
 
 3. Fill in the fields on the **Basics** tab of setup, including your Subscription, Resource group, a Resource name for your new instance, and Region. Check the **Assign Azure Digital Twins Data Owner Role** box to give yourself permissions to manage data in the instance.
@@ -112,7 +117,7 @@ You can select **View Model** for either model to see the DTDL code behind it.
 
 Now that some models have been uploaded to your Azure Digital Twins instance, you can add *digital twins* based on the model definitions.
 
-*Digital twins* represent the actual entities within your business environment. They can be things like sensors on a farm, lights in a car, or—in this quickstart—rooms on a building floor. You can create many twins of any given model type, such as multiple rooms that all use the Room model. You connect them with relationships into a *twin graph* that represents the full environment.
+*Digital twins* represent the actual entities within your business environment. They can be things like sensors on a farm, lights in a car, or in this quickstart — rooms on a building floor. You can create many twins of any given model type, such as multiple rooms that all use the Room model. You connect them with relationships into a *twin graph* that represents the full environment.
 
 In this section, you'll upload pre-created twins that are connected into a pre-created graph. The graph contains two floors and two rooms, connected in the following layout:
 
@@ -127,7 +132,9 @@ Follow these steps to import the graph (the *.xlsx* file you downloaded earlier)
 
 1. In the **Twin Graph** panel, select the **Import Graph** icon that shows an arrow pointing into a cloud.
 
-   :::image type="content" source="media/how-to-use-azure-digital-twins-explorer/twin-graph-panel-import.png" alt-text="Screenshot of Azure Digital Twins Explorer Twin Graph panel. The Import Graph button is highlighted." lightbox="media/how-to-use-azure-digital-twins-explorer/twin-graph-panel-import.png":::
+
+ ![](./media/quickstart-azure-digital-twins-explorer/twin-graph-panel-import.png 'Screenshot of Azure Digital Twins Explorer Twin Graph panel Import Graph button is highlighted)
+
 
 2. In the Open window, navigate to the *buildingScenario.xlsx* file you downloaded earlier. This file contains a description of the sample graph. Select **Open**.
 
