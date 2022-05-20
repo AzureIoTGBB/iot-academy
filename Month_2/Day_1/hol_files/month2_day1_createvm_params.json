@@ -18,7 +18,7 @@
       "value": "iot!academy2022"
     },
     "vm_size": {
-      "value": "Standard_B2ms"
+      "value": "Standard_D2s_v4"
     },
     "vm_os_version": {
       "value": "win10-21h2-pro-g2"
