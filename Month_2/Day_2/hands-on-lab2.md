@@ -57,6 +57,7 @@ In this tutorial, you will...
 
 ### 1.1.1. Install Visual Studio
 [Visual Studio Download](https://visualstudio.microsoft.com/vs/)
+* For Mac users the latest version of Visual Studio 2022 for Mac (version 17.2) offers the most development features
 
 ### 1.1.2. Download ZIP of Azure Digital Twins C# sample project
 
