@@ -1,5 +1,7 @@
 # 1. Azure IoT Academy Month Two Day Two - Get started with a sample scenario in Azure Digital Twins Explorer
 
+This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
+
 - Azure Digital Twins
 - Azure Digital Twins Explorer 
 
@@ -96,7 +98,7 @@ After deployment completes, use the **Go to resource** button to navigate to the
 
 ![](./media/quickstart-azure-digital-twins-explorer/deployment-complete.png 'Screenshot of the deployment page for Azure Digital Twins in the Azure portal')
 
-## 1.1.5. Upload the sample materials
+### 1.1.5. Upload the sample materials
 
 Next, you'll import the sample models and graph into Azure Digital Twins Explorer. You'll use the model files and the graph file that you downloaded to your machine in the [Prerequisites](#prerequisites) section.
 
