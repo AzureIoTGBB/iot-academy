@@ -1,4 +1,4 @@
-# Azure IoT Academy Month Two Day Two - Get started with a sample scenario in Azure Digital Twins Explorer
+# Azure IoT Academy Month Two, Day Two - Labe One: Get started with a sample scenario in Azure Digital Twins Explorer
 
 In this lab, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
 
@@ -117,7 +117,7 @@ You can select **View Model** for either model to see the DTDL code behind it.
 
 Now that some models have been uploaded to your Azure Digital Twins instance, you can add *digital twins* based on the model definitions.
 
-*Digital twins* represent the actual entities within your business environment. They can be things like sensors on a farm, lights in a car, or in this quickstart — rooms on a building floor. You can create many twins of any given model type, such as multiple rooms that all use the Room model. You connect them with relationships into a *twin graph* that represents the full environment.
+*Digital twins* represent the actual entities within your business environment. They can be things like sensors on a farm, lights in a car, or in this quickstart Â— rooms on a building floor. You can create many twins of any given model type, such as multiple rooms that all use the Room model. You connect them with relationships into a *twin graph* that represents the full environment.
 
 In this section, you'll upload pre-created twins that are connected into a pre-created graph. The graph contains two floors and two rooms, connected in the following layout:
 
