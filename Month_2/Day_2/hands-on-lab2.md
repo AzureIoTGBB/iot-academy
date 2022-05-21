@@ -2,6 +2,15 @@
 
 # 1. Azure IoT Academy Month Two, Day Two, Lab Two
 
+This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
+
+- Visual Studio
+- Azure Digital Twins
+- Azure IoT Hub
+- CloudShell
+-  
+-
+
 This Azure Digital Twins lab describes how to build out an end-to-end solution that demonstrates the functionality of the service. To set up a full end-to-end solution driven by live data from your environment, you can connect your Azure Digital Twins instance to other Azure services for management of devices and data.
 
 In this tutorial, you will...
@@ -11,10 +20,45 @@ In this tutorial, you will...
  * Use an [Azure Functions](../azure-functions/functions-overview.md) app to route simulated telemetry from an [IoT Hub](../iot-hub/about-iot-hub.md) device into digital twin properties
  * Propagate changes through the twin graph by processing digital twin notifications with Azure Functions, endpoints, and routes
 
-## 1.1 Prerequisites
+ Course Content
 
-### 1.1.1 Install Visual Studio
+- [1. Azure IoT Academy Month Two Day One](#1-azure-iot-academy-month-two-day-one)
+  - [1.1. Prerequisites](#11-prerequisites)
+    - [1.1.1. Install VS Code](#111-install-vs-code)
+    - [1.1.2. Download ZIP of Azure Digital Twins sample C# project](#112-Download-ZIP-of-Azure-Digital-Twins-sample-C#-project)
+    - [1.1.3. Prepare an Azure Digital Twins instance](#113-Prepare-an-Azure-Digital-Twins-instance)
+    - [1.1.4. Prepare your environment for the Azure CLI](#114-Prepare-your-environment-for-the-Azure-CLI)
+    - [1.1.5. Set up CLI session](#115-Set-up-CLI-session)
+  - [1.2. Exercise: Configure the ADT sample project](#12-Configure-the-ADT-sample-project)
+    - [1.2.1. Get started with the building scenario](#121-Get-started-with-the-building-scenario)
+    - [1.2.2. Instantiate the pre-created twin graph](#122-Instantiate-the-pre-created-twin-graph)
+    - [1.2.3. Set up the sample function app](#123-Set-up-the-sample-function-app)
+    - [1.2.4. Update dependencies](#124-Update-dependencies)
+    - [1.2.5. Publish the app](#125-Publish-the-app)
+    - [1.2.6. Configure permissions for the function app](#126-Configure-permissions-for-the-function-app)
+    - [1.2.7. Assign access role](#127-Assign-access-role)
+    - [1.2.8. Configure application settings](#128-Configure-application-settings)
+  - [1.3. Excercise: Process simulated telemetry from an IoT Hub device](#13-Process-simulated-telemetry-from-an-IoT-Hub-device)
+    - [1.3.1. Connect the IoT hub to the Azure function](#131-Connect-the-IoT-hub-to-the-Azure-function)
+    - [1.3.2. Register the simulated device with IoT Hub](#132-Register-the-simulated-device-with-IoT-Hub)
+    - [1.3.3. Configure and run the simulation](#133-Configure-and-run-the-simulation)
+    - [1.3.4. See the results in Azure Digital Twins](#134-See-the-results-in-Azure-Digital-Twins)
+  - [1.4. Exercise: Propagate Azure Digital Twins events through the graph](#14-Propagate-Azure-Digital-Twins-events-through-the-graph)
+    - [1.4.1. Create the Event Grid topic](#141-Create-the-Event-Grid-topic)
+    - [1.4.2. Create the endpoint](#142-Create-the-endpoint)
+    - [1.4.3. Create the route](#143-Create-the-route)
+    - [1.4.4. Connect the Azure function](#144-Connect-the-Azure-function)
+  - [1.5. Exercise: Run the simulation and see the results](#15-Run-the-simulation-and-see-the-results)
+    - [1.5.1. Review](#151-Review)
+    - [1.5.2. Clean up Resources](#152-Clean-up-resources)
+    - [1.5.3. Next Steps](#153-next-steps)
+
+## 1.1. Prerequisites
+
+### 1.1.1. Install Visual Studio
 [Visual Studio Download](https://visualstudio.microsoft.com/vs/)
+
+### 1.1.2. Download ZIP of Azure Digital Twins C# sample project
 
 The tutorial is driven by an [Azure Digital Twins end-to-end sample project written in C#](https://github.com/Azure-Samples/digital-twins-samples). Get the sample project on your machine by navigating to the sample link, and selecting the <b>Browse</b> code button underneath the title. This will take you to the GitHub repo for the samples, which you can download as a .zip by selecting the <b>Code</b> button followed by <b>Download ZIP.</b>
 
@@ -22,11 +66,11 @@ The tutorial is driven by an [Azure Digital Twins end-to-end sample project writ
 
 This will download a .zip folder to your machine as digital-twins-samples-master.zip. Unzip the folder and extract the files.
 
-# Prepare an Azure Digital Twins instance
+### 1.1.3. Prepare an Azure Digital Twins instance
 
 We will be using the Azure Digital Twins instance that we set up in Lab One. 
 
-Open your Azure Digital Twins instance from the Azure portal 
+Open your Azure Digital Twins instance from the Azure portal.
 
 From the instance's <b>Overview</b> page, note its <b>Name, Resource group, and Host name.</b> These values are all important and you may need to use them as you continue working with your Azure Digital Twins instance.
 
@@ -34,14 +78,14 @@ From the instance's <b>Overview</b> page, note its <b>Name, Resource group, and 
 
 You now have an Azure Digital Twins instance ready to go. Next, you'll give the appropriate Azure user permissions to manage it.
 
-# Prepare your environment for the Azure CLI
+### 1.1.4. Prepare your environment for the Azure CLI
 
 Use the Bash environment in Azure Cloud Shell. Right click the image below and open in a new window. 
 
 [<b>![Launch Cloud Shell](./media/tutorial-end-to-end/launch.png)](https://portal.azure.com/#cloudshell/)</b>
 
 
-# Set up CLI session
+### 1.1.5. Set up CLI session
 
 
 If this is the first time you've used this subscription with Azure Digital Twins, run this command to register with the Azure Digital Twins namespace. (If you're not sure, it's ok to run it again even if you've done it sometime in the past.)
@@ -60,7 +104,7 @@ Now you are ready to work with Azure Digital Twins in the Azure CLI.
 
 You can verify this by running ```az dt --help``` at any time to see a list of the top-level Azure Digital Twins commands that are available.
 
-# Configure the sample project
+## 1.2. Configure the ADT sample project
 
 Next, set up a sample client application that will interact with your Azure Digital Twins instance.
 
@@ -86,7 +130,7 @@ Next, configure the <b>appsettings.json</b> file to be copied to the output dire
 Keep the AdtE2ESample project open in Visual Studio to continue using it in the tutorial.
 
 
-## Get started with the building scenario
+### 1.2.1. Get started with the building scenario
 
 The sample project used in this tutorial represents a real-world building scenario, containing a floor, a room, and a thermostat device. These components will be digitally represented in an Azure Digital Twins instance, which will then be connected to [IoT Hub](../iot-hub/about-iot-hub.md), [Event Grid](../event-grid/overview.md), and two [Azure functions](../azure-functions/functions-overview.md) to enable movement of data.
 
@@ -105,7 +149,7 @@ Here is a breakdown of the components that are implemented by the building scena
 * SampleClientApp - A sample Azure Digital Twins solution
 * SampleFunctionsApp - An Azure Functions app that updates your Azure Digital Twins graph based on telemetry from IoT Hub and Azure Digital Twins events
 
-### Instantiate the pre-created twin graph
+### 1.2.2. Instantiate the pre-created twin graph
 
 First, you'll use the AdtSampleApp solution from the sample project to build the Azure Digital Twins piece of the end-to-end scenario (**section A**):
 
@@ -139,7 +183,7 @@ Query
 
 You can now stop running the project. Keep the solution open in Visual Studio, though, as you'll continue using it throughout the tutorial.
 
-## Set up the sample function app
+### 1.2.3. Set up the sample function app
 
 The next step is setting up an [Azure Functions app](../azure-functions/functions-overview.md) that will be used throughout this tutorial to process data. The function app, SampleFunctionsApp, contains two functions:
 * *ProcessHubToDTEvents*: processes incoming IoT Hub data and updates Azure Digital Twins accordingly
@@ -149,7 +193,7 @@ In this section, you'll publish the pre-written function app, and ensure the fun
 
 Back in your Visual Studio window where the *AdtE2ESample.sln* solution is open, the function app is located in the SampleFunctionsApp project. You can view it in the **Solution Explorer** pane.
 
-### Update dependencies
+### 1.2.4. Update dependencies
 
 Before publishing the app, it's a good idea to make sure your dependencies are up to date, making sure you have the latest version of all the included packages.
 
@@ -161,7 +205,7 @@ Doing so will open the NuGet Package Manager. Select the **Updates** tab and if 
 
 ![](./media/tutorial-end-to-end/update-dependencies-2.png 'Screenshot of Visual Studio showing how to selecting to update all packages in the NuGet Package Manager')
 
-### Publish the app
+### 1.2.5. Publish the app
 
 To publish the function app to Azure, you'll first need to create a storage account, then create the function app in Azure, and finally publish the functions to the Azure function app. This section completes these actions using the Azure CLI.
 
@@ -235,11 +279,11 @@ You've now published the functions to a function app in Azure.
 
 Next, your function app will need to have the right permission to access your Azure Digital Twins instance. You'll configure this access in the next section.
 
-### Configure permissions for the function app
+### 1.2.6. Configure permissions for the function app
 
 There are two settings that need to be set for the function app to access your Azure Digital Twins instance, both of which can be done using the Azure CLI. 
 
-#### Assign access role
+### 1.2.7. Assign access role
 
 The first setting gives the function app the **Azure Digital Twins Data Owner** role in the Azure Digital Twins instance. This role is required for any user or function that wants to perform many data plane activities on the instance. You can read more about security and role assignments in [Security for Azure Digital Twins solutions](concepts-security.md). 
 
@@ -265,8 +309,8 @@ The first setting gives the function app the **Azure Digital Twins Data Owner** 
     ```
 
 The result of this command is outputted information about the role assignment you've created. The function app now has permissions to access data in your Azure Digital Twins instance.
-
-#### Configure application settings
+ 
+### 1.2.8. Configure application settings
 
 The second setting creates an environment variable for the function with the URL of your Azure Digital Twins instance. The function code will use the value of this variable to refer to your instance. For more information about environment variables, see [Manage your function app](../azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal). 
 
@@ -279,7 +323,7 @@ az functionapp config appsettings set --resource-group <your-resource-group> --n
 The output is the list of settings for the Azure Function, which should now contain an entry called `ADT_SERVICE_URL`.
 
 
-## Process simulated telemetry from an IoT Hub device
+## 1.3. Exercise: Process simulated telemetry from an IoT Hub device
 
 An Azure Digital Twins graph is meant to be driven by telemetry from real devices. 
 
@@ -298,7 +342,7 @@ Here are the actions you'll complete to set up this device connection:
 
 Azure Digital Twins is designed to work alongside [IoT Hub](../iot-hub/about-iot-hub.md), an Azure service for managing devices and their data. In this step, you'll set up an IoT hub that will manage the sample device in this tutorial.
 
-### Connect the IoT hub to the Azure function
+### 1.3.1. Connect the IoT hub to the Azure function
 
 Next, connect your IoT hub from Day 1 to the *ProcessHubToDTEvents* Azure function in the function app you published earlier, so that data can flow from the device in IoT Hub through the function, which updates Azure Digital Twins.
 
@@ -329,7 +373,7 @@ Fill in your **Subscription**, **Resource group**, **Function app**, and **Funct
 
 Back on the **Create Event Subscription** page, select **Create**.
 
-### Register the simulated device with IoT Hub 
+### 1.3.2. Register the simulated device with IoT Hub 
 
 This section creates a device representation in IoT Hub with the ID thermostat67. The simulated device will connect into this representation, which is how telemetry events will go from the device into IoT Hub. The IoT hub is where the subscribed Azure function from the previous step is listening, ready to pick up the events and continue processing.
 
@@ -341,7 +385,7 @@ az iot hub device-identity create --device-id thermostat67 --hub-name <your-IoT-
 
 The output is information about the device that was created.
 
-### Configure and run the simulation
+### 1.3.3. Configure and run the simulation
 
 Next, configure the device simulator to send data to your IoT Hub instance.
 
@@ -383,7 +427,7 @@ A console window will open and display simulated temperature telemetry messages.
 
 You don't need to do anything else in this console, but leave it running while you complete the next steps.
 
-### See the results in Azure Digital Twins
+### 1.3.4. See the results in Azure Digital Twins
 
 The *ProcessHubToDTEvents* function you published earlier listens to the IoT Hub data, and calls an Azure Digital Twins API to update the `Temperature` property on the thermostat67 twin.
 
@@ -404,7 +448,7 @@ You should see the live updated temperatures from your Azure Digital Twins insta
 
 Once you've verified the live temperatures logging is working successfully, you can stop running both projects. Keep the Visual Studio windows open, as you'll continue using them in the rest of the tutorial.
 
-## Propagate Azure Digital Twins events through the graph
+## 1.4 Exercise: Propagate Azure Digital Twins events through the graph
 
 So far in this tutorial, you've seen how Azure Digital Twins can be updated from external device data. Next, you'll see how changes to one digital twin can propagate through the Azure Digital Twins graph—in other words, how to update twins from service-internal data.
 
@@ -418,7 +462,7 @@ Here are the actions you'll complete to set up this data flow:
 1. [Set up a route](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-route) within Azure Digital Twins that sends twin property change events to the endpoint
 1. [Set up an Azure function](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#connect-the-azure-function) that listens on the event grid topic at the endpoint, receives the twin property change events that are sent there, and updates other twins in the graph accordingly
 
-### Create the Event Grid topic
+### 1.4.1. Create the Event Grid topic
 
 [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview) is an Azure service that helps route and deliver events from Azure Services to other places within Azure. You can create an [Event Grid topic](https://docs.microsoft.com/en-us/azure/event-grid/concepts) to collect certain events from a source, and then subscribers can listen on the topic to receive the events as they come through.
 
@@ -429,7 +473,7 @@ az eventgrid topic create --resource-group <your-resource-group> --name <name-fo
 ```
 The output from this command is information about the Event Grid topic you've created. Save the <b>Unique Name</b> that you gave to your Event Grid topic, because you'll use it later.
 
-### Create the endpoint
+### 1.4.2. Create the endpoint
 
 Next, create an Event Grid endpoint in Azure Digital Twins, which will connect your instance to your Event Grid topic. Use the command below, filling in the name of your Event Grid topic and the other placeholder fields as needed.
 
@@ -451,7 +495,7 @@ az dt endpoint show --dt-name <your-Azure-Digital-Twins-instance> --endpoint-nam
 ```
 Save the name of your endpoint, because you'll use it later.
 
-### Create the route
+### 1.4.3. Create the route
 
 Next, create an Azure Digital Twins route that sends events to the Event Grid endpoint you created.
 
@@ -465,7 +509,7 @@ The output from this command is some information about the route you've created.
  > Note <br>
  > Endpoints (from the previous step) must be finished provisioning before you can set up an event route that uses them. If the route creation fails because the endpoints aren't ready, wait a few minutes and then try again.
 
-### Connect the Azure function
+### 1.4.4. Connect the Azure function
 
 Next, subscribe the *ProcessDTRoutedData* Azure function to the event grid topic you created earlier, so that telemetry data can flow from the thermostat67 twin through the event grid topic to the function, which goes back into Azure Digital Twins and updates the room21 twin accordingly.
 
@@ -486,7 +530,7 @@ On the **Create Event Subscription** page, fill in the fields as follows (fields
 
 Back on the **Create Event Subscription** page, select **Create**.
 
-## Run the simulation and see the results
+## 1.5. Exercise: Run the simulation and see the results
 
 Now, events should have the capability to flow from the simulated device into Azure Digital Twins, and through the Azure Digital Twins graph to update twins as appropriate. In this section, you'll run the device simulator again to kick off the full event flow you've set up, and query Azure Digital Twins to see the live results
 
@@ -512,7 +556,7 @@ You should see the live updated temperatures from your Azure Digital Twins insta
 
 Once you've verified the live temperatures logging from your instance is working successfully, you can stop running both projects. You can also close the Visual Studio windows, as the tutorial is now complete.
 
-## Review
+### 1.5.1. Review
 
 Here's a review of the scenario that you built out in this tutorial.
 
@@ -522,12 +566,12 @@ Here's a review of the scenario that you built out in this tutorial.
 
 ![](./media/tutorial-end-to-end/building-scenario.png 'Diagram of the full building scenario, which shows the data flowing from a device into and out of Azure Digital Twins through various Azure services')
 
-## Clean up resources
+### 1.5.2. Clean up resources
 
 After completing this tutorial, ......... depending on what we want to do next.
 
 
-## Next steps
+### 1.5.3. Next steps
 
 In this tutorial, you created an end-to-end scenario that shows Azure Digital Twins being driven by live device data.
 
