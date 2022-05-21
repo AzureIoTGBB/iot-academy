@@ -193,27 +193,27 @@ To publish the function app to Azure, you'll first need to create a storage acco
        >Compress-Archive -Path <full-path-to-publish-directory>\* -DestinationPath .\publish.zip
        >```
         
-        The cmdlet will create the *publish.zip* file in the directory location of your terminal.
+        The cmdlet will create the *publish.zip* file in the directory location of your terminal. Please ensure your publish.zip file is located directly within SampleFunctionsApp (see below screenshot)
 
         Your *publish.zip* file should contain folders for *bin*, *ProcessDTRoutedData*, and *ProcessHubToDTEvents*, and there should also be a *host.json* file.
 
         ![](./media/tutorial-end-to-end/publish-zip.png 'Screenshot of File Explorer in Windows showing the contents of the publish zip folder')
 
 
-    > [!TIP] 
-    > If you're using the Azure CLI locally, you can access the ZIP file on your computer directly using its path on your machine.
-    > 
-    >If you're using the Azure Cloud Shell, upload the ZIP file to Cloud Shell with this button before running the command:
-    >
+    
+    >Using the Azure Cloud Shell, upload the ZIP file to Cloud Shell with this button before running the command:
+    
+
     ![](./media/tutorial-end-to-end/azure-cloud-shell-upload.png 'Screenshot of the Azure Cloud Shell highlighting how to upload files')
-    >
+    
+
     > In this case, the file will be uploaded to the root directory of your Cloud Shell storage, so you can refer to the file directly by its name for the `--src` parameter of the command (as in, `--src publish.zip`).
 
 
-1. In the Azure CLI locally, run the following command to deploy the published and zipped functions to your Azure function app:
+1. In the Azure Cloud Shell, run the following command to deploy the published and zipped functions to your Azure function app:
 
     ```azurecli-interactive
-    az functionapp deployment source config-zip --resource-group <resource-group> --name <name-of-your-function-app> --src "<full-path-to-publish.zip>"
+    az functionapp deployment source config-zip --resource-group <resource-group> --name <name-of-your-function-app> --src "publish.zip"
     ```
 
     A successful deployment will respond with status code 202 and output a JSON object containing details of your new function. You can confirm the deployment succeeded by looking for this field in the result:
@@ -422,7 +422,7 @@ In the Azure CLI, run the following command to create an Event Grid topic:
 ```
 az eventgrid topic create --resource-group <your-resource-group> --name <name-for-your-event-grid-topic> --location <region>
 ```
-The output from this command is information about the Event Grid topic you've created. Save the <b>name</b> that you gave to your Event Grid topic, because you'll use it later.
+The output from this command is information about the Event Grid topic you've created. Save the <b>Unique Name</b> that you gave to your Event Grid topic, because you'll use it later.
 
 ### Create the endpoint
 
@@ -452,7 +452,7 @@ Next, create an Azure Digital Twins route that sends events to the Event Grid en
 
 You can do so with the following CLI command (fill in the name of your endpoint and the other placeholder fields as needed). This command forwards all events that occur in the twin graph. You can limit the events to only specific ones if you want, by using [filters](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-manage-routes?tabs=portal%2Cportal2%2Cportal3#filter-events).
 ```
-az dt route create --dt-name <your-Azure-Digital-Twins-instance> --endpoint-name <your-Azure-Digital-Twins-endpoint> --route-name <name-for-your-Azure-Digital-Twins-route>
+az dt route create --dt-name <your-Azure-Digital-Twins-instance> --endpoint-name <use-above-name-createdfor-Azure-Digital-Twins-endpoint> --route-name <Create-uniquename-for-your-Azure-Digital-Twins-route>
 ```
 The output from this command is some information about the route you've created.
 
@@ -476,7 +476,7 @@ On the **Create Event Subscription** page, fill in the fields as follows (fields
 * **EVENT SUBSCRIPTION DETAILS** > **Name**: Give a name to your event subscription.
 * **ENDPOINT DETAILS** > **Endpoint Type**: Select **Azure Function** from the menu options.
 * **ENDPOINT DETAILS** > **Endpoint**: Select the **Select an endpoint** link, which will open a **Select Azure Function** window:
-    - Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessDTRoutedData**). Some of these values may auto-populate after selecting the subscription.
+    - Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessDTRoutedData**) - Will prepopulate based on Zip File you published earlier in lab. Some of these values may auto-populate after selecting the subscription.
     - Select **Confirm Selection**.
 
 Back on the **Create Event Subscription** page, select **Create**.
