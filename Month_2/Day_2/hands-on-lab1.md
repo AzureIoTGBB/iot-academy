@@ -1,4 +1,4 @@
-# Azure IoT Academy Month Two Day Two - Get started with a sample scenario in Azure Digital Twins Explorer
+# 1. Azure IoT Academy Month Two Day Two - Get started with a sample scenario in Azure Digital Twins Explorer
 
 - Azure Digital Twins
 - Azure Digital Twins Explorer 
