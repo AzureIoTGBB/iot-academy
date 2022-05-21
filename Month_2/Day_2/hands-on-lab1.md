@@ -69,11 +69,11 @@ The rest of this section walks you through the instance creation.
 
 ![](./media/quickstart-azure-digital-twins-explorer/portal2.png)
 
- Select the resource group that you created during Day 1: rg-iotacademy
+ 3. Select the resource group that you created during Day 1: rg-iotacademy
 
 ![](./media/quickstart-azure-digital-twins-explorer/portal3.png)
 
-3. Fill in the fields on the **Basics** tab of setup, including your Subscription, Resource group, a Resource name for your new instance, and Region. Check the **Assign Azure Digital Twins Data Owner Role** box to give yourself permissions to manage data in the instance.
+ 4. Fill in the fields on the **Basics** tab of setup, including your Subscription, Resource group, a Resource name for your new instance, and Region. Check the **Assign Azure Digital Twins Data Owner Role** box to give yourself permissions to manage data in the instance.
 
 ![](./media/quickstart-azure-digital-twins-explorer/create-azure-digital-twins-basics.png 'Screenshot of the Create Resource process for Azure Digital Twins in the Azure portal. The described values are filled in')
 
@@ -82,15 +82,15 @@ The rest of this section walks you through the instance creation.
  >
  > Common roles that meet this requirement are **Owner**, **Account admin**, or the combination of **User Access Administrator** and **Contributor**.  
 
-4. Select **Review + Create** to finish creating your instance.
+ 5. Select **Review + Create** to finish creating your instance.
     
-5. You will see a summary page showing the details you've entered. Confirm and create the instance by selecting **Create**.
+ 6. You will see a summary page showing the details you've entered. Confirm and create the instance by selecting **Create**.
 
-This will take you to an Overview page tracking the deployment status of the instance.
+ 7. This will take you to an Overview page tracking the deployment status of the instance.
 
 ![Screenshot of the deployment page for Azure Digital Twins in the Azure portal](./media/quickstart-azure-digital-twins-explorer/deployment-in-progress.png 'The page indicates that deployment is in progress')
 
-Wait for the page to say that your deployment is complete.
+ 8. Wait for the page to say that your deployment is complete.
 
 ### 1.1.4. Open instance in Azure Digital Twins Explorer
 
@@ -158,7 +158,7 @@ Follow these steps to import the graph (the *.xlsx* file you downloaded earlier)
 1. In the **Twin Graph** panel, select the **Import Graph** icon that shows an arrow pointing into a cloud.
 
 
- ![](./media/quickstart-azure-digital-twins-explorer/twin-graph-panel-import.png 'Screenshot of Azure Digital Twins Explorer Twin Graph panel Import Graph button is highlighted)
+ ![](./media/quickstart-azure-digital-twins-explorer/twin-graph-panel-import.png 'Screenshot of Azure Digital Twins Explorer Twin Graph panel Import Graph button is highlighted')
 
 
 2. In the Open window, navigate to the *buildingScenario.xlsx* file you downloaded earlier. This file contains a description of the sample graph. Select **Open**.
@@ -171,10 +171,8 @@ Follow these steps to import the graph (the *.xlsx* file you downloaded earlier)
 
 4. Azure Digital Twins Explorer will use the uploaded file to create the requested twins and relationships between them. Make sure you see the following dialog box indicating that the import was successful before moving on.
 
-   :::row:::
       ![](./media/quickstart-azure-digital-twins-explorer/import-success.png 'Screenshot of the Azure Digital Twins Explorer showing a dialog box indicating graph import success')
 
-   :::row-end:::
 
     Select **Close**.
 
