@@ -1,4 +1,4 @@
-# 1. Azure IoT Academy Month Two Day Two 
+# 1. Azure IoT Academy Month Two, Day Two, Lab One
 
 This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
 
