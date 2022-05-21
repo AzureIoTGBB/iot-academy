@@ -1,6 +1,6 @@
 
 
-# Azure IoT Academy Month Two, Day Two - Lab Two:  Build out an end-to-end solution
+# 1. Azure IoT Academy Month Two, Day Two, Lab Two
 
 This Azure Digital Twins lab describes how to build out an end-to-end solution that demonstrates the functionality of the service. To set up a full end-to-end solution driven by live data from your environment, you can connect your Azure Digital Twins instance to other Azure services for management of devices and data.
 
@@ -10,6 +10,11 @@ In this tutorial, you will...
  * Learn about the sample building scenario and instantiate the pre-written components
  * Use an [Azure Functions](../azure-functions/functions-overview.md) app to route simulated telemetry from an [IoT Hub](../iot-hub/about-iot-hub.md) device into digital twin properties
  * Propagate changes through the twin graph by processing digital twin notifications with Azure Functions, endpoints, and routes
+
+## 1.1 Prerequisites
+
+### 1.1.1 Install Visual Studio
+[Visual Studio Download](https://visualstudio.microsoft.com/vs/)
 
 The tutorial is driven by an [Azure Digital Twins end-to-end sample project written in C#](https://github.com/Azure-Samples/digital-twins-samples). Get the sample project on your machine by navigating to the sample link, and selecting the <b>Browse</b> code button underneath the title. This will take you to the GitHub repo for the samples, which you can download as a .zip by selecting the <b>Code</b> button followed by <b>Download ZIP.</b>
 
