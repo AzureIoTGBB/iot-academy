@@ -1,4 +1,4 @@
-# Azure IoT Academy Month Two, Day Two - Labe One: Get started with a sample scenario in Azure Digital Twins Explorer
+# Azure IoT Academy Month Two, Day Two - Lab One: Get started with a sample scenario in Azure Digital Twins Explorer
 
 In this lab, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
 
