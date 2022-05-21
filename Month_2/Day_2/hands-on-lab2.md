@@ -77,7 +77,11 @@ From the instance's <b>Overview</b> page, note its <b>Name, Resource group, and 
 
 ![](./media/tutorial-end-to-end/adt-instance-example.png) 
 
-You now have an Azure Digital Twins instance ready to go. Next, you'll give the appropriate Azure user permissions to manage it.
+You now have an Azure Digital Twins instance ready to go. Please ensure you have the appropriate Azure user permissions to manage it.
+Setting up user access permissions: Azure users need to have the Azure Digital Twins Data <b>Owner</b> role on the Azure Digital Twins instance to be able to manage it and its data. 
+
+![](./media/tutorial-end-to-end/roleassignment.png)
+
 
 ### 1.1.4. Prepare your environment for the Azure CLI
 
