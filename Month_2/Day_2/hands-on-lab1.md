@@ -250,19 +250,15 @@ Select **Room0** to bring up its property list in the **Twin Properties** panel.
 
 The properties in this list are editable. Select the temperature value of **70** to enable entering a new value. Enter *76* and select the **Save** icon to update the temperature.
 
-:::row:::
 
    ![](./media/quickstart-azure-digital-twins-explorer/new-properties-room0.png 'Screenshot of the Azure Digital Twins Explorer highlighting that the Twin Properties panel is showing properties that can be edited for Room0')
 
-:::row-end:::
 
 After a successful property update, you'll see a **Patch Information** box showing the patch code that was used behind the scenes with the [Azure Digital Twins APIs](concepts-apis-sdks.md) to make the update.
 
-:::row:::
 
 ![](./media/quickstart-azure-digital-twins-explorer/patch-information.png 'Screenshot of the Azure Digital Twins Explorer showing Patch Information for the temperature update')
 
-:::row-end:::
 
 **Close** the patch information. 
 
