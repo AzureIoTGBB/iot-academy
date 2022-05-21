@@ -1,8 +1,10 @@
 # 1. Azure IoT Academy Month Two, Day Two, Lab One
+## Click Below Link to Watch Hands On Lab Video for Day Two
+## 1.1. [Day Two: Hands on Lab One Video](https://youtu.be/I5_daPXxhYs)
 
 This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
 
-- Azure Digital Twins
+- Azure Digital Twins 
 - Azure Digital Twins Explorer 
 
 In this lab, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
@@ -24,25 +26,26 @@ The Azure Digital Twins example graph you'll be working with represents a buildi
 <b>Course Content</b>
 
  - [1. Azure IoT Academy Month Two Day, Day Two, Lab One](#1-azure-iot-academy-month-two-day-two-lab-one)
-  - [1.1. Prerequisites](#11-prerequisites)
-    - [1.1.1. Download the materials for the sample graph](#111-download-the-materials-for-the-sample-graph)
-    - [1.1.2. Set up Azure Digital Twins](#112-set-up-Azure-Digital-Twins)
-    - [1.1.3. Create an Azure Digital Twins instance](#113-Create-an-Azure-Digital-Twins-instance)
-    - [1.1.4. Open instance in Azure Digital Twins Explorer](#114-Open-instance-in-Azure-Digital-Twins-Explorer)
-    - [1.1.5. Upload the sample materials](#115-Upload-the-sample-materials)
-    - [1.1.6. Models](#121-Models)
-    - [1.1.7. Upload the models](#122-Upload-the-models)
-    - [1.1.8. Twins and the twin graph](#122-Twins-and-the-twin-graph)
-    - [1.1.9. Import the graph](#123-Import-the-graph)
-    - [1.1.10. Explore the graph](#Explore-the-graph)
-    - [1.1.11. View twin properties](#View-twin-properties)
-    - [1.1.12. Query the graph](#Query-the-graph)
-    - [1.1.13. Edit data in the graph](#123-Edit-data-in-the-graph)
-    - [1.1.14. Query to see the result](#123-Query-to-see-the-result)
-    - [1.1.15. Review and contextualize learnings](#123-Review-and-contextualize-learnings)
+  - [1.1. Day Two: Hands on Lab One Video](#11-Day-Two-Hands-on-Lab-One-Video)
+  - [1.2. Prerequisites](#12-prerequisites)
+    - [1.2.1. Download the materials for the sample graph](#121-download-the-materials-for-the-sample-graph)
+    - [1.2.2. Set up Azure Digital Twins](#122-set-up-Azure-Digital-Twins)
+    - [1.2.3. Create an Azure Digital Twins instance](#123-Create-an-Azure-Digital-Twins-instance)
+    - [1.2.4. Open instance in Azure Digital Twins Explorer](#124-Open-instance-in-Azure-Digital-Twins-Explorer)
+    - [1.2.5. Upload the sample materials](#125-Upload-the-sample-materials)
+    - [1.2.6. Models](#126-Models)
+    - [1.2.7. Upload the models](#127-Upload-the-models)
+    - [1.2.8. Twins and the twin graph](#128-Twins-and-the-twin-graph)
+    - [1.2.9. Import the graph](#129-Import-the-graph)
+    - [1.2.10. Explore the graph](#1210Explore-the-graph)
+    - [1.2.11. View twin properties](#1211View-twin-properties)
+    - [1.2.12. Query the graph](#1212Query-the-graph)
+    - [1.2.13. Edit data in the graph](#1213-Edit-data-in-the-graph)
+    - [1.2.14. Query to see the result](#1214-Query-to-see-the-result)
+    - [1.2.15. Review and contextualize learnings](#1215-Review-and-contextualize-learnings)
 
 
-## 1.1. Prerequisites
+## 1.2. Prerequisites
 
 ### 1.1.1. Download the materials for the sample graph
 Use the instructions below to download the three required files. Later, you'll follow more instructions to upload them to Azure Digital Twins.
