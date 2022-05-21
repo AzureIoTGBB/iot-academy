@@ -199,11 +199,6 @@ To publish the function app to Azure, you'll first need to create a storage acco
 
         ![](./media/tutorial-end-to-end/publish-zip.png 'Screenshot of File Explorer in Windows showing the contents of the publish zip folder')
 
-1. In the Azure CLI, run the following command to deploy the published and zipped functions to your Azure function app:
-
-    ```azurecli-interactive
-    az functionapp deployment source config-zip --resource-group <resource-group> --name <name-of-your-function-app> --src "<full-path-to-publish.zip>"
-    ```
 
     > [!TIP] 
     > If you're using the Azure CLI locally, you can access the ZIP file on your computer directly using its path on your machine.
@@ -213,6 +208,13 @@ To publish the function app to Azure, you'll first need to create a storage acco
     ![](./media/tutorial-end-to-end/azure-cloud-shell-upload.png 'Screenshot of the Azure Cloud Shell highlighting how to upload files')
     >
     > In this case, the file will be uploaded to the root directory of your Cloud Shell storage, so you can refer to the file directly by its name for the `--src` parameter of the command (as in, `--src publish.zip`).
+
+
+1. In the Azure CLI locally, run the following command to deploy the published and zipped functions to your Azure function app:
+
+    ```azurecli-interactive
+    az functionapp deployment source config-zip --resource-group <resource-group> --name <name-of-your-function-app> --src "<full-path-to-publish.zip>"
+    ```
 
     A successful deployment will respond with status code 202 and output a JSON object containing details of your new function. You can confirm the deployment succeeded by looking for this field in the result:
 
@@ -303,17 +305,21 @@ In the [Azure portal](https://portal.azure.com/), navigate to your IoT hub from 
 
 Selecting this option will bring up the **Create Event Subscription** page.
 
-![](./media/tutorial-end-to-end/event-subscription-2.png 'Screenshot of the Azure portal showing how to create an event subscription')
-
 Fill in the fields as follows (fields filled by default aren't mentioned):
-* **EVENT SUBSCRIPTION DETAILS** > **Name**: Give a name to your event subscription.
-* **TOPIC DETAILS** > **System Topic Name**: Give a name to use for the system topic. 
+* **EVENT SUBSCRIPTION DETAILS** > **Name**: ADT-event-subscription
+* **TOPIC DETAILS** > **System Topic Name**: Give a name to use for the system topic. (ADT-system-topic)
 * **EVENT TYPES** > **Filter to Event Types**: Select **Device Telemetry** from the menu options.
 * **ENDPOINT DETAILS** > **Endpoint Type**: Select **Azure Function** from the menu options.
 * **ENDPOINT DETAILS** > **Endpoint**: Select the **Select an endpoint** link, which will open a **Select Azure Function** window:
+* 
 
-    ![](./media/tutorial-end-to-end/event-subscription-3.png 'Screenshot of the Azure portal event subscription showing the window to select an Azure function')
-    - Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessHubToDTEvents**). Some of these values may auto-populate after selecting the subscription.
+![](./media/tutorial-end-to-end/event-subscription-2.png 'Screenshot of the Azure portal showing how to create an event subscription')
+
+
+Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessHubToDTEvents**). Some of these values may auto-populate after selecting the subscription.
+
+
+![](./media/tutorial-end-to-end/event-subscription-3.png 'Screenshot of the Azure portal event subscription showing the window to select an Azure function')
     - Select **Confirm Selection**.
 
 Back on the **Create Event Subscription** page, select **Create**.
@@ -364,11 +370,11 @@ Save the file.
 
 Now, to see the results of the data simulation that you've set up, run the **DeviceSimulator** project with this button in the toolbar:
 
-:::image type="content" source="media/tutorial-end-to-end/start-button-simulator.png" alt-text="Screenshot of the Visual Studio start button with the DeviceSimulator project open.":::
+![](./media/tutorial-end-to-end/start-button-simulator.png 'Screenshot of the Visual Studio start button with the DeviceSimulator project open')
 
 A console window will open and display simulated temperature telemetry messages. These messages are being sent to IoT Hub, where they're then picked up and processed by the Azure function.
 
-:::image type="content" source="media/tutorial-end-to-end/console-simulator-telemetry.png" alt-text="Screenshot of the console output of the device simulator showing temperature telemetry being sent.":::
+![](./media/tutorial-end-to-end/console-simulator-telemetry.png 'Screenshot of the console output of the device simulator showing temperature telemetry being sent')
 
 You don't need to do anything else in this console, but leave it running while you complete the next steps.
 

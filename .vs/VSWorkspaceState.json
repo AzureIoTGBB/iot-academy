@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Month_2",
+    "\\Month_2\\Day_2",
+    "\\Month_2\\Day_2\\media",
+    "\\Month_2\\Day_2\\media\\quickstart-azure-digital-twins-explorer",
+    "\\Month_2\\Day_2\\media\\tutorial-end-to-end"
   ],
-  "SelectedNode": "\\C:\\Users\\rebmid\\OneDrive - Microsoft\\IoT Academy\\IoT Academy Git",
   "PreviewInSolutionExplorer": false
 }
