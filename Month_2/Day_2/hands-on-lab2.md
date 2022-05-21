@@ -1,5 +1,5 @@
 # 1. Azure IoT Academy Month Two, Day Two, Lab Two
-## Click Below Link to Watch Hands On Lab Video for Day Two
+## Click Below Link to Watch Lab Two Video
 ## 1.1. [Day Two: Hands on Lab Two Video](....)
 
 This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
