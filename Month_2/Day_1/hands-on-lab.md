@@ -778,22 +778,22 @@ Note: Filters can also be added here similar to how we filteremed telemetry for 
 
 # 12. Cleanup
 
-   <span style="color:red;font-weight:700;font-size:24px">   
-   Note: If you continuing to Month 2 Day 2, this should be done after tomorrow's session as the IoT Hub resource is re-used.
-   </span>
+<span style="color:red;font-weight:700;font-size:24px">   
+Note: If you continuing to Month 2 Day 2, this should be done after tomorrow's session as the IoT Hub resource is re-used.
+</span>
 
-   It's important to not leave your Azure resources provisioned until the next Azure IoT Academy session as there may not be enough Azure credit for the next sessions.
+It's important to not leave your Azure resources provisioned until the next Azure IoT Academy session as there may not be enough Azure credit for the next sessions.
 
-   1. Navigate to the Azure Portal home page
-   2. Click **Resource groups**
-   3. Click **rg-iot-academy**
-   4. Click **Delete resource group**
+1. Navigate to the Azure Portal home page
+2. Click **Resource groups**
+3. Click **rg-iot-academy**
+4. Click **Delete resource group**
 
-      ![](./media/resource-group-delete.png '')
-   
-   5. Type the type the name of your resource group and click **Delete**
+   ![](./media/resource-group-delete.png '')
 
-      ![](./media/resource-group-delete-confirm.png '')
+5. Type the type the name of your resource group and click **Delete**
+
+   ![](./media/resource-group-delete-confirm.png '')
 
 
 
