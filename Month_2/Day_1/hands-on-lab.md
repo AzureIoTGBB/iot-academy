@@ -32,10 +32,11 @@ Course Content
 - [5. Exercise: Install Azure IoT Edge for Linux on Windows (EFLOW)](#5-exercise-install-azure-iot-edge-for-linux-on-windows-eflow)
 - [6. Exercise: Create a Azure Stream Analytics Job](#6-exercise-create-a-azure-stream-analytics-job)
 - [7. Exercise: Update the Azure IoT Edge manifest to add modules and routes](#7-exercise-update-the-azure-iot-edge-manifest-to-add-modules-and-routes)
-- [8. Exercise: Monitor IoT Hub Events](#8-exercise-monitor-iot-hub-events)
-- [9. Exercise: Create an Azure Logic App to Monitor Events from IoT Hub](#9-exercise-create-an-azure-logic-app-to-monitor-events-from-iot-hub)
-- [10. Exercise: View Log Analytics data and setup an alert](#10-exercise-view-log-analytics-data-and-setup-an-alert)
-- [11. Cleanup](#11-cleanup)
+- [8. Exercise: Review the data being sent to Grafana](#8-exercise-review-the-data-being-sent-to-grafana)
+- [9. Exercise: Monitor IoT Hub Events](#9-exercise-monitor-iot-hub-events)
+- [10. Exercise: Create an Azure Logic App to Monitor Events from IoT Hub](#10-exercise-create-an-azure-logic-app-to-monitor-events-from-iot-hub)
+- [11. Exercise: View Log Analytics data and setup an alert](#11-exercise-view-log-analytics-data-and-setup-an-alert)
+- [12. Cleanup](#12-cleanup)
 
 
 # 2. Prerequisites
@@ -515,12 +516,53 @@ e.g. to delete, az iot edge deployment delete -d deploy-tempsensor-sink -n iot-q
 
    If you go back to the page used on step 1. You can use the refresh button until System Metrics states `1 Targeted, 1 Applied`
 
-# 8. Exercise: Monitor IoT Hub Events
+# 8. Exercise: Review the data being sent to Grafana
 
-## 8.1. Resources
+## 8.1. Login to your Windows 10 VM
+
+You should still have your RDP session from earlier. If you closed it or it ended, follow the steps in section `Login to your Windows 10 VM` once again
+
+## 8.2. Get the IP address of the EFLOW VM
+
+1. Go to, or open, the PowerShell window
+2. Run the following command to get the IP address of the EFlow VM
+```
+Get-EflowVmAddr
+```
+You'll get a result such as `172.20.126.50` Replace `{eflow_vm_ip}` below with the value
+
+## 8.3. Login to Grafana
+
+1. In the VM open Edge browser and navigate to http://{eflow_vm_ip}:3000
+
+2. After the page loads, login with:
+- username: `admin`
+- password: `admin`
+
+3. When prompted to change your password use `password1!` in password and confirmation boxes and click ok.
+
+## 8.4. Review the provided dashboard and chart provided by this hands on lab
+
+1. Review the data on the provided chart.
+
+You may need to allow some time to pass for a lot of data to show on the graph
+
+![](./media/grafana-dashboard-chart.png)
+
+You can also change the time range to a shorter time and see a bit better graph. There is also an autorefresh option available.
+
+![](./media/grafana-dashboard-chart-timerange.png)
+
+![](./media/grafana-dashboard-chart-timerange-hour.png)
+
+2. After seeing data, move on to the next Exercise
+
+# 9. Exercise: Monitor IoT Hub Events
+
+## 9.1. Resources
 [https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-vscode-iot-toolkit-cloud-device-messaging](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-vscode-iot-toolkit-cloud-device-messaging)
 
-## 8.2. Sign in and select the correct IoT Hub
+## 9.2. Sign in and select the correct IoT Hub
 
 1. Open VSCode
 2. Use the command pallette, View -> Commmand Pallette
@@ -531,7 +573,7 @@ e.g. to delete, az iot edge deployment delete -d deploy-tempsensor-sink -n iot-q
    2. Command Pallette: `Azure: Sign In to Azure Cloud`
 6. Select your IoT Hub created for this lab`
 
-## 8.3. Start monitoring the IoT Hub built-in event endpoint
+## 9.3. Start monitoring the IoT Hub built-in event endpoint
 
 1. Right click `Explorer -> Azure IoT Hub -> Your Hub -> Built-in endpoints -> events` and click `Start Monitoring`
 ![](./media/vscode-iothub-monitor-start-monitor.png)
@@ -539,22 +581,22 @@ e.g. to delete, az iot edge deployment delete -d deploy-tempsensor-sink -n iot-q
 2. Average Temperature telemetry is produced once a minute. As not all averages temperatures meet the criteria for `AverageTemperature > 21`, it may take some time to see events flowing. You'll events in your output window when they arrive.
 ![](./media/vscode-iothub-monitor-average-temp-21.png)
 
-# 9. Exercise: Create an Azure Logic App to Monitor Events from IoT Hub
+# 10. Exercise: Create an Azure Logic App to Monitor Events from IoT Hub
 
 For the next exercise
 
-## 9.1. Resources
+## 10.1. Resources
 [https://docs.microsoft.com/en-us/azure/event-grid/publish-iot-hub-events-to-logic-apps](https://docs.microsoft.com/en-us/azure/event-grid/publish-iot-hub-events-to-logic-apps)
 [https://docs.microsoft.com/en-us/connectors/azureloganalyticsdatacollector/#creating-a-connection](https://docs.microsoft.com/en-us/connectors/azureloganalyticsdatacollector/#creating-a-connection)
 
 
-## 9.2. Open your pre-created Logic App in the portal
+## 10.2. Open your pre-created Logic App in the portal
 
 Go to the Azure Portal, search for `logic-`, search for `Logic App` and select it
 
 ![](./media/portal-logicapp-search.png)
 
-## 9.3. Add a HTTP Request Trigger to your Logic App
+## 10.3. Add a HTTP Request Trigger to your Logic App
 
 1. Click `Blank Logic App`
 
@@ -604,7 +646,7 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 7. Click `Save`
 8. Copy the `HTTP Post URL` to your clipboard, save in your notepad
 
-## 9.4. Add a Step for sending data to an Azure Log Analytics workspace
+## 10.4. Add a Step for sending data to an Azure Log Analytics workspace
 
 1. Click `New step`
 2. Search for `Send data`. Look for and select `Send Data: Azure Log Analytics Data Collector`
@@ -649,7 +691,7 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 15. Click `Save`
 
 
-## 9.5. Configure IoT Hub to send events to your logic app
+## 10.5. Configure IoT Hub to send events to your logic app
 
 1. In a new browswer tab, search for `iot-`. Click your IoT Hub instance.
 
@@ -669,16 +711,16 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 
 Note: Filters can also be added here similar to how we filteremed telemetry for > 21 earlier in the lab.
 
-## 9.6. Ensure your Logic is receiving the webhook and succeeding
+## 10.6. Ensure your Logic is receiving the webhook and succeeding
 
 1. Navigate back to your browswer tab where you have the Logic App open
 2. Review the execution history on the Overview page. If you don't see any runs, give it a few minutes to show up. Use the refresh button if necessary.
 
 ![](./media/portal-logicapp-overview-success.png)
 
-# 10. Exercise: View Log Analytics data and setup an alert
+# 11. Exercise: View Log Analytics data and setup an alert
 
-## 10.1. Query the Log Analytics Data 
+## 11.1. Query the Log Analytics Data 
 
 1. Go back to your browser tab where Log Analytics is open. If you can't find it search for `iot-`
 2. Click `Logs` and close the `Queries` window that pops up.
@@ -693,7 +735,7 @@ Note: Filters can also be added here similar to how we filteremed telemetry for 
 
 5. Once you see logs move onto the next section
    
-## 10.2. Create an Azure Monitor Alert
+## 11.2. Create an Azure Monitor Alert
 
 1. On the upper right click `New alert rule`
 
@@ -720,7 +762,7 @@ Note: Filters can also be added here similar to how we filteremed telemetry for 
 9.  Click `Review and Create`
 10. Click `Create`
 
-## 10.3. Review your Alert in Azure Monitor
+## 11.3. Review your Alert in Azure Monitor
 
 1. Open a new browser tab to https://portal.azure.com and search for Monitor. Click Monitor
 
@@ -734,7 +776,7 @@ Note: Filters can also be added here similar to how we filteremed telemetry for 
 
 ![](portal-monitor-alerts-fired.png)
 
-# 11. Cleanup
+# 12. Cleanup
 
    <span style="color:red;font-weight:700;font-size:24px">   
    Note: If you continuing to Month 2 Day 2, this should be done after tomorrow's session as the IoT Hub resource is re-used.
