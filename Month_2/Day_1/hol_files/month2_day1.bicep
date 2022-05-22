@@ -16,7 +16,7 @@ resource iothub 'Microsoft.Devices/IotHubs@2021-07-02' = {
   name: 'iot-${studentPrefix}'
   location: location
   tags: {
-    environment: 'demo'
+    environment: 'dev'
   }
   sku: {
     name: 'S1'
@@ -39,3 +39,31 @@ resource dps 'Microsoft.Devices/provisioningServices@2020-01-01' = {
   ]  
   }
 }
+
+// Basic logic app
+resource logicApp 'Microsoft.Logic/workflows@2019-05-01' = {
+  name: 'logic-${studentPrefix}'
+  location: location
+  properties: {
+    definition: {
+      '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
+      actions: {}
+      contentVersion: '1.0.0.0'
+      outputs: {}
+      parameters: {}
+      triggers: {}
+    }
+  }
+}
+
+resource log 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
+  name: 'log-${studentPrefix}'
+  location: location
+  properties: {
+    retentionInDays: 30
+    sku: {
+      name: 'PerGB2018'
+    }
+  }
+}
+

@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  # <string, required> name of the datasource. Required
+  - name: Sql-AverageTemperature
+    type: mssql
+    uid: UNXDNsu7k
+    url: AzureSQLEdge:1433
+    user: sa
+    database: averagetemperature
+    isDefault: true
+    jsonData:
+      tlsAuth: false
+      serverName: AzureSQLEdge
+    secureJsonData:
+      password: 'password1!test'
+    editable: false

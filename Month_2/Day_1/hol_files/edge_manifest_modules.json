@@ -1,0 +1,155 @@
+{
+    "modulesContent": {
+        "$edgeAgent": {
+            "properties.desired": {
+                "modules": {
+                    "asa-average-temperature": {
+                      "settings": {
+                          "image": "mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.11",
+                          "createOptions": ""
+                      },
+                      "type": "docker",
+                      "version": "1.0.0.0",
+                      "env": {
+                          "PlanId": {
+                              "value": "stream-analytics-on-iot-edge"
+                          }
+                      },
+                      "status": "running",
+                      "restartPolicy": "always"
+                    },
+                    "AvgTempPersistenceModule": {
+                      "version": "1.0",
+                      "type": "docker",
+                      "status": "running",
+                      "restartPolicy": "always",
+                      "settings": {
+                        "image": "criotacademyspring2022.azurecr.io/avgtemppersistencemodule:latest",
+                        "createOptions": ""
+                      }
+                    },
+                    "cron_exec": {
+                      "version": "1.0",
+                      "type": "docker",
+                      "status": "running",
+                      "restartPolicy": "always",
+                      "settings": {
+                        "image": "criotacademyspring2022.azurecr.io/cron_exec:latest",
+                        "createOptions": ""
+                      }
+                    },
+                    "SimulatedTemperatureSensor": {
+                      "version": "1.0",
+                      "type": "docker",
+                      "status": "running",
+                      "restartPolicy": "always",
+                      "settings": {
+                        "image": "mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0",
+                        "createOptions": ""
+                      },
+                      "env": {
+                          "MessageCount": {
+                              "value": "2000"
+                          },
+                          "SendInterval": {
+                            "value": "5"
+                        }
+                      }
+                    },
+                    "AzureSQLEdge": {
+                        "settings": {
+                            "image": "mcr.microsoft.com/azure-sql-edge/premium",
+                            "createOptions": "{ \"HostConfig\": { \"CapAdd\": [ \"SYS_PTRACE\" ], \"Binds\": [ \"sqlvolume:/sqlvolume\" ], \"PortBindings\": { \"1433/tcp\": [ { \"HostPort\": \"1433\" } ] }, \"Mounts\": [ { \"Type\": \"volume\", \"Source\": \"sqlvolume\", \"Target\": \"/var/opt/mssql\" } ] }, \"Env\": [ \"MSSQL_AGENT_ENABLED=TRUE\", \"ClientTransportType=AMQP_TCP_Only\", \"PlanId=asde-premium-on-iot-edge\" ] }"
+                        },
+                        "type": "docker",
+                        "env": {
+                            "ACCEPT_EULA": {
+                                "value": "Y"
+                            },
+                            "MSSQL_SA_PASSWORD": {
+                                "value": "password1!test"
+                            },
+                            "MSSQL_LCID": {
+                                "value": "1033"
+                            },
+                            "MSSQL_COLLATION": {
+                                "value": "SQL_Latin1_General_CP1_CI_AS"
+                            }
+                        },
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "version": "1.0"
+                    },
+                    "grafana_average_temp": {
+                        "settings": {
+                            "image": "criotacademyspring2022.azurecr.io/grafana_average_temp:latest",
+                            "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"3000/tcp\":[{\"HostPort\":\"3000\"}]}}}"
+                        },
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "version": "1.0"
+                    }
+                },
+                "runtime": {
+                    "settings": {
+                        "minDockerVersion": "v1.25",
+                        "registryCredentials": {
+                          "ContosoRegistry": {
+                            "username": "iotacademy",
+                            "password": "9gnJPx5f30V5=HVr7nW/caStE4TDKAtO",
+                            "address": "criotacademyspring2022.azurecr.io"
+                          }
+                        }
+                    },
+                    "type": "docker"
+                },
+                "schemaVersion": "1.1",
+                "systemModules": {
+                    "edgeAgent": {
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-agent:1.1",
+                            "createOptions": ""
+                        },
+                        "type": "docker"
+                    },
+                    "edgeHub": {
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-hub:1.1",
+                            "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"443/tcp\":[{\"HostPort\":\"443\"}],\"5671/tcp\":[{\"HostPort\":\"5671\"}],\"8883/tcp\":[{\"HostPort\":\"8883\"}]}}}"
+                        },
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always"
+                    }
+                }
+            }
+        },
+        "$edgeHub": {
+            "properties.desired": {
+                "routes": {
+                    "TempSensorToAverageTemp": "FROM /messages/modules/SimulatedTemperatureSensor/* INTO BrokeredEndpoint(\"/modules/asa-average-temperature/inputs/temperatureSensor\")\t",
+                    "AverageTempToPersistence": "FROM /messages/modules/asa-average-temperature/* INTO BrokeredEndpoint(\"/modules/AvgTempPersistenceModule/inputs/input1\")\t",
+                    "AverageAlertTempToIoTHub": "FROM /messages/modules/asa-average-temperature/* WHERE $body.AverageTemperature > 21 INTO $upstream\t"
+                },
+                "schemaVersion": "1.1",
+                "storeAndForwardConfiguration": {
+                    "timeToLiveSecs": 7200
+                }
+            }
+        },
+        "asa-average-temperature": {
+            "properties.desired": {
+                "ASAJobInfo": "https://cs210032001c0fcc8ac.blob.core.windows.net/asa-edge-2cb2357c-2a02-467f-b366-d90673341e0f/ASAEdgeJobs/2cb2357c-2a02-467f-b366-d90673341e0f/e6335e0d-df8a-480d-ae62-e2f827dc2ab3/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=MjRV4qMxu%2BDs54BecTrfemMw4M5cORU1v%2BTbXJGd0Ls%3D&st=2022-05-20T15%3A12%3A27Z&se=2025-05-20T15%3A22%3A27Z&sp=r",
+                "ASAJobResourceId": "/subscriptions/7451d6d6-9082-46d9-9373-ccd5fcda6673/resourceGroups/rg-iot-academy/providers/Microsoft.StreamAnalytics/streamingjobs/asa-average-temperature"
+            }
+        },
+        "SimulatedTemperatureSensor": {
+            "properties.desired": {
+                "SendData": true,
+                "SendInterval": 5,
+                "MessageCount": 2000
+            }
+        }
+    }
+}
