@@ -1,6 +1,6 @@
 # 1. Azure IoT Academy Month Two, Day Two, Lab Two
 ## Click Below Link to Watch Lab Two Video
-## 1.1. [Day Two: Hands on Lab Two Video](....)
+## 1.1. [Day Two: Hands on Lab Two Video](https://youtu.be/jwzhy3_uS-A)
 
 This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
 
@@ -360,8 +360,8 @@ In the [Azure portal](https://portal.azure.com/), navigate to your IoT hub from 
 Selecting this option will bring up the **Create Event Subscription** page.
 
 Fill in the fields as follows (fields filled by default aren't mentioned):
-* **EVENT SUBSCRIPTION DETAILS** > **Name**: ADT-event-subscription
-* **TOPIC DETAILS** > **System Topic Name**: Give a name to use for the system topic. (ADT-system-topic)
+* **EVENT SUBSCRIPTION DETAILS** > **Name**: ADT-event-iotacademy(alias)
+* **TOPIC DETAILS** > **System Topic Name**: Give a name to use for the system topic: ADT-system-topic(alias)
 * **EVENT TYPES** > **Filter to Event Types**: Select **Device Telemetry** from the menu options.
 * **ENDPOINT DETAILS** > **Endpoint Type**: Select **Azure Function** from the menu options.
 * **ENDPOINT DETAILS** > **Endpoint**: Select the **Select an endpoint** link, which will open a **Select Azure Function** window:
@@ -471,7 +471,7 @@ Here are the actions you'll complete to set up this data flow:
 
 [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview) is an Azure service that helps route and deliver events from Azure Services to other places within Azure. You can create an [Event Grid topic](https://docs.microsoft.com/en-us/azure/event-grid/concepts) to collect certain events from a source, and then subscribers can listen on the topic to receive the events as they come through.
 
-In the Azure CLI, run the following command to create an Event Grid topic:
+In the Azure CLI, run the following command to create an Event Grid topic (use the system topic name created earlier):
 
 ```
 az eventgrid topic create --resource-group <your-resource-group> --name <name-for-your-event-grid-topic> --location <region>
@@ -527,7 +527,7 @@ In the [Azure portal](https://portal.azure.com/), navigate to your event grid to
 The steps to create this event subscription are similar to when you subscribed the first Azure function to IoT Hub earlier in this tutorial. This time, you don't need to specify **Device Telemetry** as the event type to listen for, and you'll connect to a different Azure function.
 
 On the **Create Event Subscription** page, fill in the fields as follows (fields filled by default aren't mentioned):
-* **EVENT SUBSCRIPTION DETAILS** > **Name**: Give a name to your event subscription.
+* **EVENT SUBSCRIPTION DETAILS** > **Name**: Give a name to your event subscription - adt-event-subscription(alias)
 * **ENDPOINT DETAILS** > **Endpoint Type**: Select **Azure Function** from the menu options.
 * **ENDPOINT DETAILS** > **Endpoint**: Select the **Select an endpoint** link, which will open a **Select Azure Function** window:
     - Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessDTRoutedData**) - Will prepopulate based on Zip File you published earlier in lab. Some of these values may auto-populate after selecting the subscription.

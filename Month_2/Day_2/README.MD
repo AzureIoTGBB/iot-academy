@@ -1,5 +1,4 @@
 
-# Azure IoT Academy Month Two - Day Two
-# Click Below Link to Watch Day Two Hands On Lab Video's
+# Azure IoT Academy Month Two -  Video Links
 ## [Day Two: Hands on Lab One Video](https://youtu.be/I5_daPXxhYs)
-## [Day Two: Hands on Lab One Video](placeholder)
+## [Day Two: Hands on Lab One Video](https://youtu.be/jwzhy3_uS-A)
