@@ -140,8 +140,8 @@
         },
         "asa-average-temperature": {
             "properties.desired": {
-                "ASAJobInfo": "https://cs210032001c0fcc8ac.blob.core.windows.net/asa-edge-2cb2357c-2a02-467f-b366-d90673341e0f/ASAEdgeJobs/2cb2357c-2a02-467f-b366-d90673341e0f/e6335e0d-df8a-480d-ae62-e2f827dc2ab3/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=MjRV4qMxu%2BDs54BecTrfemMw4M5cORU1v%2BTbXJGd0Ls%3D&st=2022-05-20T15%3A12%3A27Z&se=2025-05-20T15%3A22%3A27Z&sp=r",
-                "ASAJobResourceId": "/subscriptions/7451d6d6-9082-46d9-9373-ccd5fcda6673/resourceGroups/rg-iot-academy/providers/Microsoft.StreamAnalytics/streamingjobs/asa-average-temperature"
+                "ASAJobInfo": "{sas_url}",
+                "ASAJobResourceId": "/subscriptions/{subscription_id}/resourceGroups/rg-iot-academy/providers/Microsoft.StreamAnalytics/streamingjobs/asa-average-temperature"
             }
         },
         "SimulatedTemperatureSensor": {

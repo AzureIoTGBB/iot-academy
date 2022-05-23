@@ -108,7 +108,7 @@ You'll see in the file:
 ## 3.5. Ensure you've selected your subscription and correct tenant
 1. Run the following command to ensure your subscription is currently default
     ```
-    az account show -o table
+    az account show
     ```
 
 3. If the correct subscription is selected skip this step
@@ -124,9 +124,10 @@ You'll see in the file:
     ```
    4. List all of your subscriptions to find the right subscriptionId
     ```
-    az account show -o table
+    az account show
     ```
    5. Find your SubscriptionId and run step 1 to make it default
+4. Save your SubscriptionId in your notepad. When running `az account show` your SubscriptionID is the `"id"` field
 
 ## 3.6. Create an Azure Resource Group
 
@@ -509,8 +510,11 @@ In this step you'll be configured your Edge device to run Azure IoT Edge Modules
 ```
 az iot hub list -o table
 ```
+2. Edit the `Month_2/Day_1/hol_files/edge_manifest_modules.json` 
+3. Replace `{sas_url}` with your SAS URL saved in notepad earlier
+4. Replace `{subscription_id}` with your SubscriptionID that you saved in notepad earlier
 
-2. Run the command below after replacing `{hub_name}` below
+5. Run the command below after replacing `{hub_name}` below
 
 Notice the **target-condition** this is what is going to target your Edge device since it does in fact have the **dev** tag as follows: **tags.environment='dev'**.
 
