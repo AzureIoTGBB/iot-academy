@@ -67,3 +67,12 @@ resource log 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
   }
 }
 
+resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+  name: 'st${studentPrefix}edge'
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'Storage'
+}
+

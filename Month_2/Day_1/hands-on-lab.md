@@ -18,7 +18,7 @@ This hands on lab seeks to introduce the student to the following Azure Services
 These services are explored as they're often part of overall IoT solutions. A simplistic approach is taken with this lab to allow to reach many audiences of varying technical experience.
 
 Ideally students taking this course will have:
-   - familiarity with the Azure Portal. [https://portal.azure.com](https://portal.azure.com/)
+   - Familiarity with the Azure Portal. [https://portal.azure.com](https://portal.azure.com/)
    - Completed IoT Academy Month One Content
 
 A good way to become familiar with Azure IoT is to follow Azure IoT Developer Specialty certification path. You can read more at the following link: [https://docs.microsoft.com/en-us/learn/certifications/exams/az-220](https://docs.microsoft.com/en-us/learn/certifications/exams/az-220)
@@ -139,7 +139,7 @@ az group create --name rg-iot-academy --location northcentralus
 
 ## 3.7. Deploy Lab resources with an Azure Resource Manager Deployment
 
-The reources deployed are:
+The resources deployed are:
 - IoT Hub
 - DPS 
 - Logic App: used in a later part of the lab
@@ -169,7 +169,7 @@ az deployment group create --resource-group rg-iot-academy --template-file month
 Next, let's:
 - Deploy an Azure Windows 10 VM using Bicep
 - Add an IoT Edge Device
-- Retrieve Device Credentrials for the Edge Device
+- Retrieve Device Credentials for the Edge Device
 - RDP to the Windows 10 VM to install and configure EFLOW
 
 Some links that cover EFLOW and the steps in this section
@@ -184,7 +184,7 @@ Standard_D2_v4
 Standard_D2s_v3
 Standard_D2s_v4
 
-All the VM Skus can be reviewed at the following link:
+All the VM SKUs can be reviewed at the following link:
 [https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-general](https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-general)
 
 1. Open the `Month_2/Day_1/hol_files/createvm.bicep` file and review the contents. Notice many resources in this file and the time savings this provides.
@@ -315,9 +315,9 @@ Deploy-Eflow -memoryInMB 2048 -acceptEula Yes -acceptOptionalTelemetry Yes
 
 AFter some time, maybe 5 minutes, you should a success message as seen in the screenshot below.
 
-![](./media/powershell-eflow-install-succeesful.png)
+![](successful)
 
-5. Replace the `{primaryKey}` and {scopeId} values that you took note of in earlier and then run the followign command
+5. Replace the `{primaryKey}` and {scopeId} values that you took note of in earlier and then run the following command
 
 ```
 Provision-EflowVm -provisioningType DpsSymmetricKey -scopeId {scopeId} -registrationId iot-academy-edge-device -symmKey {primaryKey}
@@ -347,25 +347,25 @@ After running the command you will see a success message as follows.
 [https://docs.microsoft.com/en-us/azure/iot-edge/reference-iot-edge-for-linux-on-windows-functions?view=iotedge-2020-11](https://docs.microsoft.com/en-us/azure/iot-edge/reference-iot-edge-for-linux-on-windows-functions?view=iotedge-2020-11)
 
 ## 6.2. Create a new ASA Job
-   1. Go to the Azure Portal home page
-   2. Click **Create a resource**
-   3. Search for `stream analytics job`
+1. Go to the Azure Portal home page
+2. Click **Create a resource**
+3. Search for `stream analytics job`
 
-      ![ASA Create.](./media/asa-create.png 'ASA Create')
+![](./media/asa-create.png '')
 
-   4. Click **Stream Analytics job**
-   5. Click **Create**
-   6. Enter the details for the job:
-      - Job name: `asajob-average-temperature`
-      - Resource group: `rg-iot-academy`
-      - Location: your region e.g. `East US 2`
-      - Hosting environment: `Edge`
-      - Streaming units: `1`
-      
-      ![ASA Create Details.](./media/asa-create-details.png 'ASA Create Details')
-
-   7. When the deployment is complete click **Go to resource**
+4. Click **Stream Analytics job**
+5. Click **Create**
+6. Enter the details for the job:
+- Job name: `asa-average-temperature`
+- Resource group: `rg-iot-academy`
+- Location: your region e.g. `East US 2`
+- Hosting environment: `Edge`
+- Streaming units: `1`
    
+![](./media/asa-create-details.png '')
+
+7. When the deployment is complete click **Go to resource**
+
 ## 6.3. Creating an ASA Input
 
    - Click **Inputs**, Click **Add stream input**, Click **Edge Hub**
@@ -373,7 +373,7 @@ After running the command you will see a success message as follows.
       ![New Input.](./media/asa-new-input.png 'New Input')
 
    - Enter the input details:
-     - Input alias: `temp`
+     - Input alias: `temperatureSensor`
      - All other values: default
 
       <br/>
@@ -384,23 +384,23 @@ After running the command you will see a success message as follows.
  
 ## 6.4. Creating an ASA Output
 
-   1. Click **Outputs**
-   2. Click **Add**, then click **Edge Hub**
+ 1. Click **Outputs**
+ 2. Click **Add**, then click **Edge Hub**
 
-      ![New Output.](./media/asa-new-output.png 'New Output')
-   
-   3. Enter the details as shown below:
-      - Output alias: `averageTemperature`
-     - All other values: default
+    ![](./media/asa-new-output.png '')
+ 
+ 3. Enter the details as shown below:
+ - Output alias: `averageTemperature`
+ - All other values: default
 
-      ![New Output Details.](./media/asa-new-output-details.png 'New Output Details')
+![](./media/asa-new-output-details.png '')
 
-   4. Click **Save**
+ 4. Click **Save**
 
 ## 6.5. Writing an ASA Query
 
-   1. Click **Query**
-   2. Copy and paste the query below into the query window
+1. Click **Query**
+2. Copy and paste the query below into the query window
 
 ```SQL
 SELECT
@@ -411,6 +411,26 @@ FROM
     temperatureSensor
 GROUP BY TumblingWindow(Duration(minute, 1))
 ```
+
+3. Click **Save query**
+
+4. Click **Storage account settings**, then click **Add storage account**
+
+![](./media/asa-storageaccount-settings.png)
+
+5. Select your subscription, then select the storage account formed such as `st******edge`. Your common student prefix will be in place of the ******.
+
+![](./media/asa-storageaccount-settings-details.png)
+
+6. Click **Save**
+
+7. Click **Publish**. Then, click **Yes**
+
+![](./media/asa-publish.png)
+
+8. Copy the SAS URL to your notepad for later
+
+![](./media/asa-publish-url.png)
 
 # 7. Exercise: Update the Azure IoT Edge manifest to add modules and routes
 
@@ -424,7 +444,7 @@ The diagram below shows how the data flows between each step.
 
 A quick review of the components:
 - Simulated Temperature Sensor Module
-  - Generates a message every 5 seconds, for 2000, messages. The payload includes tempature and humidity data.
+  - Generates a message every 5 seconds, for 2000, messages. The payload includes temperature and humidity data.
   - Distributed by Microsoft on the Azure Marketplace
 - Azure IoT Edge ASA Module
   - Provides the capability to run stream analytics jobs at the edge
@@ -549,7 +569,7 @@ You may need to allow some time to pass for a lot of data to show on the graph
 
 ![](./media/grafana-dashboard-chart.png)
 
-You can also change the time range to a shorter time and see a bit better graph. There is also an autorefresh option available.
+You can also change the time range to a shorter time and see a bit better graph. There is also an auto-refresh option available.
 
 ![](./media/grafana-dashboard-chart-timerange.png)
 
@@ -565,7 +585,7 @@ You can also change the time range to a shorter time and see a bit better graph.
 ## 9.2. Sign in and select the correct IoT Hub
 
 1. Open VSCode
-2. Use the command pallette, View -> Commmand Pallette
+2. Use the command pallette, View -> Command Pallette
 3. Type `select iot` and press enter after selecting `Azure IoT Hub: Select IoT Hub`
 4. Select your subscription. If successful skip to step 6
 5. If it's not visible you'll need to sign in with the correct account
@@ -676,12 +696,12 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 
 7. Click `Add New`
 8. Name: `log-analytics`
-9. In another browswer tab go to the Azure Portal. Search for `log-`. Click your Log Analytics resource.
+9. In another browser tab go to the Azure Portal. Search for `log-`. Click your Log Analytics resource.
 10. Copy the `Workspace ID` to your clipboard, such as `7cee66af-aefc-4cf5-aa0d-a82c2ea8afe9`
 
 ![](./media/portal-log-analytics.png)
 
-11. Back to your Logic App browswer tab. Paste your `Workspace ID` in the appropriate box
+11. Back to your Logic App browser tab. Paste your `Workspace ID` in the appropriate box
 12. Back to your Log Analytics tab. Click `Agents Management`. Copy the `Primary Key` to your clipboard
 
 ![](./media/portal-log-analytics-primarykey.png)
@@ -693,7 +713,7 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 
 ## 10.5. Configure IoT Hub to send events to your logic app
 
-1. In a new browswer tab, search for `iot-`. Click your IoT Hub instance.
+1. In a new browser tab, search for `iot-`. Click your IoT Hub instance.
 
 2. Click Events. Click `+ Event Subscription`
 
@@ -709,11 +729,11 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 
 4. Click `Create`
 
-Note: Filters can also be added here similar to how we filteremed telemetry for > 21 earlier in the lab.
+Note: Filters can also be added here similar to how we filtered telemetry for > 21 earlier in the lab.
 
 ## 10.6. Ensure your Logic is receiving the webhook and succeeding
 
-1. Navigate back to your browswer tab where you have the Logic App open
+1. Navigate back to your browser tab where you have the Logic App open
 2. Review the execution history on the Overview page. If you don't see any runs, give it a few minutes to show up. Use the refresh button if necessary.
 
 ![](./media/portal-logicapp-overview-success.png)
@@ -745,7 +765,7 @@ Note: Filters can also be added here similar to how we filteremed telemetry for 
 - Search Query: `averagetemperature_CL`
 - Measure: `Table Rows`
 - Aggregation Type: `Count`
-- Aggregation Granualarity: `5 minutes`
+- Aggregation Granularity: `5 minutes`
 - Operator: `Greater than`
 - Threshold Value: 2
 - Frequency of Evaluation: `5 minutes`
