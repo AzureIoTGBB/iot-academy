@@ -799,7 +799,7 @@ Note: Filters can also be added here similar to how we filtered telemetry for > 
 # 12. Cleanup
 
 <span style="color:red;font-weight:700;font-size:24px">   
-Note: If you continuing to Month 2 Day 2, this should be done after tomorrow's session as the IoT Hub resource is re-used.
+Note: If you are continuing to Month 2 Day 2, this should be done after Day 2 is complete, as the IoT Hub resource is re-used.
 </span>
 
 It's important to not leave your Azure resources provisioned until the next Azure IoT Academy session as there may not be enough Azure credit for the next sessions.
