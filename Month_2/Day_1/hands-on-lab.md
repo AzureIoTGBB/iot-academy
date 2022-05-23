@@ -120,7 +120,7 @@ You'll see in the file:
    3. If your subscription is not listed you've logged into the wrong tenant. Run the following command to logout and login to the correct tenant. 
     ```
     az logout
-    az login -o table
+    az login 
     ```
    4. List all of your subscriptions to find the right subscriptionId
     ```
