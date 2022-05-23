@@ -1,6 +1,6 @@
 # 1. Azure IoT Academy Month Two, Day Two, Lab Three
-## Click Below Link to Watch Lab Two Video
-## 1.1. [Day Two: Hands on Lab Two Video](https://youtu.be/jwzhy3_uS-A)
+## Click Below Link to Watch Lab Three Video
+## 1.1. [Day Two: Hands on Lab Three Video](https://youtu.be/jwzhy3_uS-A)
 
 This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
 
@@ -21,8 +21,8 @@ In this tutorial, you will...
 
  Course Content
 
-- [1. Azure IoT Academy Month Two Day One](#1-azure-iot-academy-month-two-day-one)
-  - [1.1. Day Two: Hands on Lab Two Video](#11-Day-Two-Hands-on-Lab-Two-Video)
+- [1. Azure IoT Academy Month Three Day One](#1-azure-iot-academy-month-three-day-one)
+  - [1.1. Day Two: Hands on Lab Three Video](#11-Day-Two-Hands-on-Lab-Three-Video)
   - [1.2. Prerequisites](#12-prerequisites)
     - [1.2.1. Install VS Code](#121-install-vs-code)
     - [1.2.2. Download ZIP of Azure Digital Twins sample C# project](#122-Download-ZIP-of-Azure-Digital-Twins-sample-C#-project)
