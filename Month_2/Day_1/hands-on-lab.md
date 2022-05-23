@@ -82,7 +82,7 @@ Course Content
 ## 3.2. Review the Bicep file
 
 1. Within the github repo: (https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/tree/main/Month_2/Day_1/hol_files) 
-2. Locate the file at the following location and review the contents.`Month_2/Day_1/hol_files_new/month2_day1.bicep`
+2. Locate the file at the following location and review the contents.`Month_2/Day_1/hol_files/month2_day1.bicep`
    
 You'll see in the file:
 - two resources
@@ -93,13 +93,13 @@ You'll see in the file:
 ## 3.3. Use the Bicep visualizer to review the resources
 1. Within VS Code trigger the command pallette Ctrl+Shift+P, or click View, command pallette from the menu.
 2. Type `visual` and select the `Bicep: Open Bicep Visualizer to the Side` entry, press enter.
-3. Select your Bicep file located at `Month_2/Day_1/hol_files_new/month2_day1.bicep`
+3. Select your Bicep file located at `Month_2/Day_1/hol_files/month2_day1.bicep`
 4. Review the diagram as seen below
    ![](./media/bicep_visualizer.png)
 
 ## 3.4. Edit your bicep parameters file 
 
-1. Look for the `Month_2/Day_1/hol_files_new/month2_day1_params.json` file and open it
+1. Look for the `Month_2/Day_1/hol_files/month2_day1_params.json` file and open it
 2. Edit the following values:
    1. first_name
    2. last_name
