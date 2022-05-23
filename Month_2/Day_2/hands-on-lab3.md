@@ -21,7 +21,7 @@ In this tutorial, you will...
 
  Course Content
 
-- [1. Azure IoT Academy Month Three Day One](#1-azure-iot-academy-month-three-day-one)
+- [1. Azure IoT Academy Month Two Day Two](#1-azure-iot-academy-month-two-day-two)
   - [1.1. Day Two: Hands on Lab Three Video](#11-Day-Two-Hands-on-Lab-Three-Video)
   - [1.2. Prerequisites](#12-prerequisites)
     - [1.2.1. Install VS Code](#121-install-vs-code)
