@@ -1,0 +1,149 @@
+{
+  "$schema-template": "4.0.0",
+  "modulesContent": {
+    "$edgeAgent": {
+      "properties.desired": {
+        "schemaVersion": "1.1",
+        "runtime": {
+          "type": "docker",
+          "settings": {
+            "minDockerVersion": "v1.25",
+            "loggingOptions": "",
+            "registryCredentials": {}
+          }
+        },
+        "systemModules": {
+          "edgeAgent": {
+            "type": "docker",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-agent:1.2",
+              "createOptions": {}
+            }
+          },
+          "edgeHub": {
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-hub:1.2",
+              "createOptions": {
+                "HostConfig": {
+                  "PortBindings": {
+                    "5671/tcp": [
+                      {
+                        "HostPort": "5671"
+                      }
+                    ],
+                    "8883/tcp": [
+                      {
+                        "HostPort": "8883"
+                      }
+                    ],
+                    "443/tcp": [
+                      {
+                        "HostPort": "443"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "modules": {
+          "asa-average-temperature": {
+            "settings": {
+                "image": "mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.11",
+                "createOptions": ""
+            },
+            "type": "docker",
+            "version": "1.0.0.0",
+            "env": {
+                "PlanId": {
+                    "value": "stream-analytics-on-iot-edge"
+                }
+            },
+            "status": "running",
+            "restartPolicy": "always"
+          },
+          "AvgTempPersistenceModule": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.AvgTempPersistenceModule.debug}",
+              "createOptions": {}
+            }
+          },
+          "cron_exec": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "cron_exec:latest",
+              "createOptions": {}
+            }
+          },
+          "SimulatedTemperatureSensor": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0",
+              "createOptions": {}
+            }
+          },
+          "AzureSQLEdge": {
+              "settings": {
+                  "image": "mcr.microsoft.com/azure-sql-edge/premium",
+                  "createOptions": "{ \"HostConfig\": { \"CapAdd\": [ \"SYS_PTRACE\" ], \"Binds\": [ \"sqlvolume:/sqlvolume\" ], \"PortBindings\": { \"1433/tcp\": [ { \"HostPort\": \"1433\" } ] }, \"Mounts\": [ { \"Type\": \"volume\", \"Source\": \"sqlvolume\", \"Target\": \"/var/opt/mssql\" } ] }, \"Env\": [ \"MSSQL_AGENT_ENABLED=TRUE\", \"ClientTransportType=AMQP_TCP_Only\", \"PlanId=asde-premium-on-iot-edge\" ] }"
+              },
+              "type": "docker",
+              "env": {
+                  "ACCEPT_EULA": {
+                      "value": "Y"
+                  },
+                  "MSSQL_SA_PASSWORD": {
+                      "value": "password1!test"
+                  },
+                  "MSSQL_LCID": {
+                      "value": "1033"
+                  },
+                  "MSSQL_COLLATION": {
+                      "value": "SQL_Latin1_General_CP1_CI_AS"
+                  }
+              },
+              "status": "running",
+              "restartPolicy": "always",
+              "version": "1.0"
+          },
+          "grafana_average_temp": {
+              "settings": {
+                  "image": "grafana_average_temp:latest",
+                  "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"3000/tcp\":[{\"HostPort\":\"3000\"}]}}}"
+              },
+              "type": "docker",
+              "status": "running",
+              "restartPolicy": "always",
+              "version": "1.0"
+          }
+        }
+      }
+    },
+    "$edgeHub": {
+      "properties.desired": {
+        "schemaVersion": "1.1",
+        "routes": {
+          "TempSensorToAverageTemp": "FROM /messages/modules/SimulatedTemperatureSensor/* INTO BrokeredEndpoint(\"/modules/asa-average-temperature/inputs/temperatureSensor\")\t",
+          "AverageTempToPersistence": "FROM /messages/modules/asa-average-temperature/* INTO BrokeredEndpoint(\"/modules/AvgTempPersistenceModule/inputs/input1\")\t"
+        },
+        "storeAndForwardConfiguration": {
+          "timeToLiveSecs": 7200
+        }
+      }
+    }
+  }
+}

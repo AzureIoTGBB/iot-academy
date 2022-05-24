@@ -66,8 +66,6 @@ var virtualNetworkName = 'vnet-${studentPrefix}-eflow'
 var networkSecurityGroupName = 'nsg-${studentPrefix}-eflow'
 var vm_computer_name = 'eflow-${student_prefix_short}'
 
-
-
 resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location

@@ -1,0 +1,6 @@
+_output/
+.jupyterlite.doit.db
+.venv/
+
+hol_files_old
+aks_azureiot.academy
