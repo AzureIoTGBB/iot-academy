@@ -26,8 +26,8 @@ In this lab, you will...
   - [Day Two: Hands on Lab Two Video placeholder](#day-two-hands-on-lab-two-video-placeholder)
       - [Course Content](#course-content)
   - [1.1. Prerequisites](#11-prerequisites)
-    - [1.1.1. Create or reset Azure Digital Twins resource](#111-create-or-reset-azure-digital-twins-resource)
-    - [1.1.2. Set up local Azure credentials](#112-set-up-local-azure-credentials)
+    - [1.1.1. Set up local Azure credentials](#111-set-up-local-azure-credentials)
+    - [1.1.2. Create or reset Azure Digital Twins resource](#112-create-or-reset-azure-digital-twins-resource)
   - [1.2. Project Code](#12-project-code)
     - [1.2.1. Create project and add dependencies](#121-create-project-and-add-dependencies)
     - [1.2.2. Get started with project code](#122-get-started-with-project-code)
@@ -51,7 +51,15 @@ What you need to begin:
 * Any code editor (we will be demonstrating using Visual Studio Code)
 * .NET Core 3.1 on your development machine. You can download this version of the .NET Core SDK for multiple platforms from [Download .NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1).
 
-### 1.1.1. Create or reset Azure Digital Twins resource
+### 1.1.1. Set up local Azure credentials
+
+1. Open Visual Studio Code
+1. Verify, or if not installed, Install Azure Account extension
+![](./media/lab2-assets/vs-code-azure-account-ext.png 'How to find and install the Azure Account extension.')
+1. Click "View"->"Command Palette...", then type "Sign In" to find the correct command. Click "Azure: Sign In to Azure Cloud", then sign in to the correct account.
+![](./media/lab2-assets/vs-code-sign-in-azure.png 'Illustrates where to click to sign in to the Azure Cloud.')
+
+### 1.1.2. Create or reset Azure Digital Twins resource
 
 Please refer to [Section 1.2.3 of Lab 1](https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/blob/main/Month_2/Day_2/hands-on-lab1.md#123-create-an-azure-digital-twins-instance) for instructions on how to create your Azure Digital Twins resource if it does not already exist.
 
@@ -68,14 +76,6 @@ az dt reset --dt-name [name] --yes
 ```
 
 ![](./media/lab2-assets/adt-reset.png 'Illustration of the output of the above command.')
-
-### 1.1.2. Set up local Azure credentials
-
-1. Open Visual Studio Code
-1. Verify, or if not installed, Install Azure Account extension
-![](./media/lab2-assets/vs-code-azure-account-ext.png 'How to find and install the Azure Account extension.')
-1. Click "View"->"Command Palette...", then type "Sign In" to find the correct command. Click "Azure: Sign In to Azure Cloud", then sign in to the correct account.
-![](./media/lab2-assets/vs-code-sign-in-azure.png 'Illustrates where to click to sign in to the Azure Cloud.')
 
 ## 1.2. Project Code
 
@@ -141,10 +141,6 @@ var credential = new DefaultAzureCredential();
 var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), credential);
 Console.WriteLine($"Service client created – ready to go");
 ```
-
-It should look like the image below, just with the correct hostname replacing the hostname
-
-![](./media/lab2-assets/code-example-authenticating.png 'Expected source code.')
 
 Save the file.
 
@@ -295,7 +291,7 @@ Next, you can create relationships between the twins you've created, to connect 
 Add a new static method to the Program class underneath the Main method (the code now has two methods):
 
 ```C#
-public static void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId)
+void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId)
 {
     var relationship = new BasicRelationship
     {
@@ -335,7 +331,7 @@ The next code you'll add allows you to see the list of relationships you've crea
 Add the following new method to the Program class:
 
 ```C#
-public static void ListRelationships(DigitalTwinsClient client, string srcId)
+void ListRelationships(DigitalTwinsClient client, string srcId)
 {
     try
     {
