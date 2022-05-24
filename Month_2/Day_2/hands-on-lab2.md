@@ -295,7 +295,7 @@ Next, you can create relationships between the twins you've created, to connect 
 Add a new static method to the Program class underneath the Main method (the code now has two methods):
 
 ```C#
-public static void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId)
+void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId)
 {
     var relationship = new BasicRelationship
     {
@@ -335,7 +335,7 @@ The next code you'll add allows you to see the list of relationships you've crea
 Add the following new method to the Program class:
 
 ```C#
-public static void ListRelationships(DigitalTwinsClient client, string srcId)
+void ListRelationships(DigitalTwinsClient client, string srcId)
 {
     try
     {
@@ -405,110 +405,101 @@ using Azure.DigitalTwins.Core;
 using Azure.Identity;
 using System.Text.Json;
 
-namespace DigitalTwinsCodeLab
+string adtInstanceUrl = "https://adt-ericj0525.api.wcus.digitaltwins.azure.net";
+
+var credential = new DefaultAzureCredential();
+var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), credential);
+Console.WriteLine($"Service client created – ready to go");
+Console.WriteLine();
+Console.WriteLine($"Upload a model");
+string dtdl = File.ReadAllText("SampleModel.json");
+var models = new List<string> { dtdl };
+// Upload the model to the service
+try
 {
-    class Program
+    client.CreateModels(models);
+    Console.WriteLine("Models uploaded to the instance:");
+}
+catch (RequestFailedException e)
+{
+    Console.WriteLine($"Upload model error: {e.Status}: {e.Message}");
+}
+
+foreach (DigitalTwinsModelData md in client.GetModels())
+{
+    Console.WriteLine($"Model: {md.Id}");
+}
+
+var twinData = new BasicDigitalTwin();
+twinData.Metadata.ModelId = "dtmi:example:SampleModel;1";
+twinData.Contents.Add("data", $"Hello World!");
+
+string prefix = "sampleTwin-";
+for (int i = 0; i < 3; i++)
+{
+    try
     {
-        static void Main(string[] args)
+        twinData.Id = $"{prefix}{i}";
+        client.CreateOrReplaceDigitalTwin<BasicDigitalTwin>(twinData.Id, twinData);
+        Console.WriteLine($"Created twin: {twinData.Id}");
+    }
+    catch(RequestFailedException e)
+    {
+        Console.WriteLine($"Create twin error: {e.Status}: {e.Message}");
+    }
+}
+
+// Connect the twins with relationships
+CreateRelationship(client, "sampleTwin-0", "sampleTwin-1");
+CreateRelationship(client, "sampleTwin-0", "sampleTwin-2");
+
+//List the relationships
+ListRelationships(client, "sampleTwin-0");
+
+// Run a query for all twins
+string query = "SELECT * FROM digitaltwins";
+Pageable<BasicDigitalTwin> queryResult = client.Query<BasicDigitalTwin>(query);
+
+foreach (BasicDigitalTwin twin in queryResult)
+{
+    Console.WriteLine(JsonSerializer.Serialize(twin));
+    Console.WriteLine("---------------");
+}
+
+void ListRelationships(DigitalTwinsClient client, string srcId)
+{
+    try
+    {
+        Pageable<BasicRelationship> results = client.GetRelationships<BasicRelationship>(srcId);
+        Console.WriteLine($"Twin {srcId} is connected to:");
+        foreach (BasicRelationship rel in results)
         {
-            string adtInstanceUrl = "https://<your-Azure-Digital-Twins-host-name>";
-
-            var credential = new DefaultAzureCredential();
-            var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), credential);
-            Console.WriteLine($"Service client created – ready to go");
-            Console.WriteLine();
-            Console.WriteLine($"Upload a model");
-            string dtdl = File.ReadAllText("SampleModel.json");
-            var models = new List<string> { dtdl };
-            // Upload the model to the service
-            try
-            {
-                client.CreateModels(models);
-                Console.WriteLine("Models uploaded to the instance:");
-            }
-            catch (RequestFailedException e)
-            {
-                Console.WriteLine($"Upload model error: {e.Status}: {e.Message}");
-            }
-
-            foreach (DigitalTwinsModelData md in client.GetModels())
-            {
-                Console.WriteLine($"Model: {md.Id}");
-            }
-
-            var twinData = new BasicDigitalTwin();
-            twinData.Metadata.ModelId = "dtmi:example:SampleModel;1";
-            twinData.Contents.Add("data", $"Hello World!");
-
-            string prefix = "sampleTwin-";
-            for (int i = 0; i < 3; i++)
-            {
-                try
-                {
-                    twinData.Id = $"{prefix}{i}";
-                    client.CreateOrReplaceDigitalTwin<BasicDigitalTwin>(twinData.Id, twinData);
-                    Console.WriteLine($"Created twin: {twinData.Id}");
-                }
-                catch(RequestFailedException e)
-                {
-                    Console.WriteLine($"Create twin error: {e.Status}: {e.Message}");
-                }
-            }
-
-            // Connect the twins with relationships
-            CreateRelationship(client, "sampleTwin-0", "sampleTwin-1");
-            CreateRelationship(client, "sampleTwin-0", "sampleTwin-2");
-
-            //List the relationships
-            ListRelationships(client, "sampleTwin-0");
-
-            // Run a query for all twins
-            string query = "SELECT * FROM digitaltwins";
-            Pageable<BasicDigitalTwin> queryResult = client.Query<BasicDigitalTwin>(query);
-
-            foreach (BasicDigitalTwin twin in queryResult)
-            {
-                Console.WriteLine(JsonSerializer.Serialize(twin));
-                Console.WriteLine("---------------");
-            }
+            Console.WriteLine($" -{rel.Name}->{rel.TargetId}");
         }
+    }
+    catch (RequestFailedException e)
+    {
+        Console.WriteLine($"Relationship retrieval error: {e.Status}: {e.Message}");
+    }
+}
 
-        public static void ListRelationships(DigitalTwinsClient client, string srcId)
-        {
-            try
-            {
-                Pageable<BasicRelationship> results = client.GetRelationships<BasicRelationship>(srcId);
-                Console.WriteLine($"Twin {srcId} is connected to:");
-                foreach (BasicRelationship rel in results)
-                {
-                    Console.WriteLine($" -{rel.Name}->{rel.TargetId}");
-                }
-            }
-            catch (RequestFailedException e)
-            {
-                Console.WriteLine($"Relationship retrieval error: {e.Status}: {e.Message}");
-            }
-        }
+void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId)
+{
+    var relationship = new BasicRelationship
+    {
+        TargetId = targetId,
+        Name = "contains"
+    };
 
-        public static void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId)
-        {
-            var relationship = new BasicRelationship
-            {
-                TargetId = targetId,
-                Name = "contains"
-            };
-
-            try
-            {
-                string relId = $"{srcId}-contains->{targetId}";
-                client.CreateOrReplaceRelationship(srcId, relId, relationship);
-                Console.WriteLine("Created relationship successfully");
-            }
-            catch (RequestFailedException e)
-            {
-                Console.WriteLine($"Create relationship error: {e.Status}: {e.Message}");
-            }
-        }
+    try
+    {
+        string relId = $"{srcId}-contains->{targetId}";
+        client.CreateOrReplaceRelationship(srcId, relId, relationship);
+        Console.WriteLine("Created relationship successfully");
+    }
+    catch (RequestFailedException e)
+    {
+        Console.WriteLine($"Create relationship error: {e.Status}: {e.Message}");
     }
 }
 ```
