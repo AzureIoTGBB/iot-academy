@@ -11,8 +11,8 @@ Developers working with Azure Digital Twins commonly write client applications f
 
 In this lab, you will...
 
-* Create a C# project.
 * Setup local Azure credentials.
+* Create a C# project.
 * Add code to your C# project that will:
   * Create a model
   * Create digital twins
