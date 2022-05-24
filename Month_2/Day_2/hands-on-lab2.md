@@ -505,9 +505,3 @@ void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId
 After completing this lab, please move on to [Lab Three](hands-on-lab3.md).
 
 If you would like to reset your Azure Digital Twins prior to the next lab, please go to [section 1.1.1](#111-create-or-reset-azure-digital-twins-resource) and follow the directions there.
-
-You may also remove your resource group and the Azure Digital Twins resource within it using:
-
-```console
-az group delete --name <your-resource-group>
-```
