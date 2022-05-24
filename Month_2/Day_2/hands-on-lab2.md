@@ -91,7 +91,7 @@ Once in the project directory, create an empty .NET console app project. In the 
 dotnet new console
 ```
 
-This command will create several files inside your directory, including one called *Program.cs* where you'll write most of your code.
+This command will create several files inside your directory, including one called ***Program.cs*** where you'll write most of your code.
 
 Next, add two dependencies to your project that will be needed to work with Azure Digital Twins. The first is the package for the Azure Digital Twins SDK for .NET, the second provides tools to help with authentication against Azure.
 
@@ -113,7 +113,7 @@ In this section, you'll begin writing the code for your new app project to work 
 
 There's also a section showing the complete code at the end of the lab. You can use this section as a reference to check your program as you go.
 
-To begin, open the file *Program.cs* in any code editor. You'll see a minimal code template that looks something like this:
+To begin, open the file ***Program.cs*** in any code editor. You'll see a minimal code template that looks something like this:
 
 ![](./media/lab2-assets/code-example-boilerplate.png 'Boilerplate code in Program.cs')
 
@@ -132,7 +132,7 @@ The first thing your app will need to do is authenticate against the Azure Digit
 
 To authenticate, you need the host name of your Azure Digital Twins instance.
 
-In *Program.cs*, paste the following code below the "Hello, World!" printout line in the Main method. Set the value of adtInstanceUrl to your Azure Digital Twins instance host name.
+In ***Program.cs***, paste the following code below the "Hello, World!" printout line in the Main method. Set the value of adtInstanceUrl to your Azure Digital Twins instance host name.
 
 ```C#
 string adtInstanceUrl = "https://<your-Azure-Digital-Twins-host-name>"; 
@@ -165,7 +165,7 @@ Azure Digital Twins has no intrinsic domain vocabulary. The types of elements in
 
 The first step in creating an Azure Digital Twins solution is defining at least one model in a DTDL file.
 
-In the directory where you created your project, create a new .json file called SampleModel.json. Paste in the following file body:
+In the directory where you created your project, create a new .json file called ***SampleModel.json***. Paste in the following file body:
 
 ```JSON
 {
@@ -189,7 +189,7 @@ In the directory where you created your project, create a new .json file called 
 
 ### 1.3.1. Upload the model
 
-Next, add some more code to *Program.cs* to upload the model you've created into your Azure Digital Twins instance.
+Next, add some more code to ***Program.cs*** to upload the model you've created into your Azure Digital Twins instance.
 
 First, add a few using statements to the top of the file:
 
@@ -394,7 +394,7 @@ In your command window, run the program with ```dotnet run```. You should see al
 
 ## 1.7. Recap
 
-At this point in the lab, you have a complete client app that can perform basic actions against Azure Digital Twins. For reference, the full code of the program in *Program.cs* should look similar to the code below:
+At this point in the lab, you have a complete client app that can perform basic actions against Azure Digital Twins. For reference, the full code of the program in ***Program.cs*** should look similar to the code below:
 
 ```C#
 using System;
