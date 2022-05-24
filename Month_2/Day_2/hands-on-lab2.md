@@ -2,13 +2,12 @@
 ## Click Below Link to Watch Lab Two Video (placeholder)
 ## [Day Two: Hands on Lab Two Video placeholder](placeholder)
 
-This hands on lab builds on the prior lab, leveraging the following to attain the same results:
+This hands on lab builds on the prior lab, leveraging the following to attain similar results:
 
 - Azure Digital Twins SDK
 - Visual Studio Code
-- Azure Cloud Shell
 
-Developers working with Azure Digital Twins commonly write client applications for interacting with their instance of the Azure Digital Twins service. This developer-focused lab provides an introduction to programming against the Azure Digital Twins service, using the Azure Digital Twins SDK for .NET (C#). It walks you through writing a C# console client app step by step, starting from scratch.
+Developers working with Azure Digital Twins commonly write client applications for interacting with their instance of the Azure Digital Twins service. This developer-focused lab provides an introduction to programming using the Azure Digital Twins SDK for .NET (C#) to interact with Azure Digital Twins. We will walk you through writing a C# console client app step by step, starting from scratch.
 
 In this lab, you will...
 
