@@ -4,6 +4,8 @@
 
 # 1. Introduction
 
+Video: [https://youtu.be/IJK0h1f7avY](https://youtu.be/IJK0h1f7avY)
+
 This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
    - Visual Studio Code
    - Azure IoT Hub
@@ -71,6 +73,8 @@ Course Content
    ```
 
 # 3. Exercise: Deploy Azure Lab Resources with Bicep
+
+Video: [https://youtu.be/TMgfs9Eh2xY](https://youtu.be/TMgfs9Eh2xY)
 
 ## 3.1. Resources
 
@@ -167,6 +171,8 @@ az deployment group create --resource-group rg-iot-academy --template-file month
 
 # 4. Exercise: Deploy a Windows 10 Azure VM 
 
+Video: [https://youtu.be/JffdKqj1kGA](https://youtu.be/JffdKqj1kGA)
+
 Next, let's:
 - Deploy an Azure Windows 10 VM using Bicep
 - Add an IoT Edge Device
@@ -221,20 +227,19 @@ az iot dps list -o table
 az iot dps enrollment create -g rg-iot-academy --dps-name {dps_name} --enrollment-id iot-academy-edge-device --edge-enabled true --tags "{'environment':'dev'}" --attestation-type symmetrickey 
 e.g. az iot dps enrollment create -g rg-iot-academy --dps-name dps-qdiyctqfomakk --enrollment-id iot-academy-edge-device --edge-enabled true --tags "{'environment':'dev'}" --attestation-type symmetrickey 
 ```
+3. Copy the primaryKey and save it to your notepad
 
-3. Run the following command to retrieve the scopeId for your DPS instance. Replace the {name} with your value found in step 1 of this section
+4. Run the following command to retrieve the scopeId for your DPS instance. Replace the {name} with your value found in step 1 of this section
 
 ```
 az iot dps show --name {name}
 ```
 
-4. find idScope and note the value in your notepad e.g. "idScope": "0ne00600B86"
+5. find idScope and note the value in your notepad e.g. "idScope": "0ne00600B86"
 
 You'll then see results as follows
 
 ![](./media/add-dps-enrollment-complete.png)
-
-1. Copy the primaryKey and save it to your notepad
 
 ## 4.3. Login to your Windows 10 VM
 
@@ -272,6 +277,8 @@ Notice the download in your browser
 
 # 5. Exercise: Install Azure IoT Edge for Linux on Windows (EFLOW)
 
+Video: [https://youtu.be/AlFSLh7ihAw](https://youtu.be/AlFSLh7ihAw)
+
 ## 5.1. Install EFLOW
 
 ## 5.2. Resources
@@ -295,30 +302,32 @@ Invoke-WebRequest "https://aka.ms/AzEflowMSI" -OutFile $msiPath
 Start-Process -Wait msiexec -ArgumentList "/i","$([io.Path]::Combine($env:TEMP, 'AzureIoTEdge.msi'))","/qn"
 ```
 
-Accept the agreement and the next question
-
-![](./media/powershell-eflow-agree.png)
-
-3. Run the following script and press `enter` to restart when prompted
+3. Run the following script
 
 ```
 Deploy-Eflow
 ```
 
+4. Accept the agreement and the next question
+
+![](./media/powershell-eflow-agree.png)
+
+5. When prompted allow the VM to restart. Wait a few minutes before moving on to the next step.
+
 ![](./media/powershell-eflow-confirm-restart.png)
 
-4. After the VM restarts, reconnect your RDP session as in the earlier step. You may need to wait a few minutes for it to restart.
+6. After the VM restarts, reconnect your RDP session as in the earlier step. You may need to wait a few minutes for it to restart.
 
-5. Open PowerShell and run the `Deploy-Eflow` command again
+7. Open PowerShell and run the `Deploy-Eflow` command again
 ```
 Deploy-Eflow -memoryInMB 2048 -acceptEula Yes -acceptOptionalTelemetry Yes
 ```
 
-AFter some time, maybe 5 minutes, you should a success message as seen in the screenshot below.
+After some time, maybe 5 minutes, you should a success message as seen in the screenshot below.
 
 ![](successful)
 
-5. Replace the `{primaryKey}` and {scopeId} values that you took note of in earlier and then run the following command
+8. Replace the `{primaryKey}` and {scopeId} values that you took note of in earlier and then run the following command
 
 ```
 Provision-EflowVm -provisioningType DpsSymmetricKey -scopeId {scopeId} -registrationId iot-academy-edge-device -symmKey {primaryKey}
@@ -329,19 +338,21 @@ After running the command you will see a success message as follows.
 
 ![](./media/powershell-eflow-provisioning-complete.png)
 
-6. Now navigate back to the Azure Portal and find your resource group and navigate to it
+9. Now navigate back to the Azure Portal and find your resource group and navigate to it
 
-7. Find your IoT Hub resource in the list prefixed with `iot-`. Click it
+10. Find your IoT Hub resource in the list prefixed with `iot-`. Click it
 
-8. Click IoT Edge. Click your device `iot-academy-edge-device`
+11. Click IoT Edge. Click your device `iot-academy-edge-device`
 
 ![](./media/portal-view-hub-edge-device.png)
 
-9. After some time you'll notice the edgeAgent running and a normal condition for edgeHub to be in error state since we have not provided configuration
+12. After some time you'll notice the edgeAgent running and a normal condition for edgeHub to be in error state since we have not provided configuration
 
 ![](./media/portal-view-hub-edge-device-details.png)
 
 # 6. Exercise: Create a Azure Stream Analytics Job
+
+Video: [https://youtu.be/1T64Xnu0m3U](https://youtu.be/1T64Xnu0m3U)
 
 ## 6.1. Resources
 
@@ -361,7 +372,6 @@ After running the command you will see a success message as follows.
 - Resource group: `rg-iot-academy`
 - Location: your region e.g. `East US 2`
 - Hosting environment: `Edge`
-- Streaming units: `1`
    
 ![](./media/asa-create-details.png '')
 
@@ -415,7 +425,7 @@ GROUP BY TumblingWindow(Duration(minute, 1))
 
 3. Click **Save query**
 
-4. Click **Storage account settings**, then click **Add storage account**
+4. Click Publish, Click **Storage account settings**, then click **Add storage account**
 
 ![](./media/asa-storageaccount-settings.png)
 
@@ -434,6 +444,8 @@ GROUP BY TumblingWindow(Duration(minute, 1))
 ![](./media/asa-publish-url.png)
 
 # 7. Exercise: Update the Azure IoT Edge manifest to add modules and routes
+
+Video: [https://youtu.be/UbGhG7gxmnU](https://youtu.be/UbGhG7gxmnU)
 
 ## 7.1. Intro and Edge Architecture
 
@@ -542,6 +554,8 @@ e.g. to delete, az iot edge deployment delete -d deploy-tempsensor-sink -n iot-q
 
 # 8. Exercise: Review the data being sent to Grafana
 
+Video: [https://youtu.be/TvzvFG79spE](https://youtu.be/TvzvFG79spE)
+
 ## 8.1. Login to your Windows 10 VM
 
 You should still have your RDP session from earlier. If you closed it or it ended, follow the steps in section `Login to your Windows 10 VM` once again
@@ -583,6 +597,8 @@ You can also change the time range to a shorter time and see a bit better graph.
 
 # 9. Exercise: Monitor IoT Hub Events
 
+Video: [https://youtu.be/cWtMkYIblI0](https://youtu.be/cWtMkYIblI0)
+
 ## 9.1. Resources
 [https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-vscode-iot-toolkit-cloud-device-messaging](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-vscode-iot-toolkit-cloud-device-messaging)
 
@@ -607,7 +623,7 @@ You can also change the time range to a shorter time and see a bit better graph.
 
 # 10. Exercise: Create an Azure Logic App to Monitor Events from IoT Hub
 
-For the next exercise
+Video: [https://youtu.be/n0ATDWwxfRg](https://youtu.be/n0ATDWwxfRg)
 
 ## 10.1. Resources
 [https://docs.microsoft.com/en-us/azure/event-grid/publish-iot-hub-events-to-logic-apps](https://docs.microsoft.com/en-us/azure/event-grid/publish-iot-hub-events-to-logic-apps)
@@ -677,15 +693,26 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 
 ![](./media/portal-logicapp-send-data.png)
 
-3. Click in the JSON Request Body field and select `WindowEnd` in the Dynamic Content box. 
+3. Next you'll notice that connection information for your Log Analytics Workspace is needed.
 
-![](./media/portal-logicapp-send-data-windowend.png)
+![](./media/portal-logicapp-send-data-complete.png)
 
-4. Notice, the Logic App designer automatically inserts a foreach for you, due to the nesting of the json.
+4. Name: `log-analytics`
+5. In another browser tab go to the Azure Portal. Search for `log-`. Click your Log Analytics resource.
+6. Copy the `Workspace ID` to your clipboard, such as `7cee66af-aefc-4cf5-aa0d-a82c2ea8afe9`
 
-![](./media/portal-logicapp-send-data-log.png)
+![](./media/portal-log-analytics.png)
 
-5. Paste the following json into the `JSON Request body` box
+7. Back to your Logic App browser tab. Paste your `Workspace ID` in the appropriate box
+8. Back to your Log Analytics tab. Click `Agents Management`. Copy the `Primary Key` to your clipboard
+
+![](./media/portal-log-analytics-primarykey.png)
+
+9. Back to your Logic App browser tab. Paste your `Primary Key`. Click Ok.
+10. Click `Create`
+11. Click `Save`
+
+12. Paste the following json into the `JSON Request body` box
 
 ```json
 {
@@ -694,26 +721,19 @@ Go to the Azure Portal, search for `logic-`, search for `Logic App` and select i
 }
 ```
 
-6. Enter the details as shown and then click `change connection`
+13. Click in the JSON Request Body field and select `WindowEnd` in the Dynamic Content box. 
+
+![](./media/portal-logicapp-send-data-windowend.png)
+
+14. Notice, the Logic App designer automatically inserts a foreach for you, due to the nesting of the json.
 
 ![](./media/portal-logicapp-send-data-log.png)
 
-7. Click `Add New`
-8. Name: `log-analytics`
-9. In another browser tab go to the Azure Portal. Search for `log-`. Click your Log Analytics resource.
-10. Copy the `Workspace ID` to your clipboard, such as `7cee66af-aefc-4cf5-aa0d-a82c2ea8afe9`
+15. Click the `x` on the WindowEnd field. Place your cursor between the two `"`. Look on the right panel dynamic fields and click WindowEnd.
 
-![](./media/portal-log-analytics.png)
+16. Enter the details the click `Save`
 
-11. Back to your Logic App browser tab. Paste your `Workspace ID` in the appropriate box
-12. Back to your Log Analytics tab. Click `Agents Management`. Copy the `Primary Key` to your clipboard
-
-![](./media/portal-log-analytics-primarykey.png)
-
-13. Back to your Logic App browser tab. Paste your `Primary Key`. Click Ok.
-14. Click `Create`
-15. Click `Save`
-
+![](./media/portal-logicapp-send-data-log.png)
 
 ## 10.5. Configure IoT Hub to send events to your logic app
 
@@ -743,6 +763,8 @@ Note: Filters can also be added here similar to how we filtered telemetry for > 
 ![](./media/portal-logicapp-overview-success.png)
 
 # 11. Exercise: View Log Analytics data and setup an alert
+
+Video: [https://youtu.be/GhwsPXFdye0](https://youtu.be/GhwsPXFdye0)
 
 ## 11.1. Query the Log Analytics Data 
 
