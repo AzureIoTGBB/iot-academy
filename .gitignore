@@ -4,3 +4,5 @@ _output/
 
 hol_files_old
 aks_azureiot.academy
+/.vs
+/.vscode
