@@ -501,6 +501,6 @@ void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId
 
 ## 1.8. Clean up
 
-After completing this lab, please move on to [Lab Three](hands-on-lab3.md).
+After completing this lab, please move on to [Lab Three](./hands-on-lab3.md).
 
 If you would like to reset your Azure Digital Twins prior to the next lab, please go to [section 1.1.1](#111-create-or-reset-azure-digital-twins-resource) and follow the directions there.
