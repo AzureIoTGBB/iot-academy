@@ -400,7 +400,7 @@ using Azure.DigitalTwins.Core;
 using Azure.Identity;
 using System.Text.Json;
 
-string adtInstanceUrl = "https://adt-ericj0525.api.wcus.digitaltwins.azure.net";
+string adtInstanceUrl = "https://<your-Azure-Digital-Twins-host-name>";
 
 var credential = new DefaultAzureCredential();
 var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), credential);
