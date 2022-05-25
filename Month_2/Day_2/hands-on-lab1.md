@@ -292,4 +292,4 @@ The intent of this exercise is to demonstrate how you can use the Azure Digital 
 
 In this quickstart, you made the temperature update manually. It's common in Azure Digital Twins to connect digital twins to real IoT devices so that they receive updates automatically, based on telemetry data. In this way, you can build a live graph that always reflects the real state of your environment. You can use queries to get information about what's happening in your environment in real time.
 
-### Move on to next <b>[lab](https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/blob/Day2-Draft/Month_2/Day_2/hands-on-lab2.md)
+### Move on to next <b>[lab](./hands-on-lab2.md)
