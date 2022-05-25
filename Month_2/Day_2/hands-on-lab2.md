@@ -60,7 +60,7 @@ What you need to begin:
 
 ### 1.1.2. Create or reset Azure Digital Twins resource
 
-Please refer to [Section 1.2.3 of Lab 1](https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/blob/main/Month_2/Day_2/hands-on-lab1.md#123-create-an-azure-digital-twins-instance) for instructions on how to create your Azure Digital Twins resource if it does not already exist.
+Please refer to [Section 1.2.3 of Lab 1](./hands-on-lab1.md#123-create-an-azure-digital-twins-instance) for instructions on how to create your Azure Digital Twins resource if it does not already exist.
 
 If the resource already exists, open a cloud shell, then find the name of the resource
 ```
