@@ -60,7 +60,7 @@ What you need to begin:
 
 ### 1.1.2. Create or reset Azure Digital Twins resource
 
-Please refer to [Section 1.2.3 of Lab 1](https://github.com/AzureIoTGBB/iot-academy-april-2022-internal/blob/main/Month_2/Day_2/hands-on-lab1.md#123-create-an-azure-digital-twins-instance) for instructions on how to create your Azure Digital Twins resource if it does not already exist.
+Please refer to [Section 1.2.3 of Lab 1](./hands-on-lab1.md#123-create-an-azure-digital-twins-instance) for instructions on how to create your Azure Digital Twins resource if it does not already exist.
 
 If the resource already exists, open a cloud shell, then find the name of the resource
 ```
@@ -400,7 +400,7 @@ using Azure.DigitalTwins.Core;
 using Azure.Identity;
 using System.Text.Json;
 
-string adtInstanceUrl = "https://adt-ericj0525.api.wcus.digitaltwins.azure.net";
+string adtInstanceUrl = "https://<your-Azure-Digital-Twins-host-name>";
 
 var credential = new DefaultAzureCredential();
 var client = new DigitalTwinsClient(new Uri(adtInstanceUrl), credential);
@@ -501,6 +501,6 @@ void CreateRelationship(DigitalTwinsClient client, string srcId, string targetId
 
 ## 1.8. Clean up
 
-After completing this lab, please move on to [Lab Three](hands-on-lab3.md).
+After completing this lab, please move on to [Lab Three](./hands-on-lab3.md).
 
 If you would like to reset your Azure Digital Twins prior to the next lab, please go to [section 1.1.1](#111-create-or-reset-azure-digital-twins-resource) and follow the directions there.
