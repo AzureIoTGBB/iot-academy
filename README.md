@@ -59,3 +59,6 @@ Internet of Things, Partner Enablement Team at Microsoft, USA.
 
 April 18th 8am - 9:30am PST
 April 22nd 8am - 9:30am PST
+May 17th 9am - 10am PST
+May 20th 9am - 10am PST
+June TBD
