@@ -2,7 +2,7 @@
 
 **Hands-on lab workshop, Microsoft Defender for IoT/OT Security.**
 
-January 2022.
+June 2022.
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -39,8 +39,7 @@ Teams working in projects related to Connected Devices, Smart Places, Factory of
 
 ## **Dates:** ##
 
-- Americas: Oct/21/2021 (Time: 9am to 5pm EST Time)
-- EMEA: Feb/01/2022 (Time: 9am to 5pm CET Time)
+- Americas: June/28/2022 (Time: 10am to 4pm EST Time)
 
 This workshop is **by invitation only**. Azure Passes will be provided as part of the training to make sure all the attendees can complete the labs without issues.
 
