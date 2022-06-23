@@ -41,37 +41,8 @@ The scenario below is one of many you would apply these lessons to, other scenar
     - [Task 1: Delete resources](#Task-1-Delete-resources)
 - [Appendix 1: Troubleshooting](#Appendix-1-Troubleshooting)
 
-## Exercise #1: Enabling Defender
+## Exercise #1: Edit System Properties to enable pcap player
 
-### Task 1: Enabling Microsoft Defender for IoT
-
-You will execute this task on your physical machine, not on the Virtual Machine that you will use later in this HOL to host your Microsoft Defender for IoT sensors.
-
-1. In the [Azure Portal](https://portal.azure.com/#home "Microsoft Azure Home"), search for **Microsoft Defender for IoT**. Select **Microsoft Defender for IoT** in the popup window, to open the Microsoft Defender for IoT Page.
-
-   ![Microsoft Defender for Cloud Getting Started](./images/E1T1-Find-Microsoft-Defender4IoT.png 'Microsoft Defender for IoT')
-
-1. On the Defender for IoT page, in the **Getting Started** section, select **pricing**.
- 
-   ![Defender for IoT](./images/E1T1-Defender4IoT-GettingStarted.png 'Defender for IoT Pricing')
-
-1. On the **Pricing** page, select **Start with a trial**. 
-
-   ![Defender for IoT Trial](./images/E1T1-Defender4IoT-OnboardSubscription.png 'Defender for IoT Free Trial')
-
-1. In the popup screen leave all defaults (make sure you are using the same subscription you have been using for this lab) and click **Evaluate**, followed by **Confirm**.
-
-   ![Defender for IoT Evaluate](./images/E1T1-Defender4IoT-Evaluate.png 'Defender for IoT Trial')
-
-You now have a valid Microsoft Defender for IoT Trial with 1000 committed devices. These devices represent all those equipments/sensors connected to your network in the facility you are analyzing. This configuration allows you for a 30 days trial for free.
-
-
-
-## Exercise #1: Setting sensor environment for class
-
-During this exercise you will create a new nested Virtual Machine inside the Virtual Machine that you created as part of the prerequisites.
-
-### Task 1: Edit System Properties to enable pcap player
 
 1. Enable pcap player
 
