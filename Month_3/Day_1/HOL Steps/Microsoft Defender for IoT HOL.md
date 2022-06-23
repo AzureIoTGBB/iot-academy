@@ -48,7 +48,7 @@ The scenario below is one of many you would apply these lessons to, other scenar
 
 1. Enable pcap player
 
-   ![Enable Pcap](./images/enablepcap.png 'enable pcap')
+   ![Enable Pcap](./images/enable-pcap.png 'enable pcap')
 
 2. Upload pcaps
 
@@ -73,8 +73,9 @@ The scenario below is one of many you would apply these lessons to, other scenar
 6. Verify data collection
 
    ![Verify Data](./images/verify.png 'Verify Data')
+   <br>
 
-![Play Pcap](images/play-pcap.png)
+    ![Play Pcap](images/play-pcap.png)
 
 
  Observe the following are populating as the pcap plays 
