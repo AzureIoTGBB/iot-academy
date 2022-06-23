@@ -13,10 +13,12 @@ The scenario below is one of many you would apply these lessons to, other scenar
 ![Architecture](./images/E0T0-architecture-diagram.png 'Architecture Diagram')
 
 ## **Content:** ##
-- [Exercise #1: Enabling Defender](#Exercise-1-Enabling-Defender)
-    - [Task 1: Enabling Microsoft Defender for IoT](#Task-1-Enabling-Microsoft-Defender-for-IoT)
-    - [Task 2: Create an IoT Hub:](#Task-2-Create-an-IoT-Hub)
-    - [Task 3: Onboarding sensors](#Task-3-Onboarding-sensors)
+- [Exercise #1: Edit System Properties](#Exercise-1-Edit-System-Properties)
+    - [Task 1: Enable pcap player](#Task-1-Enable-PCAP-Player)
+    - [Task 2: Upload PCAPS](#Task-2-Upload-PCAPS)
+    - [Task 3: Import Firewall Rules](#Task-3-Import-Firewall-Rules)
+    - [Task 4: Play PCAPS](#Task-3-Play-PCAPS)
+    - [Task 5: Verify Data Collection](#Task-3-Verify-Data-Collection)
 - [Exercise #2: Setting up your offline sensor](#Exercise-2-Setting-up-your-offline-sensor)
     - [Task 1: Set up your offline sensor](#Task-1-Set-up-your-nested-Virtual-Machine)
     - [Task 2: Collect Information](#Task-2-Configure-a-Microsoft-Defender-for-IoT-offline-sensor)
@@ -46,7 +48,7 @@ The scenario below is one of many you would apply these lessons to, other scenar
 
 1. Enable pcap player
 
-   ![Enable Pcap](./images/enablepcap.png 'enable pcap player')
+   ![Enable Pcap](./images/enablepcap.png 'enable pcap')
 
 2. Upload pcaps
 
