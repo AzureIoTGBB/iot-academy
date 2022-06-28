@@ -4,8 +4,6 @@
 
 # Internet of Things - Microsoft Defender for IoT  HOL
 
-Before starting this Lab make sure you completed the steps specified in the [Installation & Setup](./DeploySensorV22/Modules/Module-1-Setting-up-the-environment.md) file in this repository.
-
 ## Architecture Diagram ## 
 
 During this workshop we will be focusing on setting up our Microsoft Defender for IoT sensors, for online alerts and also for offline scenarios.
