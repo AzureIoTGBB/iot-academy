@@ -53,7 +53,7 @@ Teams working in projects related to Connected Devices, Smart Places, Factory of
 
 - Americas: June/28/2022 (Time: 10am to 4pm EST Time)
 
-This workshop is **by invitation only**. Azure Passes will be provided as part of the training to make sure all the attendees can complete the labs without issues.
+This workshop is **by invitation only**. Azure Passes will be provided as part of the training to make sure all the attendees can complete the labs without issues. Individual sensor VMs will also be supplied for you.
 
 >NOTE: It is possible to run the workshop on your own if you already have an existing Azure subscription. In this case you will be charged for running some of the services used in this HOL.
 
