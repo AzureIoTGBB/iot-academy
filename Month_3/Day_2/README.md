@@ -97,15 +97,10 @@ openssl x509 -in subca.crt -out subca.pem -outform PEM
 
 ## 3. Create a device certificate
 
-Create a private key for the device.
+Create a private key for the device and certificate signing request (CSR) for the key. Note that the CN must equal the device ID.
 
 ```bash
 openssl genpkey -out $DEVICE.key -algorithm RSA -pkeyopt rsa_keygen_bits:2048
-```
-
-Create a certificate signing request (CSR) for the key. Note that the CN must equal the device ID.
-
-```bash
 openssl req -new -key $DEVICE.key -out $DEVICE.csr -subj "/CN=$DEVICE"
 openssl req -text -in $DEVICE.csr -noout
 ```
