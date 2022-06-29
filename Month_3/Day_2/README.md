@@ -176,7 +176,7 @@ If this is not seen, try clicking "Refresh".
 Once you're done testing with the simulated device, clean up after this lab.
 
 ```bash
-az group delete -g $RG --yes
+az group delete -g $RG --no-wait -y
 cd ~
 rm -rf hol-certs hol-certs.zip
 
