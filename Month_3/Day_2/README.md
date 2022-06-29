@@ -4,9 +4,8 @@
 **Course Content**
 - [1. Introduction](#1-introduction)
 - [2. Open Azure Cloud Shell](#2-open-azure-cloud-shell)
-- [3. Download and unpack HOL files](#3-download-and-unpack-hol-files)
-- [4. Set up variables](#4-set-up-variables)
-- [5. Create CA chain and a device certificate](#5-create-ca-chain-and-a-device-certificate)
+- [3. Download, unzip files, and set variables](#3-download-unzip-files-and-set-variables)
+- [4. Create CA chain and a device certificate](#4-create-ca-chain-and-a-device-certificate)
   - [1. Create a root CA](#1-create-a-root-ca)
   - [2. Create a subordinate CA](#2-create-a-subordinate-ca)
   - [3. Create a device certificate](#3-create-a-device-certificate)
@@ -27,7 +26,7 @@ Ensure your shell is set to Bash:
 
 ![Screenshot showing how to select Bash mode for the Azure Cloud Shell](./media/cloud_shell_bash.png)
 
-# 3. Download and unpack HOL files
+# 3. Download, unzip files, and set variables
 
 In your Cloud Shell, copy and paste to run the following:
 
@@ -35,19 +34,14 @@ In your Cloud Shell, copy and paste to run the following:
 cd ~
 wget https://github.com/AzureIoTGBB/iot-academy/raw/main/Month_3/Day_2/files/hol-certs.zip
 unzip hol-certs.zip
-```
-
-# 4. Set up variables
-
-Set up variables that will be used in this lab:
-
-```bash
 RAND=`openssl rand -hex 6`
 REGION="eastus"
 RG="rg-hol-x509"
 IOTHUB="iothub-$RAND"
 DEVICE="device1"
 ```
+
+There is no need to change any of the variables above, but for your reference as they are used elsewhere in this lab:
 
 | Variable | Description |
 | -------- | ----------- |
@@ -57,7 +51,7 @@ DEVICE="device1"
 | ***IOTHUB*** | Unique name of the IoT Hub. |
 | ***DEVICE*** | Valid name in IoT Hub for your simulated device. |
 
-# 5. Create CA chain and a device certificate
+# 4. Create CA chain and a device certificate
 
 ## 1. Create a root CA
 
@@ -71,7 +65,9 @@ openssl rand -hex 16 > db/serial
 openssl req -new -config rootca.conf -out rootca.csr -keyout private/rootca.key
 ```
 
-Next, create a self-signed CA certificate. Self-signing is suitable for testing purposes. This root CA can be used to sign certificates and certificate revocation lists (CRLs). Sign the certificate and enter the pass phrase from above when prompted.
+Next, create a self-signed CA certificate. Self-signing is suitable for testing purposes. This root CA can be used to sign certificates and certificate revocation lists (CRLs).
+
+Sign the certificate and enter the root CA pass phrase when prompted.
 
 ```bash
 openssl ca -selfsign -batch -config rootca.conf -in rootca.csr -out rootca.crt -extensions ca_ext
@@ -79,7 +75,7 @@ openssl ca -selfsign -batch -config rootca.conf -in rootca.csr -out rootca.crt -
 
 ## 2. Create a subordinate CA
 
-In this lab we will also create a subordinate or registration CA. Because you can use the root CA to sign certificates, creating a subordinate CA isn’t strictly necessary, but this mimics real world certificate hierarchies in which the root CA is kept offline and subordinate CAs issue client certificates. Enter a pass phrase for the subordinate CA request and remember it, as you will need it in following steps.
+In this lab we will also create a subordinate or registration CA. Because you can use the root CA to sign certificates, creating a subordinate CA isn’t strictly necessary, but this mimics real world certificate hierarchies in which the root CA is kept offline and subordinate CAs issue client certificates. Enter a pass phrase for the subordinate CA and remember it, as you will need it in following steps.
 
 ```bash
 cd ~/hol-certs/certs/subca
@@ -87,7 +83,7 @@ openssl rand -hex 16 > db/serial
 openssl req -new -config subca.conf -out subca.csr -keyout private/subca.key
 ```
 
-Create the subordinate CA and sign it. Enter the root CA pass phrase and confirm that you want to sign it using the root CA pass phrase.
+Create the subordinate CA and sign it. Enter the root CA pass phrase when prompted.
 
 ```bash
 openssl ca -batch -config ../rootca/rootca.conf -in subca.csr -out subca.crt -extensions sub_ca_ext
@@ -114,7 +110,7 @@ openssl req -new -key $DEVICE.key -out $DEVICE.csr -subj "/CN=$DEVICE"
 openssl req -text -in $DEVICE.csr -noout
 ```
 
-Create & sign the device certificate, create the .pfx that you will be using to connect to the IoT Hub, copy the important files, and clean up. Note that this uses a blank password for the .pfx and you will likely wish to supply one in a production environment. Enter the subordinate CA's pass phrase when prompted.
+Create & sign the device certificate, create the .pfx that you will be using to connect to the IoT Hub, copy the important files, and clean up. Note that this uses a blank password for the .pfx and you will likely wish to supply one in a production environment. Enter the subordinate CA pass phrase when prompted.
 
 ```bash
 openssl rand -hex 16 > db/serial
