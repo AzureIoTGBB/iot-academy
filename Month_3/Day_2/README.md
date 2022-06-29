@@ -39,6 +39,7 @@ REGION="eastus"
 RG="rg-hol-x509"
 IOTHUB="iothub-$RAND"
 DEVICE="device1"
+
 ```
 
 There is no need to change any of the variables above, but for your reference as they are used elsewhere in this lab:
@@ -63,6 +64,7 @@ Enter a pass phrase for your root CA when prompted and remember it, as you will 
 cd ~/hol-certs/certs/rootca
 openssl rand -hex 16 > db/serial
 openssl req -new -config rootca.conf -out rootca.csr -keyout private/rootca.key
+
 ```
 
 Next, create a self-signed CA certificate. Self-signing is suitable for testing purposes. This root CA can be used to sign certificates and certificate revocation lists (CRLs).
@@ -71,6 +73,7 @@ Sign the certificate and enter the root CA pass phrase when prompted.
 
 ```bash
 openssl ca -selfsign -batch -config rootca.conf -in rootca.csr -out rootca.crt -extensions ca_ext
+
 ```
 
 ## 2. Create a subordinate CA
@@ -81,18 +84,21 @@ In this lab we will also create a subordinate or registration CA. Because you ca
 cd ~/hol-certs/certs/subca
 openssl rand -hex 16 > db/serial
 openssl req -new -config subca.conf -out subca.csr -keyout private/subca.key
+
 ```
 
 Create the subordinate CA and sign it. Enter the root CA pass phrase when prompted.
 
 ```bash
 openssl ca -batch -config ../rootca/rootca.conf -in subca.csr -out subca.crt -extensions sub_ca_ext
+
 ```
 
 Convert subca.crt to subca.pem so it can be imported to IoT Hub.
 
 ```bash
 openssl x509 -in subca.crt -out subca.pem -outform PEM
+
 ```
 
 ## 3. Create a device certificate
@@ -103,6 +109,7 @@ Create a private key for the device and certificate signing request (CSR) for th
 openssl genpkey -out $DEVICE.key -algorithm RSA -pkeyopt rsa_keygen_bits:2048
 openssl req -new -key $DEVICE.key -out $DEVICE.csr -subj "/CN=$DEVICE"
 openssl req -text -in $DEVICE.csr -noout
+
 ```
 
 Create & sign the device certificate, create the .pfx that you will be using to connect to the IoT Hub, copy the important files, and clean up. Note that this uses a blank password for the .pfx and you will likely wish to supply one in a production environment. Enter the subordinate CA pass phrase when prompted.
@@ -110,6 +117,7 @@ Create & sign the device certificate, create the .pfx that you will be using to 
 ```bash
 openssl rand -hex 16 > db/serial
 openssl ca -batch -config subca.conf -in $DEVICE.csr -out $DEVICE.crt -extensions client_ext
+
 ```
 
 Export the certificate to a .pfx format and move to the directory it will be used from by your simulated device.
@@ -117,6 +125,7 @@ Export the certificate to a .pfx format and move to the directory it will be use
 ```bash
 openssl pkcs12 -export -passout pass: -in $DEVICE.crt -inkey $DEVICE.key -out $DEVICE.pfx
 mv $DEVICE.pfx ../devices
+
 ```
 
 # 5. Create and configure your IoT Hub
@@ -128,6 +137,7 @@ az group create -l $REGION -g $RG
 az iot hub create -n $IOTHUB -g $RG --sku F1 --partition-count 2
 az iot hub certificate create --hub-name $IOTHUB --name "SubCA" --path ~/hol-certs/certs/subca/subca.pem --verified
 az iot hub device-identity create -n $IOTHUB -d $DEVICE --am x509_ca
+
 ```
 
 Wait as these resources are created.
@@ -140,6 +150,7 @@ The below will restore the dotnet environment and run the simulated device with 
 cd ~/hol-certs/simulated_device
 dotnet restore
 dotnet run $DEVICE ~/hol-certs/certs/devices/$DEVICE.pfx $IOTHUB
+
 ```
 
 This will send 5 random temperature messages to the IoT Hub then wait for 5 minutes to show a connection. The output will look similar to below:
@@ -168,4 +179,5 @@ Once you're done testing with the simulated device, clean up after this lab.
 az group delete -g $RG --yes
 cd ~
 rm -rf hol-certs hol-certs.zip
+
 ```
