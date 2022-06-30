@@ -63,16 +63,6 @@ Experience will also be gained with the following technologies:
 
 ## Day 1
 
-   - Microsoft Defender
-  
-## Day 2
-
-- Azure Security
-- Azure IoT X.509 certificates for authentication of devices
-
-# June: Month Three
-## Day 1
-
    - Azure IoT Hub
    - Azure Device Provisioning Service (DPS)
    - Azure Virtual Machines
@@ -85,7 +75,23 @@ Experience will also be gained with the following technologies:
 ## Day 2
 
 - Azure Digital Twins 
+- Azure Digital Twins Explorer 
+- Azure Digital Twins SDK
+- Azure Digital Twins
+- Azure Cloud Shell
+- Event Grid
+- Azure Functions
 
+# June: Month Three
+
+## Day 1
+
+   - Microsoft Defender
+  
+## Day 2
+
+- Azure Security
+- Azure IoT X.509 certificates for authentication of devices
 
 ## Contact information
 If you have any questions, please contact: azureiotacademy@microsoft.com
