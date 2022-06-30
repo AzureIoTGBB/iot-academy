@@ -1,4 +1,5 @@
-# Day 1
+# Month One
+## Day 1
 
    - IoT Core Services 
    - IoT Central
@@ -7,7 +8,7 @@
       - Create Device – refrigerated truck 
       - View Data 
 
-# Day 2
+## Day 2
 
    - Azure IoT Hub
    - Azure Device Provisioning Service (DPS)
@@ -15,11 +16,6 @@
    - Azure Data Explorer (ADX)
    - Azure Stream Analytics (ASA)
 
-Experience will also be gained with the following technologies:
-   - Visual Studio Code
-   - Azure Virtual Machines
-   - Ubuntu 18
-   - Bash 
-  
+
 # Contact information
 - If you have any questions, please contact: azureiotacademy@microsoft.com

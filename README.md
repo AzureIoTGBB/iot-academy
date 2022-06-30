@@ -4,7 +4,7 @@ The Azure IoT Academy is a Microsoft training program oriented to accelerate tim
 Microsoft will work with your organization on the priority industry use cases or specific business challenges and help you to design state-of-the-art IoT solutions in Azure to fulfill those priorities and accelerate your transformation.
 Participants in the Academy will work side-by-side with Microsoft expert using the latest IoT technology.
 
-April 2022
+April - June 2022
 
 ## Target audience
 
@@ -35,11 +35,57 @@ throughout the day.
 ## Azure services and related products
 During the Academy the attendees will be working with the following services: 
 
-- IoT Central
-- IoT Hub
-- Power BI Desktop
-- Visual Studio & VS Code
+## April: Month One
+
+## Day 1
+
+- IoT Core Services
+- IoT Central --Overview IoT Central
+- Create IoT Central Application
+- Create Device – refrigerated truck
+- View Data
+
+## Day 2
+- Azure IoT Hub
+- Azure Device Provisioning Service (DPS)
+- Azure IoT Edge, IoT Edge Runtime & Edge Modules
+- Azure Data Explorer (ADX)
+- Azure Stream Analytics (ASA)
+
+Experience will also be gained with the following technologies:
+- Visual Studio Code
+- Azure Virtual Machines
+- Ubuntu 18
+- Bash
 - Github
+
+## May: Month Two
+
+## Day 1
+
+   - Microsoft Defender
+  
+## Day 2
+
+- Azure Security
+- Azure IoT X.509 certificates for authentication of devices
+
+# June: Month Three
+## Day 1
+
+   - Azure IoT Hub
+   - Azure Device Provisioning Service (DPS)
+   - Azure Virtual Machines
+   - Azure Edge for Linux on Windows (EFLOW)
+   - Azure IoT Edge Routing
+   - Azure IoT Edge Stream Analytics (ASA) Module
+   - Azure Logic Apps
+   - Azure Monitor & Azure Log Analytics
+
+## Day 2
+
+- Azure Digital Twins 
+
 
 ## Contact information
 If you have any questions, please contact: azureiotacademy@microsoft.com
@@ -61,4 +107,3 @@ Internet of Things, Partner Enablement Team at Microsoft, USA.
 - April 22nd 8am - 9:30am PST
 - May 17th 9am - 10am PST
 - May 20th 9am - 10am PST
-- June TBD
