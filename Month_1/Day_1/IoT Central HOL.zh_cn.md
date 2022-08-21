@@ -113,92 +113,92 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 ### **任务二: 为您的应用添加遥测功能** ###
 
-**Note**: The interface names must be entered exactly as shown in this unit. The names and entries must exactly match in the code you'll add later in this module.
+**注意**：接口名称必须完全按照本练习要求去输入。 名称和条目必须与您稍后将在本模块中添加的代码对应。
 
-1. To get started, select **Add capability** and click the carat to show all the fields.
+1. 首先，请选择 **“添加功能 - Add capability”** 并单击向下图标以显示所有字段。
 
  ![Add capability](./media/iotc-add-capability-1.png 'Add capability')
 
-2. Enter the following values
+2. 在字段内依次输入以下值
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Contents temperature |
-| Name | ContentsTemperature |
-| Capability type | Telemetry |
-| Semantic Type | Temperature |
-| Schema | Double |
-| Unit | Degree celsius |
+| 显示名称 - Display Name | Contents temperature |
+| 名称 - Name | ContentsTemperature |
+| 功能类型 - Capability type | Telemetry |
+| 语意类型 -  Semantic Type | Temperature |
+| 结构类型 - Schema | Double |
+| 单位 - Unit | Degree celsius |
 
 <br/>
 
-Ensure your capability looks like the following image:
+确认您填写的功能如下图所示:
 
 ![Add Capability](./media/iotc-add-capability-2.png 'Add Capability')
 
 <br/>
 
-3. States are important. They let the operator know what's happening. A state in IoT Central is a name associated with a range of values. Later you'll choose a color to associate with each value.
+3. 每个状态都是很重要。 他们让操作员知道发生了什么。 IoT Central 中的状态是与一系列值关联的名称。 稍后您将选择与每个值关联的颜色.
 
-Use the **Add capability** control to add a state for the truck's refrigerated contents: **empty**, **full**, or **melting**.
+使用 **添加功能 - Add capability** 控件为卡车的冷藏内容添加状态：**empty**、**full** 或 **melting**
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Contents state |
-| Name | ContentsState |
-| Capability type | Telemetry |
-| Semantic Type | State |
-| Schema | String |
+| 显示名称 - Display Name | Contents state |
+| 名称 - Name | ContentsState |
+| 功能类型 - Capability type | Telemetry |
+| 语意类型 - Semantic Type | State |
+| 结构类型 - Schema | String |
 
 <br/>
 
-Select **Add**.
+选择 **添加 - Add**.
 
 ![Add State value](./media/iotc-state-values-add.png 'Add State value')
 
-For Display name and Value, enter empty. The Name field should be populated automatically with empty. So all three fields are identical, containing **empty**. Add two more state values: **full** and **melting**. Again, the same text should appear in the fields for Display name, Name, and Value.
+对于显示名称和值，输入空。 名称字段应自动填充为空。 所以所有三个字段都是相同的，包含**empty**。 添加另外两个状态值：**full** 和 **melting**。 同理相同的文本应该出现在显示名称、名称和值的字段中。
 
 ![Add Capability](./media/content-state.png 'Add Capability')
 
 <br/> 
 
-4. If the cooling system fails, as you'll see in the following units, the chances of the contents melting increase considerably. 
+4. 如果冷却系统出现故障，正如您将在以下内容中看到的那样，货物融化的机会会大大增加。
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Cooling system state |
-| Name | CoolingSystemState |
-| Capability type | Telemetry |
-| Semantic Type | State |
-| Schema | String |
+| 显示名称 - Display Name | Cooling system state |
+| 名称 - Name | CoolingSystemState |
+| 功能类型 - Capability type | Telemetry |
+| 语意类型 - Semantic Type | State |
+| 结构类型 - Schema | String |
 
 <br/> 
 
-Add **on**, **off**, and **failed** entries for the cooling system. Start by selecting Add capability. Then add another state:
+为冷却系统添加 **on**、**off** 和 **failed** 条目。 首先选择添加功能。 然后添加另外一个状态：:
 
 ![Cooling System State](./media/cooling-system.png 'Cooling System states')
 
-4. A more complex state is the state of the truck itself. If all goes well, a truck's normal routing might be ready, enroute, delivering, returning, loading, and back to ready again. Also add the dumping state to account for the disposal of melted contents! To create the new state, use the same process as for the last two steps.
+5. 更复杂的状态是卡车本身的状态。 如果一切顺利，卡车的正常路线可能已准备就绪，在途中、交付、返回、装载，然后再次准备就绪。 还要添加倾倒状态以说明处理融化货物！ 要创建新状态，请使用与刚才最后两个步骤相同的过程。
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Truck state |
-| Name | TruckState |
-| Capability type | Telemetry |
-| Semantic Type | State |
-| Schema | String |
+| 显示名称 - Display Name | Truck state |
+| 名称 - Name | TruckState |
+| 功能类型 - Capability type | Telemetry |
+| 语意类型 - Semantic Type | State |
+| 结构类型 - Schema | String |
 
 <br/> 
 
-Now add: **ready**, **enroute**, **delivering**, **returning**, **loading**, and **dumping** as shown below: 
+现在添加：**ready**、**enroute**、**delivering**、**returning**、**loading**、**dumping**，如下图：
 
 <br> 
 
@@ -207,155 +207,155 @@ Now add: **ready**, **enroute**, **delivering**, **returning**, **loading**, and
 
 <br> 
 
-5. Add and Event Capability. One event a device might trigger is a conflicting command. An example might be when an empty truck that's returning from a customer receives a command to deliver its contents to another customer. If a conflict occurs, the device should trigger an event to warn the operator of the IoT Central app.
+6. 添加事件功能。 设备可能会触发一个事件 - 冲突指令。 一个例子可能是当一辆从客户那里返回的空卡车收到将其内容交付给另一个客户的命令时。 如果发生冲突，设备应触发事件以警告 IoT Central 应用程序的操作员。
 
-Another event might just acknowledge and record the customer ID that a truck is to deliver to.
+另一个事件可能只是确认并记录卡车要交付的客户 ID。
 
-To create an event, select **Add capability**. Then fill in the following information.
+要创建事件，请选择**添加功能 - Add capability**。 然后填写以下信息。
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Event |
-| Name | Event |
-| Capability type | Telemetry |
-| Semantic Type | Event |
-| Schema | String |
-| Severity | Information |
+| 显示名称 - Display Name | Event |
+| 名称 - Name | Event |
+| 功能类型 - Capability type | Telemetry |
+| 语意类型 - Semantic Type | Event |
+| 结构类型 - Schema | String |
+| 严重性 - Severity | Information |
 
 <br/>
 
-Your settings should look like the image below: 
+设置如下图所示：
 
 ![Truck State](./media/event.png 'Truck states')
 
 <br> 
-6. Add a Location capability with the following information:
+7. 使用以下信息添加位置功能:
 
 <br/> 
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Location |
-| Name | Location |
-| Capability type | Telemetry |
-| Semantic Type | Location |
-| Schema | Geopoint |
+| 显示名称 - Display Name | Location |
+| 名称 - Name | Location |
+| 功能类型 - Capability type | Telemetry |
+| 语意类型 - Semantic Type | Location |
+| 结构类型 - Schema | Geopoint |
 
 <br/>
 
-### **Task 3: Add Capabilities - Properties** ###
+### **任务三: 为您的应用添加属性** ###
 
-You'll define an optimal temperature for the truck contents as a property.
+将卡车货物的最佳温度定义为属性。
 
-1. Select Add capability. Then add the truck ID property.
+1. 选择 "添加 - Add" 功能。 然后添加卡车 ID 属性。
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Truck ID |
-| Name | TruckID |
-| Capability type | Property |
-| Semantic Type | None |
-| Schema | String |
-| Writable | Off |
-| Unit | None |
+| 显示名称 - Display Name | Truck ID |
+| 名称 - Name | TruckID |
+| 功能类型 - Capability type | Property |
+| 语意类型 - Semantic Type | None |
+| 结构类型 - Schema | String |
+| 可写 - Writable | Off |
+| 单位 - Unit | None |
 
 <br/>
 
-You should see your property set up as this one below:
+您的属性设置如下:
 
 ![Truck State](./media/truckid-property.png 'Truck states')
 
-2. Add the optimal temperature property.
+2. 添加最佳温度属性
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Optimal Temperature |
-| Name | OptimalTemperature |
-| Capability type | Property |
-| Semantic Type | Temperature |
-| Schema | Double |
-| Writable | On |
-| Unit | Degree celsius |
+| 显示名称 - Display Name | Optimal Temperature |
+| 名称 - Name | OptimalTemperature |
+| 功能类型 - Capability type | Property |
+| 语意类型 - Semantic Type | Temperature |
+| 结构类型 - Schema | Double |
+| 可写 - Writable | On |
+| 单位 - Unit | Degree celsius |
 
 <br/>
 
-Now, should look like the below image:
+如下图所示:
 
 ![Truck State](./media/optimal-temp.png 'Truck states')
 
 
-### **Task 4: Add Capabilities - Commands** ###
-For refrigerated trucks, you should add two commands:
+### **任务四: 为您的应用添加命令** ###
+对于冷藏车，您应该添加两个命令：
 
-A command to deliver the contents to a customer
-A command to recall the truck to base
+将内容交付给客户的命令
+将卡车召回基地的命令
 
-1. To add the commands, select **Add capability**. Then add the first command.
+1. 要添加命令，请选择**添加功能 - Add capability** 添加第一个命令
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Go to customer |
-| Name | GoToCustomer |
-| Capability type | Command |
+| 显示名称 - Display Name | Go to customer |
+| 名称 - Name | GoToCustomer |
+| 功能类型 - Capability type | Command |
 
 <br/>
 
-Turn on the **Request** option to enter more command details.
+打开 **请求 - Request** 选项以输入更多命令相关详细信息。
 
 <br/>
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Request | On |
-| Display Name | Customer ID |
-| Name | Customer ID |
-| Schema | Integer |
+| 请求 - Request | On |
+| 显示名称 - Display Name | Customer ID |
+| 名称 - Name | Customer ID |
+| 结构类型 - Schema | Integer |
 
 <br/>
 
-Validate your inputs with the below image:
+使用下图验证您的输入是否一致:
 
 ![Command Go to Customer](./media/command-go-to-customer.png 'Command Go to Customer')
 
 <br/>
 
-2. Create a command to recall the truck.
+2. 创建一个命令来召回卡车。
 
-| **Entry Summary** | **Value** |
+| **输入对应字段** | **相关值** |
 |---|---|
-| Display Name | Recall |
-| Name | Recall |
-| Capability type | Command |
+| 显示名称 - Display Name | Recall |
+| 名称 - Name | Recall |
+| 功能类型 - Capability type | Command |
 
 <br> 
 
-Your recall property should look like the below one:
+您的召回属性应如下图所示:
 
 ![Command Recall](./media/command-recall.png 'Command Recall')
 
 <br> 
 
-3. Before you go any further, carefully double-check your interface. After an interface is published, editing options are limited. So you should get it right before publishing.
+3. 在继续之前，请仔细检查您的界面。 发布界面后，编辑选项受到限制。 所以你应该在发布之前把它弄好。
 
-When you select the name of the device template, the menu that ends with the Views option summarizes the capabilities, 6 Telemetry based, 2 Properties and 2 Commands: 
+当您选择设备模板的名称时，以“视图”选项结尾的菜单总结了功能，合共6 个基于遥测，2 个属性和 2 个命令: 
 
 ![Summary list](./media/capabilities-all.png 'Summary List')
 
-4. Select **Save**, then **Publish**.
+4. 选择**保存 - Save**，然后选择**发布 - Publish**
 
 ![Save and Publish](./media/iotc-iface-save-pub.png 'Save and Publish')
 
-5. In the dialog box, select **Publish** again. The annotation should change from ***Draft*** to ***Published***.
+5. 在对话框中，再次选择 **发布 - Publish**。 注释应从 ***草稿 - Draft*** 更改为 ***已发布 - Published***。
 
 ![Published](./media/iotc-iface-published.png 'Published')
 
-## Exercise 2: Create a Dashboard ## 
+## 实验二: 创建仪表板 ## 
 
 ### **Task 1: Visualizing the device** ### 
 
