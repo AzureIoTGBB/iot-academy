@@ -1,21 +1,22 @@
-# Month One
-## Day 1
+# **专题一**
+## **动手实验一**
 
-   - IoT Core Services 
-   - IoT Central
-      --Overview IoT Central 
-      - Create IoT Central Application 
-      - Create Device – refrigerated truck 
-      - View Data 
+   - 学习 IoT Core Services 
+   - 学习 IoT Central
+      - 概述物联网中心
+      - 创建 IoT Central 应用程序
+      - 创建设备 - 冷藏车
+      - 查看数据
 
-## Day 2
+## **动手实验二**
 
-   - Azure IoT Hub
-   - Azure Device Provisioning Service (DPS)
-   - Azure IoT Edge, IoT Edge Runtime & Edge Modules
-   - Azure Data Explorer (ADX)
-   - Azure Stream Analytics (ASA)
+   - 使用 Azure IoT Hub
+   - 使用 Azure Device Provisioning Service (DPS)
+   - 使用 Azure IoT Edge, IoT Edge Runtime & Edge Modules
+   - 使用 Azure Data Explorer (ADX)
+   - 使用 Azure Stream Analytics (ASA)
 
 
-# Contact information
-- If you have any questions, please contact: azureiotacademy@microsoft.com
+# **练习方式**
+
+- 如果你有任何问题请联系: azureiotacademy@microsoft.com

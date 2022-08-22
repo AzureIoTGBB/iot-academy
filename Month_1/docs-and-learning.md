@@ -1,7 +1,7 @@
-# IoT Academy: Month 1, Documentation and Learning Materials
+# IoT 学院: 专题一的相关内容和学习材料
 
-- [IoT Academy: Month 1, Documentation and Learning Materials](#iot-academy-month-1-documentation-and-learning-materials)
-  - [Azure Fundamentals](#azure-fundamentals)
+- [IoT 学院: 专题一的相关内容和学习材料](#iot-学院-专题一的相关内容和学习材料)
+  - [Azure 基础](#azure-基础)
   - [Azure IoT](#azure-iot)
   - [Azure IoT Central](#azure-iot-central)
   - [Azure IoT Hub](#azure-iot-hub)
@@ -12,10 +12,10 @@
   - [Azure Stream Analytics (ASA)](#azure-stream-analytics-asa)
   - [Misc](#misc)
 
-## Azure Fundamentals
+## Azure 基础
 
-- [What is Azure](https://azure.microsoft.com/en-us/overview/what-is-azure/)
-- [Learn: intro-to-azure-fundamentals](https://docs.microsoft.com/en-us/learn/modules/intro-to-azure-fundamentals/)
+- [什么是 Azure](https://azure.microsoft.com/en-us/overview/what-is-azure/)
+- [Microsoft Learn : Azure 基础介绍](https://docs.microsoft.com/en-us/learn/modules/intro-to-azure-fundamentals/)
 - [Azure Cloud Adoption Framework (CAF)](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/overview)
 - [Azure Well-Architected Framework (WAF)](https://docs.microsoft.com/en-us/azure/architecture/framework/)
 - [Azure Naming and Tagging](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging)
