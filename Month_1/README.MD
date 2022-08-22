@@ -17,6 +17,6 @@
    - 使用 Azure Stream Analytics (ASA)
 
 
-# **练习方式**
+# **联系方式**
 
 - 如果你有任何问题请联系: azureiotacademy@microsoft.com

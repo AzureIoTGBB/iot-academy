@@ -1,5 +1,5 @@
-# Month Two
-## Day 1
+# 专题二
+## 动手实验 2.1
 
    - Azure IoT Hub
    - Azure Device Provisioning Service (DPS)
@@ -10,7 +10,7 @@
    - Azure Logic Apps
    - Azure Monitor & Azure Log Analytics
 
-## Day 2
+## 动手实验 2.2
 
 - Azure Digital Twins 
 - Azure Digital Twins Explorer 
@@ -20,9 +20,9 @@
 - Event Grid
 - Azure Functions
 
-Experience will also be gained with the following technologies:
+使用工具
    - Visual Studio & VS Code
 
   
-# Contact information
-- If you have any questions, please contact: azureiotacademy@microsoft.com
+# 联系方式
+- 如果您有任何问题，请联系：azureiotacademy@microsoft.com

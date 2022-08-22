@@ -1,237 +1,237 @@
-# 1. Azure IoT Academy Month Two, Day Two, Lab Three
-## Click Below Link to Watch Lab Three Video
-## 1.1. [Day Two: Hands on Lab Three Video](https://youtu.be/jwzhy3_uS-A)
+# 1. Azure IoT 学院专题二:  动手实验 2.3
+## 通过以下链接观看有关视频
+## 1.1. [专题二:  动手实验 2.3](https://youtu.be/jwzhy3_uS-A)
 
-This hands on lab seeks to introduce the student to the following Azure Services and Technologies:
+此动手实验室旨在向学生介绍以下 Azure 服务和技术：
 
 - Visual Studio
-- Azure Digital Twins
-- Azure Cloud Shell
-- Event Grid
-- Azure Functions
+- Azure 数字孪生
+- Azure 云外壳
+- 事件网格
+- Azure 函数
 
-This Azure Digital Twins lab describes how to build out an end-to-end solution that demonstrates the functionality of the service. To set up a full end-to-end solution driven by live data from your environment, you can connect your Azure Digital Twins instance to other Azure services for management of devices and data.
+此 Azure 数字孪生实验室描述了如何构建一个端到端的解决方案来演示服务的功能。 若要设置由环境中的实时数据驱动的完整端到端解决方案，可以将 Azure 数字孪生实例连接到其他 Azure 服务以管理设备和数据。
 
-In this tutorial, you will...
+在本教程中，您将学会
 
- * Set up an Azure Digital Twins instance
- * Learn about the sample building scenario and instantiate the pre-written components
- * Use an [Azure Functions](../azure-functions/functions-overview.md) app to route simulated telemetry from an [IoT Hub](../iot-hub/about-iot-hub.md) device into digital twin properties
- * Propagate changes through the twin graph by processing digital twin notifications with Azure Functions, endpoints, and routes
+  * 设置 Azure 数字孪生实例
+  * 了解示例构建场景并实例化预先编写的组件
+  * 使用 [Azure Functions](../azure-functions/functions-overview.md) 应用程序将模拟遥测数据从 [IoT Hub](../iot-hub/about-iot-hub.md) 设备路由到 数字孪生属性
+  * 通过使用 Azure Functions、端点和路由处理数字孪生通知，通过孪生图传播更改
 
- Course Content
+ 课程内容
 
-- [1. Azure IoT Academy Month Two, Day Two, Lab Three](#1-azure-iot-academy-month-two-day-two-lab-three)
-  - [Click Below Link to Watch Lab Three Video](#click-below-link-to-watch-lab-three-video)
-  - [1.1. Day Two: Hands on Lab Three Video](#11-day-two-hands-on-lab-three-video)
-  - [1.1. Prerequisites](#11-prerequisites)
-    - [1.1.1. Install Visual Studio](#111-install-visual-studio)
-    - [1.1.2. Download ZIP of Azure Digital Twins C# sample project](#112-download-zip-of-azure-digital-twins-c-sample-project)
-    - [1.1.3. Prepare an Azure Digital Twins instance](#113-prepare-an-azure-digital-twins-instance)
-    - [1.1.4. Prepare your environment for the Azure CLI](#114-prepare-your-environment-for-the-azure-cli)
-    - [1.1.5. Set up CLI session](#115-set-up-cli-session)
-  - [1.2. Configure the ADT sample project](#12-configure-the-adt-sample-project)
-    - [1.2.1. Get started with the building scenario](#121-get-started-with-the-building-scenario)
-    - [1.2.2. Instantiate the pre-created twin graph](#122-instantiate-the-pre-created-twin-graph)
-    - [1.2.3. Set up the sample function app](#123-set-up-the-sample-function-app)
-    - [1.2.4. Update dependencies](#124-update-dependencies)
-    - [1.2.5. Publish the app](#125-publish-the-app)
-    - [1.2.6. Configure permissions for the function app](#126-configure-permissions-for-the-function-app)
-    - [1.2.7. Assign access role](#127-assign-access-role)
-    - [1.2.8. Configure application settings](#128-configure-application-settings)
-  - [1.3. Exercise: Process simulated telemetry from an IoT Hub device](#13-exercise-process-simulated-telemetry-from-an-iot-hub-device)
-    - [1.3.1. Connect the IoT hub to the Azure function](#131-connect-the-iot-hub-to-the-azure-function)
-    - [1.3.2. Register the simulated device with IoT Hub](#132-register-the-simulated-device-with-iot-hub)
-    - [1.3.3. Configure and run the simulation](#133-configure-and-run-the-simulation)
+- [1. Azure IoT 学院专题二:  动手实验 2.3](#1-azure-iot-学院专题二--动手实验-23)
+  - [通过以下链接观看有关视频](#通过以下链接观看有关视频)
+  - [1.1. 专题二:  动手实验 2.3](#11-专题二--动手实验-23)
+  - [1.1. 课前准备](#11-课前准备)
+    - [1.1.1. 安装 Visual Studio](#111-安装-visual-studio)
+    - [1.1.2. 下载 Azure 数字孪生 C# 示例项目的 ZIP 文件](#112-下载-azure-数字孪生-c-示例项目的-zip-文件)
+    - [1.1.3. 准备 Azure 数字孪生实例](#113-准备-azure-数字孪生实例)
+    - [1.1.4. 安装 Azure CLI](#114-安装-azure-cli)
+    - [1.1.5. 建立 CLI 会话](#115-建立-cli-会话)
+  - [1.2. 配置 ADT 示例项目](#12-配置-adt-示例项目)
+    - [1.2.1. 开始构建场景](#121-开始构建场景)
+    - [1.2.2. 实例化预先创建的孪生图](#122-实例化预先创建的孪生图)
+    - [1.2.3. 设置示例函数应用](#123-设置示例函数应用)
+    - [1.2.4. 更新依赖项](#124-更新依赖项)
+    - [1.2.5. 发布应用](#125-发布应用)
+    - [1.2.6. 为函数应用配置权限](#126-为函数应用配置权限)
+    - [1.2.7. 分配访问角色](#127-分配访问角色)
+    - [1.2.8. 配置应用程序设置](#128-配置应用程序设置)
+  - [1.3. 练习: 处理来自 IoT Hub 设备的模拟遥测数据](#13-练习-处理来自-iot-hub-设备的模拟遥测数据)
+    - [1.3.1. 将 IoT 中心连接到 Azure 函数](#131-将-iot-中心连接到-azure-函数)
+    - [1.3.2. 向 IoT Hub 注册模拟设备](#132-向-iot-hub-注册模拟设备)
+    - [1.3.3. 配置并运行模拟设备](#133-配置并运行模拟设备)
     - [1.3.4. See the results in Azure Digital Twins](#134-see-the-results-in-azure-digital-twins)
-  - [1.4 Exercise: Propagate Azure Digital Twins events through the graph](#14-exercise-propagate-azure-digital-twins-events-through-the-graph)
-    - [1.4.1. Create the Event Grid topic](#141-create-the-event-grid-topic)
-    - [1.4.2. Create the endpoint](#142-create-the-endpoint)
-    - [1.4.3. Create the route](#143-create-the-route)
-    - [1.4.4. Connect the Azure function](#144-connect-the-azure-function)
-  - [1.5. Exercise: Run the simulation and see the results](#15-exercise-run-the-simulation-and-see-the-results)
-    - [1.5.1. Review](#151-review)
-    - [1.5.2. Clean up resources](#152-clean-up-resources)
-    - [1.5.3. Next steps](#153-next-steps)
+  - [1.4 练习: 通过图传播 Azure 数字孪生事件](#14-练习-通过图传播-azure-数字孪生事件)
+    - [1.4.1. 创建事件网格主题](#141-创建事件网格主题)
+    - [1.4.2. 创建端点](#142-创建端点)
+    - [1.4.3. 创建路由](#143-创建路由)
+    - [1.4.4. 🔗 Azure function](#144--azure-function)
+  - [1.5. 练习：运行模拟并查看结果](#15-练习运行模拟并查看结果)
+    - [1.5.1. 回顾](#151-回顾)
+    - [1.5.2. 清空资源](#152-清空资源)
+    - [1.5.3. 下一步](#153-下一步)
 
-## 1.1. Prerequisites
+## 1.1. 课前准备
 
-### 1.1.1. Install Visual Studio
+### 1.1.1. 安装 Visual Studio
 [Visual Studio Download](https://visualstudio.microsoft.com/vs/)
-* For Mac users the latest version of Visual Studio 2022 for Mac (version 17.2) offers the most development features
+* 针对 Mac 用户，最新版本的 Visual Studio 2022 for Mac（版本 17.2）提供了最多的开发功能
 
-### 1.1.2. Download ZIP of Azure Digital Twins C# sample project
+### 1.1.2. 下载 Azure 数字孪生 C# 示例项目的 ZIP 文件
 
-The tutorial is driven by an [Azure Digital Twins end-to-end sample project written in C#](https://github.com/Azure-Samples/digital-twins-samples). Get the sample project on your machine by navigating to the sample link, and selecting the <b>Browse</b> code button underneath the title. This will take you to the GitHub repo for the samples, which you can download as a .zip by selecting the <b>Code</b> button followed by <b>Download ZIP.</b>
+本教程由 [用 C# 编写的 Azure 数字孪生端到端示例项目](https://github.com/Azure-Samples/digital-twins-samples) 驱动。 通过导航到示例链接并选择标题下方的 <b>浏览 - Browse</b> 代码按钮，在您的计算机上获取示例项目。 这会将您带到示例的 GitHub 存储库，您可以通过选择 <b>Code</b> 按钮，点击选择 <b>下载 Zip 文件 - Download ZIP。</b> 将其下载为 .zip。
 
 ![](./media/tutorial-end-to-end/zip.png)
 
-This will download a .zip folder to your machine as digital-twins-samples-master.zip. Unzip the folder and extract the files.
+这会将 .zip 文件夹作为 digital-twins-samples-master.zip 下载到您的计算机。 解压缩文件夹并提取文件。
 
-### 1.1.3. Prepare an Azure Digital Twins instance
+### 1.1.3. 准备 Azure 数字孪生实例
 
-We will be using the Azure Digital Twins instance that we set up in Lab One. 
+我们将使用我们在动手实验专题二动手实验 2.1 中设置的 Azure 数字孪生实例。
 
-Open your Azure Digital Twins instance from the Azure portal.
+从 Azure 门户打开你的 Azure 数字孪生实例。
 
-From the instance's <b>Overview</b> page, note its <b>Name, Resource group, and Host name.</b> These values are all important and you may need to use them as you continue working with your Azure Digital Twins instance.
+在实例的 <b>预览 - Overview</b> 页面中，记下它的 <b>名字 - Name、资源组 - Resource group 和 主机名 - Host name。</b> 这些值都很重要，您可能需要在继续使用 Azure 时使用它们数字孪生实例
 
 ![](./media/tutorial-end-to-end/adt-instance-example.png) 
 
-You now have an Azure Digital Twins instance ready to go. Please ensure you have the appropriate Azure user permissions to manage it.
-Setting up user access permissions: Azure users need to have the Azure Digital Twins Data <b>Owner</b> role on the Azure Digital Twins instance to be able to manage it and its data. 
+你现在已经准备好使用 Azure 数字孪生实例了。 请确保您具有适当的 Azure 用户权限来管理它。
+设置用户访问权限：Azure 用户需要在 Azure 数字孪生实例上拥有 Azure 数字孪生数据 <b>Owner</b> 角色才能管理它及其数据。
 
 ![](./media/tutorial-end-to-end/roleassignment.png)
 
 
-### 1.1.4. Prepare your environment for the Azure CLI
+### 1.1.4. 安装 Azure CLI
 
-Use the Bash environment in Azure Cloud Shell. Right click the image below and open in a new window. 
+在 Azure Cloud Shell 中使用 Bash 环境。 右键单击下面的图像并在新窗口中打开。
 
 [<b>![Launch Cloud Shell](./media/tutorial-end-to-end/launch.png)](https://portal.azure.com/#cloudshell/)</b>
 
 
-### 1.1.5. Set up CLI session
+### 1.1.5. 建立 CLI 会话
 
 
-If this is the first time you've used this subscription with Azure Digital Twins, run this command to register with the Azure Digital Twins namespace. (If you're not sure, it's ok to run it again even if you've done it sometime in the past.)
+如果这是你第一次将此订阅与 Azure 数字孪生一起使用，请运行此命令以向 Azure 数字孪生命名空间注册。 （如果您不确定，可以再次运行它，即使您过去曾经做过。）
 
 ```
 az provider register --namespace 'Microsoft.DigitalTwins'
 ```
-Next you'll add the [Microsoft Azure IoT Extension for Azure CLI](https://docs.microsoft.com/en-us/cli/azure/service-page/azure%20iot?view=azure-cli-latest&preserve-view=true), to enable commands for interacting with Azure Digital Twins and other IoT services. Run this command to make sure you have the latest version of the extension:
+接下来，您将添加 [Microsoft Azure IoT Extension for Azure CLI](https://docs.microsoft.com/en-us/cli/azure/service-page/azure%20iot?view=azure-cli-latest&preserve- view=true)，以启用与 Azure 数字孪生和其他 IoT 服务交互的命令。 运行此命令以确保您拥有最新版本：
 
 ```
 
 az extension add --upgrade --name azure-iot
 ```
 
-Now you are ready to work with Azure Digital Twins in the Azure CLI.
+现在，你已准备好在 Azure CLI 中使用 Azure 数字孪生。
 
-You can verify this by running ```az dt --help``` at any time to see a list of the top-level Azure Digital Twins commands that are available.
+您可以随时通过运行 ```az dt --help``` 来验证这一点，以查看可用的 Azure 数字孪生命令的列表。
 
-## 1.2. Configure the ADT sample project
+## 1.2. 配置 ADT 示例项目
 
-Next, set up a sample client application that will interact with your Azure Digital Twins instance.
+接下来，设置将与 Azure 数字孪生实例交互的示例客户端应用程序。
 
-Navigate on your machine to the file you downloaded earlier from [Azure Digital Twins end-to-end samples](https://docs.microsoft.com/en-us/samples/azure-samples/digital-twins-samples/digital-twins-samples/) (and unzip it if you haven't already).
+在您的计算机上导航到您之前从 [Azure 数字孪生端到端示例](https://docs.microsoft.com/en-us/samples/azure-samples/digital-twins-samples/digital-twins-samples/) （
 
-Once inside the folder, navigate into <b>AdtSampleApp</b>. Open A<b>dtE2ESample.sln</b> in Visual Studio.
+进入文件夹后，进入到 <b>AdtSampleApp</b>。 在 Visual Studio 中打开 A<b>dtE2ESample.sln</b>。
 
-In Visual Studio, select the <b>SampleClientApp > appsettings.json</b> file to open it in the editing window. This will serve as a pre-set JSON file with the necessary configuration variables to run the project.
+在 Visual Studio 中，选择 <b>SampleClientApp > appsettings.json</b> 文件以在编辑窗口中打开它。 这将作为一个预设的 JSON 文件，其中包含运行项目所需的配置变量。
 
-In the file body, change the ```instanceUrl``` to your Azure Digital Twins instance host name URL (by adding https:// in front of the host name, as shown below).
+在文件正文中，将 ```instanceUrl``` 更改为您的 Azure 数字孪生实例主机名 URL（通过在主机名前添加 https://，如下所示）。
 
 ```
 {
   "instanceUrl": "https://<your-Azure-Digital-Twins-instance-host-name>"
 }
 ```
-Save and close the file.
+保存和关闭文件
 
-Next, configure the <b>appsettings.json</b> file to be copied to the output directory when you build the SampleClientApp. To do this, right-select the <b>appsettings.json</b> file, and choose <b>Properties</b>. In the <b>Properties</b> inspector, look for the <b>Copy to Output Directory</b> property. Change the value to <b>Copy if newer</b> if it is not set to that already.
+接下来，配置 <b>appsettings.json</b> 文件以在构建 SampleClientApp 时复制到输出目录。 为此，请右键选择 <b>appsettings.json</b> 文件，然后选择 <b>Properties</b>。 在 <b>Properties</b> 检查器中，查找 <b>Copy to Output Directory</b> 属性。 如果尚未设置，请将值更改为 <b>Copy if newer</b>。
 
 ![](./media/tutorial-end-to-end/appsettings.json.png) 
 
-Keep the AdtE2ESample project open in Visual Studio to continue using it in the tutorial.
+在 Visual Studio 中保持 AdtE2ESample 项目处于打开状态，以便在教程中继续使用它。
 
 
-### 1.2.1. Get started with the building scenario
+### 1.2.1. 开始构建场景
 
-The sample project used in this tutorial represents a real-world building scenario, containing a floor, a room, and a thermostat device. These components will be digitally represented in an Azure Digital Twins instance, which will then be connected to [IoT Hub](../iot-hub/about-iot-hub.md), [Event Grid](../event-grid/overview.md), and two [Azure functions](../azure-functions/functions-overview.md) to enable movement of data.
+本教程中使用的示例项目代表了一个真实的建筑场景，其中包含一个楼层、一个房间和一个恒温器设备。这些组件将在 Azure 数字孪生实例中以数字方式表示，然后将连接到 [IoT Hub](../iot-hub/about-iot-hub.md)、[Event Grid](../event- grid/overview.md) 和两个 [Azure 函数](../azure-functions/functions-overview.md) 以启用数据移动。
 
-Below is a diagram representing the full scenario. 
+下面是代表完整场景的图表。
 
-You'll first create the Azure Digital Twins instance (**section A** in the diagram), then set up the telemetry data flow into the digital twins (**arrow B**), then set up the data propagation through the twin graph (**arrow C**).
+您将首先创建 Azure 数字孪生实例（图中的**A 部分**），然后设置进入数字孪生的遥测数据流（**箭头 B**），然后设置通过孪生图（**箭头 C**）。
 
  ![](./media/tutorial-end-to-end/building-scenario.png 'Diagram of the full building scenario')
 
-To work through the scenario, you'll interact with components of the pre-written sample app you downloaded earlier.
+要完成该场景，您将与之前下载的预先编写的示例应用程序的组件进行交互。
 
-Here is a breakdown of the components that are implemented by the building scenario AdtSampleApp sample app:
-* Device authentication 
-* [.NET (C#) SDK](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/digitaltwins/client?view=azure-dotnet&preserve-view=true) usage examples (found in *CommandLoop.cs*)
-* Console interface to call the Azure Digital Twins API
-* SampleClientApp - A sample Azure Digital Twins solution
-* SampleFunctionsApp - An Azure Functions app that updates your Azure Digital Twins graph based on telemetry from IoT Hub and Azure Digital Twins events
+以下是构建场景 AdtSampleApp 示例应用程序实现的组件的细分：
+* 设备认证
+* [.NET (C#) SDK](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/digitaltwins/client?view=azure-dotnet&preserve-view=true) 使用示例（找到在 *CommandLoop.cs*)
+* 调用 Azure 数字孪生 API 的控制台界面
+* SampleClientApp - Azure 数字孪生解决方案示例
+* SampleFunctionsApp - 一个 Azure Functions 应用，可根据来自 IoT Hub 的遥测数据和 Azure 数字孪生事件更新 Azure 数字孪生图形
 
-### 1.2.2. Instantiate the pre-created twin graph
+### 1.2.2. 实例化预先创建的孪生图
 
-First, you'll use the AdtSampleApp solution from the sample project to build the Azure Digital Twins piece of the end-to-end scenario (**section A**):
+首先，您将使用示例项目中的 AdtSampleApp 解决方案来构建端到端场景的 Azure 数字孪生部分（**A 部分**）：
 
 ![](./media/tutorial-end-to-end/building-scenario-a.png 'Diagram of an excerpt from the full building scenario diagram highlighting the Azure Digital Twins instance section')
 
-In your Visual Studio window where the *AdtE2ESample.sln* solution is open, run the SampleClientApp project with this button in the toolbar:
+在 *AdtE2ESample.sln* 解决方案打开的 Visual Studio 窗口中，使用工具栏中的此按钮运行 SampleClientApp 项目：
 
 ![](./media/tutorial-end-to-end/start-button-sample.png 'Screenshot of the Visual Studio start button with the SampleClientApp project open')
 
-A console window will open, carry out authentication, and wait for a command. In this console, run the next command to instantiate the sample Azure Digital Twins solution.
+控制台窗口将打开，执行身份验证并等待命令。 在此控制台中，运行下一个命令以实例化示例 Azure 数字孪生解决方案。
 
 > [!IMPORTANT] 
-> If you already have digital twins and relationships in your Azure Digital Twins instance, running this command will delete them and replace them with the twins and relationships for the sample scenario.
+> 如果 Azure 数字孪生实例中已有数字孪生和关系，则运行此命令将删除它们并将其替换为示例场景的孪生和关系。
 
 ```cmd/sh
 SetupBuildingScenario
 ```
 
-The output of this command is a series of confirmation messages as three [digital twins](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/digitaltwins/client?view=azure-dotnet&preserve-view=true) are created and connected in your Azure Digital Twins instance: a floor named floor1, a room named room21, and a temperature sensor named thermostat67. These digital twins represent the entities that would exist in a real-world environment.
+此命令的输出是一系列确认消息，作为三个 [数字孪生](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/digitaltwins/client?view=azure-dotnet&preserve-view=true) 在 Azure 数字孪生实例中创建并连接：一个名为 floor1 的楼层、一个名为 room21 的房间和一个名为 thermostat67 的温度传感器。这些数字孪生代表了现实世界环境中存在的实体。
 
-They're connected via relationships into the following [twin graph](https://docs.microsoft.com/en-us/azure/digital-twins/concepts-twins-graph). The twin graph represents the environment as a whole, including how the entities interact with and relate to each other.
+它们通过关系连接到以下 [孪生图](https://docs.microsoft.com/en-us/azure/digital-twins/concepts-twins-graph)。孪生图将环境表示为一个整体，包括实体如何交互和相互关联。
 
 ![](./media/tutorial-end-to-end/building-scenario-graph.png 'Diagram showing that floor1 contains room21, and room21 contains thermostat67')
 
-You can verify the twins that were created by running the following command, which queries the connected Azure Digital Twins instance for all the digital twins it contains:
+您可以通过运行以下命令来验证创建的孪生，该命令会查询连接的 Azure 数字孪生实例以获取它包含的所有数字孪生：
 
 
 ```
 Query
 ```
 
-You can now stop running the project. Keep the solution open in Visual Studio, though, as you'll continue using it throughout the tutorial.
+您现在可以停止运行该项目。 但是，请在 Visual Studio 中保持该解决方案处于打开状态，因为您将在整个教程中继续使用它。
 
-### 1.2.3. Set up the sample function app
+### 1.2.3. 设置示例函数应用
 
-The next step is setting up an [Azure Functions app](../azure-functions/functions-overview.md) that will be used throughout this tutorial to process data. The function app, SampleFunctionsApp, contains two functions:
-* *ProcessHubToDTEvents*: processes incoming IoT Hub data and updates Azure Digital Twins accordingly
-* *ProcessDTRoutedData*: processes data from digital twins, and updates the parent twins in Azure Digital Twins accordingly
+下一步是设置一个 [Azure Functions 应用程序](../azure-functions/functions-overview.md)，将在本教程中用于处理数据。 函数应用 SampleFunctionsApp 包含两个函数：
+* *ProcessHubToDTEvents*：处理传入的 IoT 中心数据并相应地更新 Azure 数字孪生
+* *ProcessDTRoutedData*：处理来自数字孪生的数据，并相应地更新 Azure 数字孪生中的父孪生
 
-In this section, you'll publish the pre-written function app, and ensure the function app can access Azure Digital Twins by assigning it an Azure Active Directory (Azure AD) identity. Completing these steps will allow the rest of the tutorial to use the functions inside the function app. 
+在本部分中，你将发布预先编写的函数应用，并通过为其分配 Azure Active Directory (Azure AD) 标识来确保函数应用可以访问 Azure 数字孪生。 完成这些步骤将允许本教程的其余部分使用函数应用内的函数。
 
-Back in your Visual Studio window where the *AdtE2ESample.sln* solution is open, the function app is located in the SampleFunctionsApp project. You can view it in the **Solution Explorer** pane.
+返回打开 *AdtE2ESample.sln* 解决方案的 Visual Studio 窗口，函数应用位于 SampleFunctionsApp 项目中。 您可以在 **Solution Explorer** 窗格中查看它。
 
-### 1.2.4. Update dependencies
+### 1.2.4. 更新依赖项
 
-Before publishing the app, it's a good idea to make sure your dependencies are up to date, making sure you have the latest version of all the included packages.
+在发布应用程序之前，最好确保您的依赖项是最新的，确保您拥有所有包含的包的最新版本。
 
-In the **Solution Explorer** pane, expand **SampleFunctionsApp > Dependencies**. Right-select **Packages** and choose **Manage NuGet Packages...**.
+在 **Solution Explorer** 窗格中，展开 **SampleFunctionsApp > Dependencies**。 右键选择 **Packages** 并选择 **Manage NuGet Packages...**。
 
 ![](./media/tutorial-end-to-end/update-dependencies-1.png 'Screenshot of Visual Studio showing the Manage NuGet Packages menu button')
 
-Doing so will open the NuGet Package Manager. Select the **Updates** tab and if there are any packages to be updated, check the box to **Select all packages**. Then select **Update**.
+这样做将打开 NuGet 包管理器。 选择 **Updates** 选项卡，如果有要更新的包，请选中复选框以 **Select all packages**。 然后选择**Updates**。
 
 ![](./media/tutorial-end-to-end/update-dependencies-2.png 'Screenshot of Visual Studio showing how to selecting to update all packages in the NuGet Package Manager')
 
-### 1.2.5. Publish the app
+### 1.2.5. 发布应用
 
-To publish the function app to Azure, you'll first need to create a storage account, then create the function app in Azure, and finally publish the functions to the Azure function app. This section completes these actions using the Azure CLI.
+要将函数应用发布到 Azure，首先需要创建一个存储帐户，然后在 Azure 中创建函数应用，最后将函数发布到 Azure 函数应用。 本部分使用 Azure CLI 完成这些操作。
 
-1. Create an Azure storage account by running the following command. Make sure you update the storage account and resource group with your existing RG group name:
+1. 通过运行以下命令创建一个 Azure 存储帐户。 确保使用现有的 RG 组名称更新存储帐户和资源组：
 
     ```azurecli-interactive
     az storage account create --name <name-for-new-storage-account> --location <location> --resource-group <resource-group> --sku Standard_LRS
     ```
 
-1. Create an Azure function app by running the following command:
+2. 通过运行以下命令创建 Azure Function 应用：
 
     ```azurecli-interactive
     az functionapp create --name <name-for-new-function-app> --storage-account <name-of-storage-account-from-previous-step> --consumption-plan-location <location> --runtime dotnet --resource-group <resource-group>
     ```
 
-1. Next, you'll zip up the functions and publish them to your new Azure function app.
+3. 接下来，你将压缩函数并将它们发布到新的 Azure Function 应用.
 
-    1. Open a terminal like PowerShell on your local machine, and navigate to the [Digital Twins samples repo](https://github.com/azure-samples/digital-twins-samples/tree/master/) you downloaded earlier in the tutorial. Inside the downloaded repo folder, navigate to *digital-twins-samples-master\AdtSampleApp\SampleFunctionsApp*.
+    1. 在本地计算机上打开类似 PowerShell 的终端，然后导航到您在本教程前面下载的 [Digital Twins 示例存储库](https://github.com/azure-samples/digital-twins-samples/tree/master/) . 在下载的 repo 文件夹中，导航到 *digital-twins-samples-master\AdtSampleApp\SampleFunctionsApp*。
     
-    1. In your terminal, run the following command to publish the project:
+    2. 在终端中，运行以下命令以发布项目
 
         ```powershell
         dotnet publish -c Release
@@ -239,33 +239,33 @@ To publish the function app to Azure, you'll first need to create a storage acco
 
         This command publishes the project to the *digital-twins-samples-master\AdtSampleApp\SampleFunctionsApp\bin\Release\netcoreapp3.1\publish* directory.
 
-    1. Create a zip of the published files that are located in the *digital-twins-samples-master\AdtSampleApp\SampleFunctionsApp\bin\Release\netcoreapp3.1\publish* directory. Name the zipped folder *publish.zip*.
+    3. 创建位于 *digital-twins-samples-master\AdtSampleApp\SampleFunctionsApp\bin\Release\netcoreapp3.1\publish* 目录的 zip。 将压缩文件夹命名为 *publish.zip*。
         
        >[!TIP] 
-       >If you're using PowerShell, you can create the zip by copying the full path to that *\publish* directory and pasting it into the following command:
+       >如果您使用的是 PowerShell，则可以通过将完整路径复制到该 *\publish* 目录并将其粘贴到以下命令中来创建 zip:
        >
        >```powershell
        >Compress-Archive -Path <full-path-to-publish-directory>\* -DestinationPath .\publish.zip
        >```
         
-        The cmdlet will create the *publish.zip* file in the directory location of your terminal. Please ensure your publish.zip file is located directly within SampleFunctionsApp (see below screenshot)
+        该 cmdlet 将在终端的目录位置创建 *publish.zip* 文件。 请确保您的 publish.zip 文件直接位于 SampleFunctionsApp 中（请参见下面的屏幕截图）
 
-        Your *publish.zip* file should contain folders for *bin*, *ProcessDTRoutedData*, and *ProcessHubToDTEvents*, and there should also be a *host.json* file.
+         您的 *publish.zip* 文件应该包含 *bin*、*ProcessDTRoutedData* 和 *ProcessHubToDTEvents* 的文件夹，并且还应该有一个 *host.json* 文件。
 
         ![](./media/tutorial-end-to-end/publish-zip.png 'Screenshot of File Explorer in Windows showing the contents of the publish zip folder')
 
 
     
-    >Using the Azure Cloud Shell, upload the ZIP file to Cloud Shell with this button before running the command:
+    >使用 Azure Cloud Shell，在运行命令之前使用此按钮将 ZIP 文件上传到 Cloud Shell：
     
 
     ![](./media/tutorial-end-to-end/azure-cloud-shell-upload.png 'Screenshot of the Azure Cloud Shell highlighting how to upload files')
     
 
-    > In this case, the file will be uploaded to the root directory of your Cloud Shell storage, so you can refer to the file directly by its name for the `--src` parameter of the command (as in, `--src publish.zip`).
+    > 在这种情况下，文件将被上传到您的 Cloud Shell 存储的根目录，因此您可以在命令的 `--src` 参数中直接通过文件名引用文件（如 `--src publish .zip`).
 
 
-1. In the Azure Cloud Shell, run the following command to deploy the published and zipped functions to your Azure function app:
+4. 在 Azure Cloud Shell 中，运行以下命令将已发布和压缩的函数部署到 Azure Function App:
 
     ```azurecli-interactive
     az functionapp deployment source config-zip --resource-group <resource-group> --name <name-of-your-function-app> --src "publish.zip"
@@ -281,304 +281,305 @@ To publish the function app to Azure, you'll first need to create a storage acco
     }
     ```
 
-You've now published the functions to a function app in Azure.
+你现在已将函数发布到 Azure 中的函数应用。
 
-Next, your function app will need to have the right permission to access your Azure Digital Twins instance. You'll configure this access in the next section.
+接下来，您的函数应用将需要具有访问 Azure 数字孪生实例的正确权限。 您将在下一节中配置此访问权限
 
-### 1.2.6. Configure permissions for the function app
+### 1.2.6. 为函数应用配置权限
 
-There are two settings that need to be set for the function app to access your Azure Digital Twins instance, both of which can be done using the Azure CLI. 
+需要为函数应用设置两个设置才能访问 Azure 数字孪生实例，这两个设置都可以使用 Azure CLI 完成
 
-### 1.2.7. Assign access role
+### 1.2.7. 分配访问角色
 
-The first setting gives the function app the **Azure Digital Twins Data Owner** role in the Azure Digital Twins instance. This role is required for any user or function that wants to perform many data plane activities on the instance. You can read more about security and role assignments in [Security for Azure Digital Twins solutions](concepts-security.md). 
+第一个设置为函数应用提供了 Azure 数字孪生实例中的 **Azure 数字孪生数据所有者** 角色。 任何想要在实例上执行许多数据平面活动的用户或功能都需要此角色。 您可以在 [Azure 数字孪生解决方案的安全性](concepts-security.md) 中阅读有关安全性和角色分配的更多信息。
 
-1. Use the following command to see the details of the system-managed identity for the function. Take note of the **principalId** field in the output.
+1. 使用以下命令查看函数的系统管理标识的详细信息。 记下输出中的 **principalId** 字段。
 
     ```azurecli-interactive	
     az functionapp identity show --resource-group <your-resource-group> --name <your-function-app-name>	
     ```
 
     >[!NOTE]
-    > If the result is empty instead of showing details of an identity, create a new system-managed identity for the function using this command:
+    > 如果结果为空而不是显示身份的详细信息，请使用以下命令为函数创建一个新的系统管理的身份：
     > 
     >```azurecli-interactive	
     >az functionapp identity assign --resource-group <your-resource-group> --name <your-function-app-name>	
     >```
     >
-    > The output will then display details of the identity, including the **principalId** value required for the next step. 
+    > 然后，输出将显示身份的详细信息，包括下一步所需的 **principalId** 值. 
 
-1. Use the **principalId** value in the following command to assign the function app's identity to the **Azure Digital Twins Data Owner** role for your Azure Digital Twins instance.
+2. 使用以下命令中的 **principalId** 值将函数应用的标识分配给 Azure 数字孪生实例的 **Azure 数字孪生数据所有者** 角色
 
     ```azurecli-interactive	
     az dt role-assignment create --dt-name <your-Azure-Digital-Twins-instance> --assignee "<principal-ID>" --role "Azure Digital Twins Data Owner"
     ```
 
-The result of this command is outputted information about the role assignment you've created. The function app now has permissions to access data in your Azure Digital Twins instance.
+此命令的结果是有关您创建的角色分配的输出信息。 函数应用现在有权访问 Azure 数字孪生实例中的数据。
  
-### 1.2.8. Configure application settings
+### 1.2.8. 配置应用程序设置
 
-The second setting creates an environment variable for the function with the URL of your Azure Digital Twins instance. The function code will use the value of this variable to refer to your instance. For more information about environment variables, see [Manage your function app](../azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal). 
+第二个设置使用 Azure 数字孪生实例的 URL 为函数创建环境变量。 函数代码将使用此变量的值来引用您的实例。 有关环境变量的详细信息，请参阅[管理您的函数应用](../azure-functions/functions-how-to-use-azure-function-app-settings.md?tabs=portal)。
 
-Run the command below, filling in the placeholders with the details of your resources.
+运行以下命令，在占位符中填写资源的详细信息。
 
 ```azurecli-interactive
 az functionapp config appsettings set --resource-group <your-resource-group> --name <your-function-app-name> --settings "ADT_SERVICE_URL=https://<your-Azure-Digital-Twins-instance-host-name>"
 ```
 
-The output is the list of settings for the Azure Function, which should now contain an entry called `ADT_SERVICE_URL`.
+输出是 Azure 函数的设置列表，现在应该包含一个名为“ADT_SERVICE_URL”的条目。
 
 
-## 1.3. Exercise: Process simulated telemetry from an IoT Hub device
+## 1.3. 练习: 处理来自 IoT Hub 设备的模拟遥测数据
 
-An Azure Digital Twins graph is meant to be driven by telemetry from real devices. 
+Azure 数字孪生图旨在由来自真实设备的遥测驱动。
 
-In this step, you'll connect a simulated thermostat device registered in [IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-concepts-and-iot-hub) to the digital twin that represents it in Azure Digital Twins. As the simulated device emits telemetry, the data will be directed through the *ProcessHubToDTEvents* Azure function that triggers a corresponding update in the digital twin. In this way, the digital twin stays up to date with the real device's data. In Azure Digital Twins, the process of directing events data from one place to another is called [routing events](https://docs.microsoft.com/en-us/azure/digital-twins/concepts-route-events).
+在此步骤中，您将在 [IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-concepts-and-iot-hub) 中注册的模拟恒温器设备连接到 在 Azure 数字孪生中表示它的数字孪生。 当模拟设备发出遥测数据时，数据将通过 *ProcessHubToDTEvents* Azure 函数引导，该函数触发数字孪生中的相应更新。 通过这种方式，数字孪生与真实设备的数据保持同步。 在 Azure 数字孪生中，将事件数据从一个地方定向到另一个地方的过程称为 [路由事件](https://docs.microsoft.com/en-us/azure/digital-twins/concepts-route-events)。
 
-Processing the simulated telemetry happens in this part of the end-to-end scenario (**arrow B**):
+处理模拟遥测发生在端到端场景的这一部分（**箭头 B**）：
 
 ![](./media/tutorial-end-to-end/building-scenario-b.png 'Diagram of an excerpt from the full building scenario diagram highlighting the section that shows elements before Azure Digital Twins')
 
-Here are the actions you'll complete to set up this device connection:
-1. Use IoT hub from Day 1 - this will manage the simulated device
-2. Connect the IoT hub to the appropriate Azure function by setting up an event subscription
-3. Register the simulated device in IoT hub
-4. Run the simulated device and generate telemetry
-5. Query Azure Digital Twins to see the live results
+以下是设置此设备连接需要完成的操作：
+1. 从专题一开始使用 IoT Hub - 这将管理模拟设备
+2. 通过设置事件订阅将 IoT 中心连接到相应的 Azure 功能
+3. 在 IoT 中心注册模拟设备
+4. 运行模拟设备并生成遥测
+5. 查询 Azure 数字孪生以查看实时结果
 
-Azure Digital Twins is designed to work alongside [IoT Hub](../iot-hub/about-iot-hub.md), an Azure service for managing devices and their data. In this step, you'll set up an IoT hub that will manage the sample device in this tutorial.
+Azure 数字孪生旨在与 [IoT Hub](../iot-hub/about-iot-hub.md) 一起工作，这是一种用于管理设备及其数据的 Azure 服务。 在此步骤中，你将设置一个 IoT 中心来管理本教程中的示例设备。
 
-### 1.3.1. Connect the IoT hub to the Azure function
+### 1.3.1. 将 IoT 中心连接到 Azure 函数
 
-Next, connect your IoT hub from Day 1 to the *ProcessHubToDTEvents* Azure function in the function app you published earlier, so that data can flow from the device in IoT Hub through the function, which updates Azure Digital Twins.
+接下来，将第 1 天的 IoT 中心连接到之前发布的函数应用中的 *ProcessHubToDTEvents* Azure 函数，以便数据可以从 IoT 中心的设备通过该函数流动，从而更新 Azure 数字孪生。
 
-To do so, you'll create an *Event Subscription* on your IoT Hub, with the Azure function as an endpoint. This "subscribes" the function to events happening in IoT Hub.
+为此，您将在 IoT 中心创建一个*事件订阅*，并将 Azure 函数用作端点。 这会将函数“订阅”到 IoT 中心中发生的事件。
 
-In the [Azure portal](https://portal.azure.com/), navigate to your IoT hub from Day 1 by searching for its name in the top search bar. Select **Events** from the hub menu, and select **+ Event Subscription**.
+在 [Azure 门户] (https://portal.azure.com/) 中，通过在顶部搜索栏中搜索其名称，从专题导航到您的 IoT 中心。 从中心菜单中选择**事件 - Events**，然后选择**+事件订阅 - + Event Subscription**。
 
 ![](./media/tutorial-end-to-end/event-subscription-1.png 'Screenshot of the Azure portal showing the IoT Hub event subscription')
 
-Selecting this option will bring up the **Create Event Subscription** page.
+选择此选项将打开 **创建事件订阅 - Create Event Subscription** 页面。
 
-Fill in the fields as follows (fields filled by default aren't mentioned):
-* **EVENT SUBSCRIPTION DETAILS** > **Name**: ADT-event-iotacademy(alias)
-* **TOPIC DETAILS** > **System Topic Name**: Give a name to use for the system topic: ADT-system-topic(alias)
-* **EVENT TYPES** > **Filter to Event Types**: Select **Device Telemetry** from the menu options.
-* **ENDPOINT DETAILS** > **Endpoint Type**: Select **Azure Function** from the menu options.
-* **ENDPOINT DETAILS** > **Endpoint**: Select the **Select an endpoint** link, which will open a **Select Azure Function** window:
-* 
+填写如下字段（默认填写的字段不提）：
+* **事件订阅详情** > **名称**：ADT-event-iotacademy（别名）
+* **主题细节** > **System Topic Name**：为系统主题命名：ADT-system-topic（别名）
+* **事件类型** > **过滤到事件类型**：从菜单选项中选择**设备遥测**。
+* **端细节** > **Endpoint Type**：从菜单选项中选择 **Azure Function**。
+* **端点细节** > **Endpoint**：选择 **Select an endpoint** 链接，这将打开一个 **Select Azure Function** 窗口：
 
 ![](./media/tutorial-end-to-end/event-subscription-2.png 'Screenshot of the Azure portal showing how to create an event subscription')
 
 
-Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessHubToDTEvents**). Some of these values may auto-populate after selecting the subscription.
+填写您的 **订阅 - Subscription**、**资源组 - Resource group**、**Function app** 和 **Function** (**ProcessHubToDTEvents**)。 其中一些值可能会在选择订阅后自动填充。
 
 
 ![](./media/tutorial-end-to-end/event-subscription-3.png 'Screenshot of the Azure portal event subscription showing the window to select an Azure function')
     - Select **Confirm Selection**.
 
-Back on the **Create Event Subscription** page, select **Create**.
+返回**创建事件订阅 - Create Event Subscription**页面，选择**创建 - Create**。
 
-### 1.3.2. Register the simulated device with IoT Hub 
+### 1.3.2. 向 IoT Hub 注册模拟设备
 
-This section creates a device representation in IoT Hub with the ID thermostat67. The simulated device will connect into this representation, which is how telemetry events will go from the device into IoT Hub. The IoT hub is where the subscribed Azure function from the previous step is listening, ready to pick up the events and continue processing.
+本部分在 IoT 中心创建一个 ID 为 thermostat67 的设备表示。 模拟设备将连接到此表示中，这就是遥测事件从设备进入 IoT 中心的方式。 IoT 中心是上一步中订阅的 Azure 函数正在侦听的位置，准备好接收事件并继续处理。
 
-In the Azure CLI, create a device in IoT Hub with the following command:
+在 Azure CLI 中，使用以下命令在 IoT 中心创建设备：
 
 ```azurecli-interactive
 az iot hub device-identity create --device-id thermostat67 --hub-name <your-IoT-hub-name> --resource-group <your-resource-group>
 ```
 
-The output is information about the device that was created.
+输出是有关已创建设备的信息。
 
-### 1.3.3. Configure and run the simulation
+### 1.3.3. 配置并运行模拟设备
 
-Next, configure the device simulator to send data to your IoT Hub instance.
+接下来，配置设备模拟器以将数据发送到 IoT 中心实例。
 
-Begin by getting the IoT hub connection string with this command:
+首先使用以下命令获取 IoT Hub 连接字符串：
 
 ```azurecli-interactive
 az iot hub connection-string show --hub-name <your-IoT-hub-name>
 ```
 
-Then, get the device connection string with this command:
+然后，使用以下命令获取设备连接字符串：
 
 ```azurecli-interactive
 az iot hub device-identity connection-string show --device-id thermostat67 --hub-name <your-IoT-hub-name>
 ```
 
-You'll plug these values into the device simulator code in your local project to connect the simulator into this IoT hub and IoT hub device.
+您将这些值插入到本地项目中的设备模拟器代码中，以将模拟器连接到此 IoT Hub 和 IoT Hub 设备。
 
-In a new Visual Studio window, open (from the downloaded solution folder) *DeviceSimulator* > **DeviceSimulator.sln**.
+在新的 Visual Studio 窗口中，打开（从下载的解决方案文件夹）*DeviceSimulator* > **DeviceSimulator.sln**。
 
 >[!NOTE]
-> You should now have two Visual Studio windows, one with *DeviceSimulator.sln* and one from earlier with *AdtE2ESample.sln*.
+> 您现在应该有两个 Visual Studio 窗口，一个带有 *DeviceSimulator.sln*，另一个带有 *AdtE2ESample.sln*。
 
-From the **Solution Explorer** pane in this new Visual Studio window, select **DeviceSimulator > AzureIoTHub.cs** to open it in the editing window. Change the following connection string values to the values you gathered above:
+在这个新的 Visual Studio 窗口的 **Solution Explorer** 窗格中，选择 **DeviceSimulator > AzureIoTHub.cs** 以在编辑窗口中打开它。 将以下连接字符串值更改为您在上面收集的值：
 
 ```csharp
 iotHubConnectionString = <your-hub-connection-string>
 deviceConnectionString = <your-device-connection-string>
 ```
 
-Save the file.
+保存文件。
 
-Now, to see the results of the data simulation that you've set up, run the **DeviceSimulator** project with this button in the toolbar:
+现在，要查看您设置的数据模拟的结果，请使用工具栏中的此按钮运行 **DeviceSimulator** 项目：
 
 ![](./media/tutorial-end-to-end/start-button-simulator.png 'Screenshot of the Visual Studio start button with the DeviceSimulator project open')
 
-A console window will open and display simulated temperature telemetry messages. These messages are being sent to IoT Hub, where they're then picked up and processed by the Azure function.
+控制台窗口将打开并显示模拟温度遥测消息。 这些消息被发送到 IoT Hub ，然后由 Azure 函数提取和处理。
 
 ![](./media/tutorial-end-to-end/console-simulator-telemetry.png 'Screenshot of the console output of the device simulator showing temperature telemetry being sent')
 
-You don't need to do anything else in this console, but leave it running while you complete the next steps.
+您无需在此控制台中执行任何其他操作，但在完成后续步骤时让它运行。
 
 ### 1.3.4. See the results in Azure Digital Twins
 
-The *ProcessHubToDTEvents* function you published earlier listens to the IoT Hub data, and calls an Azure Digital Twins API to update the `Temperature` property on the thermostat67 twin.
+您之前发布的 *ProcessHubToDTEvents* 函数侦听 IoT Hub 数据，并调用 Azure 数字孪生 API 来更新 thermostat67 孪生的“温度”属性。
 
-To see the data from the Azure Digital Twins side, go to your Visual Studio window where the *AdtE2ESample.sln* solution is open and run the SampleClientApp project.
+若要查看 Azure 数字孪生端的数据，请转到打开 *AdtE2ESample.sln* 解决方案的 Visual Studio 窗口并运行 SampleClientApp 项目。
 
-In the project console window that opens, run the following command to get the temperatures being reported by the digital twin thermostat67:
+在打开的项目控制台窗口中，运行以下命令以获取数字孪生恒温器 67 报告的温度：
 
 ```cmd
 ObserveProperties thermostat67 Temperature
 ```
 
-You should see the live updated temperatures from your Azure Digital Twins instance being logged to the console every two seconds.
+你应该会看到每两秒将来自 Azure 数字孪生实例的实时更新温度记录到控制台。
 
->[!NOTE]
-> It may take a few seconds for the data from the device to propagate through to the twin. The first few temperature readings may show as 0 before data begins to arrive.
+>[!注意]
+> 来自设备的数据可能需要几秒钟才能传播到数字孪生。 在数据开始到达之前，前几个温度读数可能显示为 0。
 
 ![](./media/tutorial-end-to-end/console-digital-twins-telemetry.png 'Screenshot of the console output showing log of temperature messages from digital twin thermostat67')
 
-Once you've verified the live temperatures logging is working successfully, you can stop running both projects. Keep the Visual Studio windows open, as you'll continue using them in the rest of the tutorial.
+验证实时温度记录成功运行后，您可以停止运行这两个项目。 保持 Visual Studio 窗口打开，因为您将在本教程的其余部分继续使用它们。
 
-## 1.4 Exercise: Propagate Azure Digital Twins events through the graph
+## 1.4 练习: 通过图传播 Azure 数字孪生事件
 
-So far in this tutorial, you've seen how Azure Digital Twins can be updated from external device data. Next, you'll see how changes to one digital twin can propagate through the Azure Digital Twins graph—in other words, how to update twins from service-internal data.
+到目前为止，在本教程中，你已经了解了如何从外部设备数据更新 Azure 数字孪生。 接下来，您将了解如何通过 Azure 数字孪生图传播对一个数字孪生的更改，换句话说，如何从服务内部数据更新孪生。
 
-To do so, you'll use the *ProcessDTRoutedData* Azure function to update a Room twin when the connected Thermostat twin is updated. The update functionality happens in this part of the end-to-end scenario (**arrow C**):
+为此，您将使用 *ProcessDTRoutedData* Azure 函数在更新连接的恒温器孪生时更新房间孪生。 更新功能发生在端到端场景的这一部分（**箭头 C**）：
 
 ![](./media/tutorial-end-to-end/building-scenario-c.png 'Diagram of an excerpt from the full building scenario diagram highlighting the section that shows the elements after Azure Digital Twins')
 
-Here are the actions you'll complete to set up this data flow:
-1. [Create an event grid topic](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-event-grid-topic) to enable movement of data between Azure services
-1. [Create an endpoint](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-endpoint) in Azure Digital Twins that connects the instance to the event grid topic
-1. [Set up a route](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-route) within Azure Digital Twins that sends twin property change events to the endpoint
-1. [Set up an Azure function](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#connect-the-azure-function) that listens on the event grid topic at the endpoint, receives the twin property change events that are sent there, and updates other twins in the graph accordingly
+以下是设置此数据流所需完成的操作：
+1. [创建事件网格主题](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-event-grid-topic) 启用 Azure 服务之间的数据移动
+2. [创建端点](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-endpoint) 在将实例连接到事件网格主题的 Azure 数字孪生中
+3. [创建路由](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#create-the-route) 在将孪生属性更改事件发送到终结点的 Azure 数字孪生中
+4. [创建 Azure function](https://docs.microsoft.com/en-us/azure/digital-twins/tutorial-end-to-end#connect-the-azure-function) 监听端点的事件网格主题，接收发送到那里的孪生属性更改事件，并相应地更新图中的其他孪生
 
-### 1.4.1. Create the Event Grid topic
+### 1.4.1. 创建事件网格主题
 
-[Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview) is an Azure service that helps route and deliver events from Azure Services to other places within Azure. You can create an [Event Grid topic](https://docs.microsoft.com/en-us/azure/event-grid/concepts) to collect certain events from a source, and then subscribers can listen on the topic to receive the events as they come through.
+[事件网格](https://docs.microsoft.com/en-us/azure/event-grid/overview) 是一项 Azure 服务，可帮助将事件从 Azure 服务路由和传递到 Azure 中的其他位置。 您可以创建一个 [Event Grid 主题](https://docs.microsoft.com/en-us/azure/event-grid/concepts) 来从某个源收集某些事件，然后订阅者可以监听该主题以接收 事件发生时。
 
-In the Azure CLI, run the following command to create an Event Grid topic (use the system topic name created earlier):
+在 Azure CLI 中，运行以下命令来创建事件网格主题（使用之前创建的系统主题名称）：
 
 ```
 az eventgrid topic create --resource-group <your-resource-group> --name <name-for-your-event-grid-topic> --location <region>
 ```
-The output from this command is information about the Event Grid topic you've created. Save the <b>Unique Name</b> that you gave to your Event Grid topic, because you'll use it later.
+此命令的输出是有关您创建的事件网格主题的信息。 保存您为事件网格主题提供的<b>唯一名称</b>，因为稍后您将使用它。
 
-### 1.4.2. Create the endpoint
+### 1.4.2. 创建端点 
 
-Next, create an Event Grid endpoint in Azure Digital Twins, which will connect your instance to your Event Grid topic. Use the command below, filling in the name of your Event Grid topic and the other placeholder fields as needed.
+接下来，在 Azure 数字孪生中创建一个事件网格终结点，它将您的实例连接到您的事件网格主题。 使用以下命令，根据需要填写事件网格主题的名称和其他占位符字段。
 
 ```
 az dt endpoint create eventgrid --dt-name <Azure-Digital-Twins-instance> --eventgrid-resource-group <your-resource-group> --eventgrid-topic <your-event-grid-topic> --endpoint-name <name-for-your-Azure-Digital-Twins-endpoint>
 ```
 
-The output from this command is information about the endpoint you've created.
+此命令的输出是有关您创建的端点的信息。
 
-Look for the provisioningState field in the output, and check that the value is "Succeeded."
+在输出中查找 provisioningState 字段，并检查该值是否为“Succeeded”。
 
 
 ![](./media/tutorial-end-to-end/succeeded.png)
 
-It may also say "Provisioning", meaning that the endpoint is still being created. If so, wait a few seconds and run the following command to check the status of the endpoint. Repeat until the ```provisioningState``` shows "Succeeded."
+它也可能说“Provisioning”，表示仍在创建端点。 如果是这样，请等待几秒钟并运行以下命令来检查端点的状态。 重复直到 ```provisioningState``` 显示“Succeeded”。
 
 ```
 az dt endpoint show --dt-name <your-Azure-Digital-Twins-instance> --endpoint-name <your-Azure-Digital-Twins-endpoint>
 ```
 Save the name of your endpoint, because you'll use it later.
 
-### 1.4.3. Create the route
+### 1.4.3. 创建路由
 
-Next, create an Azure Digital Twins route that sends events to the Event Grid endpoint you created.
+接下来，创建一个 Azure 数字孪生路由，将事件发送到您创建的事件网格终结点。
 
-You can do so with the following CLI command (fill in the name of your endpoint and the other placeholder fields as needed). This command forwards all events that occur in the twin graph. You can limit the events to only specific ones if you want, by using [filters](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-manage-routes?tabs=portal%2Cportal2%2Cportal3#filter-events).
+您可以使用以下 CLI 命令执行此操作（根据需要填写端点名称和其他占位符字段）。 此命令转发孪生图中发生的所有事件。 如果需要，您可以使用 [过滤器](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-manage-routes?tabs=portal%2Cportal2%2Cportal3#filter-events)。
 ```
 az dt route create --dt-name <your-Azure-Digital-Twins-instance> --endpoint-name <use-above-name-createdfor-Azure-Digital-Twins-endpoint> --route-name <Create-uniquename-for-your-Azure-Digital-Twins-route>
 ```
-The output from this command is some information about the route you've created.
+此命令的输出是有关您创建的路由的一些信息。
 
  
- > Note <br>
- > Endpoints (from the previous step) must be finished provisioning before you can set up an event route that uses them. If the route creation fails because the endpoints aren't ready, wait a few minutes and then try again.
+ > 注意 <br>
+ > 端点（来自上一步）必须先完成配置，然后才能设置使用它们的事件路由。 如果由于端点未准备好而导致路由创建失败，请等待几分钟，然后重试。
 
-### 1.4.4. Connect the Azure function
+### 1.4.4. 🔗 Azure function
 
-Next, subscribe the *ProcessDTRoutedData* Azure function to the event grid topic you created earlier, so that telemetry data can flow from the thermostat67 twin through the event grid topic to the function, which goes back into Azure Digital Twins and updates the room21 twin accordingly.
+接下来，将 *ProcessDTRoutedData* Azure 函数订阅到您之前创建的事件网格主题，以便遥测数据可以从 thermostat67 双胞胎通过事件网格主题流向函数，该函数返回 Azure 数字双胞胎并相应地更新 room21 双胞胎 .
 
-To do so, you'll create an Event Grid subscription that sends data from the event grid topic that you created earlier to your *ProcessDTRoutedData* Azure function.
+为此，您将创建一个事件网格订阅，该订阅将数据从您之前创建的事件网格主题发送到您的 *ProcessDTRoutedData* Azure 函数。
 
-In the [Azure portal](https://portal.azure.com/), navigate to your event grid topic by searching for its name in the top search bar. Select **+ Event Subscription**.
+在 [Azure 门户] (https://portal.azure.com/) 中，通过在顶部搜索栏中搜索其名称来导航到您的事件网格主题。 选择 **+ 活动订阅 - Event Subscription**。
 
 ![](./media/tutorial-end-to-end/event-subscription-1b.png 'Screenshot of the Azure portal showing how to create an Event Grid event subscription')
 
-The steps to create this event subscription are similar to when you subscribed the first Azure function to IoT Hub earlier in this tutorial. This time, you don't need to specify **Device Telemetry** as the event type to listen for, and you'll connect to a different Azure function.
+创建此事件订阅的步骤与您在本教程前面将第一个 Azure 函数订阅到 IoT Hub 时的步骤类似。 这一次，您无需将 **Device Telemetry** 指定为要侦听的事件类型，您将连接到不同的 Azure 函数。
 
-On the **Create Event Subscription** page, fill in the fields as follows (fields filled by default aren't mentioned):
-* **EVENT SUBSCRIPTION DETAILS** > **Name**: Give a name to your event subscription - adt-event-subscription(alias)
-* **ENDPOINT DETAILS** > **Endpoint Type**: Select **Azure Function** from the menu options.
-* **ENDPOINT DETAILS** > **Endpoint**: Select the **Select an endpoint** link, which will open a **Select Azure Function** window:
-    - Fill in your **Subscription**, **Resource group**, **Function app**, and **Function** (**ProcessDTRoutedData**) - Will prepopulate based on Zip File you published earlier in lab. Some of these values may auto-populate after selecting the subscription.
-    - Select **Confirm Selection**.
+在**创建事件订阅**页面，填写如下字段（默认填写的字段不提）：
+* **事件订阅详细信息** > **名称**：为您的事件订阅命名 - adt-event-subscription（别名）
+* **ENDPOINT DETAILS** > **Endpoint Type**：从菜单选项中选择 **Azure Function**。
+* **ENDPOINT DETAILS** > **Endpoint**：选择 **Select an endpoint** 链接，这将打开一个 **Select Azure Function** 窗口：
+     - 填写您的 **Subscription**、**Resource group**、**Function app** 和 **Function** (**ProcessDTRoutedData**) - 将根据您之前在实验室中发布的 Zip 文件进行预填充。 其中一些值可能会在选择订阅后自动填充。
+     - 选择**确认选择**。
 
-Back on the **Create Event Subscription** page, select **Create**.
+返回**创建事件订阅 - Create Event Subscription**页面，选择**创建 - Create**。
 
-## 1.5. Exercise: Run the simulation and see the results
+## 1.5. 练习：运行模拟并查看结果
 
-Now, events should have the capability to flow from the simulated device into Azure Digital Twins, and through the Azure Digital Twins graph to update twins as appropriate. In this section, you'll run the device simulator again to kick off the full event flow you've set up, and query Azure Digital Twins to see the live results
+现在，事件应该能够从模拟设备流入 Azure 数字孪生，并通过 Azure 数字孪生图来适当地更新孪生。 在本部分中，您将再次运行设备模拟器以启动您设置的完整事件流，并查询 Azure 数字孪生以查看实时结果
 
-Go to your Visual Studio window where the *DeviceSimulator.sln* solution is open, and run the DeviceSimulator project.
+转到 *DeviceSimulator.sln* 解决方案打开的 Visual Studio 窗口，然后运行 DeviceSimulator 项目。
 
-Like when you ran the device simulator earlier, a console window will open and display simulated temperature telemetry messages. These events are going through the flow you set up earlier to update the thermostat67 twin, and then going through the flow you set up recently to update the room21 twin to match.
+就像您之前运行设备模拟器时一样，控制台窗口将打开并显示模拟温度遥测消息。 这些事件将通过您之前设置的流程来更新 thermostat67 twin，然后通过您最近设置的流程来更新 room21 以匹配孪生。
 
 ![](./media/tutorial-end-to-end/console-simulator-telemetry.png 'Screenshot of the console output of the device simulator showing temperature telemetry being sent')
 
-You don't need to do anything else in this console, but leave it running while you complete the next steps.
+您无需在此控制台中执行任何其他操作，但在完成后续步骤时让它运行。
 
-To see the data from the Azure Digital Twins side, go to your Visual Studio window where the *AdtE2ESample.sln* solution is open, and run the SampleClientApp project.
+若要查看 Azure 数字孪生端的数据，请转到打开 *AdtE2ESample.sln* 解决方案的 Visual Studio 窗口，然后运行 SampleClientApp 项目。
 
-In the project console window that opens, run the following command to get the temperatures being reported by both the digital twin thermostat67 and the digital twin room21.
+在打开的项目控制台窗口中，运行以下命令以获取数字孪生恒温器 67 和数字孪生房间 21 报告的温度。
 
 ```cmd
 ObserveProperties thermostat67 Temperature room21 Temperature
 ```
 
-You should see the live updated temperatures from your Azure Digital Twins instance being logged to the console every two seconds. Notice that the temperature for room21 is being updated to match the updates to thermostat67.
+你应该会看到每两秒将来自 Azure 数字孪生实例的实时更新温度记录到控制台。 请注意，房间 21 的温度正在更新以匹配 thermostat67 的更新。
 
 ![](./media/tutorial-end-to-end/console-digital-twins-telemetry-b.png 'Screenshot of the console output showing a log of temperature messages, from a thermostat and a room.')
 
-Once you've verified the live temperatures logging from your instance is working successfully, you can stop running both projects. You can also close the Visual Studio windows, as the tutorial is now complete.
+一旦您验证了从您的实例记录的实时温度是否成功运行，您就可以停止运行这两个项目。 您也可以关闭 Visual Studio 窗口，因为教程现已完成。
 
-### 1.5.1. Review
+### 1.5.1. 回顾
 
 Here's a review of the scenario that you built out in this tutorial.
 
-1. An Azure Digital Twins instance digitally represents a floor, a room, and a thermostat (represented by **section A** in the diagram below)
-2. Simulated device telemetry is sent to IoT Hub, where the *ProcessHubToDTEvents* Azure function is listening for telemetry events. The *ProcessHubToDTEvents* Azure function uses the information in these events to set the `Temperature` property on thermostat67 (**arrow B** in the diagram).
-3. Property change events in Azure Digital Twins are routed to an event grid topic, where the *ProcessDTRoutedData* Azure function is listening for events. The *ProcessDTRoutedData* Azure function uses the information in these events to set the `Temperature` property on room21 (**arrow C** in the diagram).
+这是您在本教程中构建的场景的回顾。
+
+1. Azure Digital Twins 实例以数字方式表示楼层、房间和恒温器（由下图中的**A 部分**表示）
+2. 模拟设备遥测被发送到 IoT 中心，其中 *ProcessHubToDTEvents* Azure 函数正在侦听遥测事件。 *ProcessHubToDTEvents* Azure 函数使用这些事件中的信息来设置 thermostat67 上的 `Temperature` 属性（图中的**箭头 B**）。
+3. Azure 数字孪生中的属性更改事件被路由到事件网格主题，其中 *ProcessDTRoutedData* Azure 函数正在侦听事件。 *ProcessDTRoutedData* Azure 函数使用这些事件中的信息来设置 room21 上的 `Temperature` 属性（图中的**箭头 C**）。
 
 ![](./media/tutorial-end-to-end/building-scenario.png 'Diagram of the full building scenario, which shows the data flowing from a device into and out of Azure Digital Twins through various Azure services')
 
-### 1.5.2. Clean up resources
+### 1.5.2. 清空资源
 
-After completing this tutorial, ......... depending on what we want to do next.
+完成本教程后，…………取决于我们接下来要做什么。
 
 
-### 1.5.3. Next steps
+### 1.5.3. 下一步
 
-In this tutorial, you created an end-to-end scenario that shows Azure Digital Twins being driven by live device data.
+在本教程中，你创建了一个端到端方案，展示了由实时设备数据驱动的 Azure 数字孪生。
 
-Next, start looking at the [concept documentation](https://docs.microsoft.com/en-us/azure/digital-twins/concepts-models) to learn more about elements you worked with in the tutorial:
+接下来，开始查看 [概念文档](https://docs.microsoft.com/en-us/azure/digital-twins/concepts-models) 以了解有关您在本教程中使用的元素的更多信息。
