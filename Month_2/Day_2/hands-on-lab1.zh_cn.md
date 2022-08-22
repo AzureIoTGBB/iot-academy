@@ -4,292 +4,293 @@
 
 此动手实验室旨在向大家介绍以下 Azure 相关服务和技术：
 
-- Azure 数字孪生
-- Azure 数字孪生资源管理器
+- Azure 数字孪生 - Azure Digital Twins 
+- Azure 数字孪生资源管理器 - Azure Digital Twins Explorer 
 
-In this lab, you'll explore a prebuilt Azure Digital Twins graph using the [Azure Digital Twins Explorer](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explorer). This tool allows you to visualize and interact with your Azure Digital Twins data within the Azure portal.
+在本实验室中，你将使用 [Azure 数字孪生资源管理器](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-azure-digital-twins-explore）。 此工具允许您在 Azure 门户中可视化您的 Azure 数字孪生数据并与之交互。
 
-With Azure Digital Twins, you can create and interact with live models of your real-world environments, which can be part of wider IoT solutions. First, you model individual elements as digital twins. Then you connect them into a knowledge graph that can respond to live events and be queried for information.
+借助 Azure 数字孪生，你可以创建真实环境的实时模型并与之交互，这可以成为更广泛的 IoT 解决方案的一部分。 首先，您将单个元素建模为数字双胞胎。 然后，您将它们连接到一个知识图谱中，该图可以响应实时事件并被查询以获取信息。
 
-You'll complete the following steps:
+您将完成以下步骤：
 
-1. Create an Azure Digital Twins instance, and connect to it in Azure Digital Twins Explorer.
-1. Upload prebuilt models and graph data to construct the sample scenario.
-1. Explore the scenario graph that's created.
-1. Make changes to the graph.
-1. Review your learnings from the experience.
+1. 创建一个 Azure 数字孪生实例，并在 Azure 数字孪生资源管理器中连接到它。
+2. 上传预建模型和图数据，构建示例场景。
+3. 探索创建的场景图。
+4. 更改图表。
+5. 回顾你从经验中学到的东西。
 
-The Azure Digital Twins example graph you'll be working with represents a building with two floors and two rooms. Floor0 contains Room0, and Floor1 contains Room1. The graph will look like this image:
+你将使用的 Azure 数字孪生示例图表示具有两层楼和两个房间的建筑物。 Floor0 包含 Room0，Floor1 包含 Room1。 该图将如下图所示：
 
 ![](./media/quickstart-azure-digital-twins-explorer/graph-view-full.png)
 
-<b>Course Content</b>
+<b>课程内容</b>
 
 - [1.  Azure IoT 学院专题二:  动手实验 2.1](#1--azure-iot-学院专题二--动手实验-21)
   - [点击以下链接观看视频](#点击以下链接观看视频)
   - [1.1. 动手实验 2.1: 视频](#11-动手实验-21-视频)
-  - [1.2. Prerequisites](#12-prerequisites)
-    - [1.2.1. Download the materials for the sample graph](#121-download-the-materials-for-the-sample-graph)
-    - [1.2.2. Set up Azure Digital Twins](#122-set-up-azure-digital-twins)
-    - [1.2.3. Create an Azure Digital Twins instance](#123-create-an-azure-digital-twins-instance)
-    - [1.2.4. Open instance in Azure Digital Twins Explorer](#124-open-instance-in-azure-digital-twins-explorer)
-    - [1.2.5. Upload the sample materials](#125-upload-the-sample-materials)
-    - [1.2.6. Models](#126-models)
-      - [1.2.6.1. Upload the models (.json files)](#1261-upload-the-models-json-files)
-    - [1.2.7. Twins and the twin graph](#127-twins-and-the-twin-graph)
-      - [1.2.7.1. Import the graph (.xlsx file)](#1271-import-the-graph-xlsx-file)
-  - [1.3. Explore the graph](#13-explore-the-graph)
-    - [1.3.1. View twin properties](#131-view-twin-properties)
-    - [1.3.2. Query the graph](#132-query-the-graph)
-  - [1.4. Edit data in the graph](#14-edit-data-in-the-graph)
-    - [1.4.1. Query to see the result](#141-query-to-see-the-result)
-  - [1.5. Review and contextualize learnings](#15-review-and-contextualize-learnings)
-    - [Move on to next <b>lab](#move-on-to-next-blab)
+  - [1.2. 课前准备](#12-课前准备)
+    - [1.2.1. 下载示例图的材料](#121-下载示例图的材料)
+    - [1.2.2. 创建 Azure 数字孪生](#122-创建-azure-数字孪生)
+    - [1.2.3. 创建 Azure 数字孪生实例](#123-创建-azure-数字孪生实例)
+    - [1.2.4. 在 Azure 数字孪生资源管理器中打开实例](#124-在-azure-数字孪生资源管理器中打开实例)
+    - [1.2.5. 传样本材料](#125-传样本材料)
+    - [1.2.6. 模型](#126-模型)
+      - [1.2.6.1. 上传模型（.json 文件）](#1261-上传模型json-文件)
+    - [1.2.7. 孪生和孪生图](#127-孪生和孪生图)
+      - [1.2.7.1. 倒入图 (.xlsx 文件)](#1271-倒入图-xlsx-文件)
+  - [1.3. 浏览孪生图](#13-浏览孪生图)
+    - [1.3.1. 查看孪生属性](#131-查看孪生属性)
+    - [1.3.2. 查询孪生图](#132-查询孪生图)
+  - [1.4. 编辑图中的数据](#14-编辑图中的数据)
+    - [1.4.1. 查询和查看结果](#141-查询和查看结果)
+  - [1.5. 回顾和情境化学习](#15-回顾和情境化学习)
+    - [转到下一个动手实验中 <b>lab](#转到下一个动手实验中-blab)
 
-## 1.2. Prerequisites
+## 1.2. 课前准备
 
-### 1.2.1. Download the materials for the sample graph
-Use the instructions below to download the three required files. Later, you'll follow more instructions to upload them to Azure Digital Twins.
+### 1.2.1. 下载示例图的材料
+使用以下说明下载三个必需的文件。 稍后，你将按照更多说明将它们上传到 Azure 数字孪生。
 
-   * [Room.json](https://raw.githubusercontent.com/Azure-Samples/digital-twins-explorer/main/client/examples/Room.json): This is a model file representing a room in a building. Navigate to the link, right-click anywhere on the screen, and select **Save as** in your browser's right-click menu. Use the following Save As window to save the file somewhere on your machine with the name *Room.json*.
-   * [Floor.json](https://raw.githubusercontent.com/Azure-Samples/digital-twins-explorer/main/client/examples/Floor.json): This is a model file representing a floor in a building. Navigate to the link, right-click anywhere on the screen, and select **Save as** in your browser's right-click menu. Use the following Save As window to save the file to the same location as *Room.json*, under the name *Floor.json*.
-   * [buildingScenario.xlsx](https://github.com/Azure-Samples/digital-twins-explorer/raw/main/client/examples/buildingScenario.xlsx): This file contains a graph of room and floor twins, and relationships between them. Depending on your browser settings, selecting this link may download the *buildingScenario.xlsx* file automatically to your default download location, or it may open the file in your browser with an option to download. Here is what that download option looks like in Microsoft Edge:
+   * [Room.json](https://raw.githubusercontent.com/Azure-Samples/digital-twins-explorer/main/client/examples/Room.json): 这是一个模型文件，代表建筑物中的一个房间。 导航到该链接，右键单击屏幕上的任意位置，然后在浏览器的右键单击菜单中选择**另存为**。 使用以下“另存为”窗口将文件保存在计算机上的某个位置，名称为 *Room.json*。
+   * [Floor.json](https://raw.githubusercontent.com/Azure-Samples/digital-twins-explorer/main/client/examples/Floor.json): 这是一个模型文件，代表建筑物中的楼层。 导航到该链接，右键单击屏幕上的任意位置，然后在浏览器的右键单击菜单中选择**另存为**。 使用以下另存为窗口将文件保存到与 *Room.json* 相同的位置，名称为 *Floor.json*。
+   * [buildingScenario.xlsx](https://github.com/Azure-Samples/digital-twins-explorer/raw/main/client/examples/buildingScenario.xlsx): 此文件包含房间和地板孪生的图表，以及它们之间的关系。 根据您的浏览器设置，选择此链接可能会将 *buildingScenario.xlsx* 文件自动下载到您的默认下载位置，或者它可能会在您的浏览器中打开该文件并提供下载选项。 以下是该下载选项在 Microsoft Edge 中的效果：
 
   ![](./media/quickstart-azure-digital-twins-explorer/download-building-scenario.png 'Screenshot of the buildingScenario.xlsx file')
 
 > [!TIP]   
-> These files are from the [Azure Digital Twins Explorer repository in GitHub](https://github.com/Azure-Samples/digital-twins-explorer). You can visit the repo for other sample files, explorer code, and more.  
+> 这些文件来自 [GitHub 中的 Azure 数字孪生资源管理器存储库](https://github.com/Azure-Samples/digital-twins-explorer)。 您可以访问 repo 以获取其他示例文件、资源管理器代码等。
 
-### 1.2.2. Set up Azure Digital Twins
+### 1.2.2. 创建 Azure 数字孪生
 
-The first step in working with Azure Digital Twins is to create an Azure Digital Twins instance. After you create an instance of the service, you can connect to the instance in Azure Digital Twins Explorer, which you'll use to work with the instance throughout the quickstart.
+使用 Azure 数字孪生的第一步是创建一个 Azure 数字孪生实例。 创建服务实例后，你可以在 Azure 数字孪生资源管理器中连接到该实例，在整个快速入门过程中你将使用它来处理该实例。
 
-The rest of this section walks you through the instance creation.
+本节的其余部分将引导您完成实例创建。
 
-### 1.2.3. Create an Azure Digital Twins instance
+### 1.2.3. 创建 Azure 数字孪生实例
 
 ![](./media/quickstart-azure-digital-twins-explorer/portal1.png)
 
 
 ![](./media/quickstart-azure-digital-twins-explorer/portal2.png)
 
- 3. Select the resource group that you created during Day 1: rg-iotacademy
+ 3. 选择您在专题一中创建的资源组：rg-iotacademy
 
 ![](./media/quickstart-azure-digital-twins-explorer/portal3.png)
 
- 4. Fill in the fields on the **Basics** tab of setup, including your Subscription, Resource group, a Resource name for your new instance, and Region. Check the **Assign Azure Digital Twins Data Owner Role** box to give yourself permissions to manage data in the instance.
+ 4. 填写设置的 **Basics** 选项卡上的字段，包括您的订阅、资源组、新实例的资源名称和区域。 选中**分配 Azure 数字孪生数据所有者角色 - Assign Azure Digital Twins Data Owner Role**框以授予自己管理实例中数据的权限。
 
 ![](./media/quickstart-azure-digital-twins-explorer/create-azure-digital-twins-basics.png 'Screenshot of the Create Resource process for Azure Digital Twins in the Azure portal. The described values are filled in')
 
  > [!NOTE]
- > If the Assign Azure Digital Twins Data Owner Role box is greyed out, it means you don't have permissions in your Azure subscription to manage user access to resources. You can continue creating the instance in this section, and then should have someone with the necessary permissions [assign you this role on the instance](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-set-up-instance-portal#assign-the-role-using-azure-identity-management-iam) before completing the rest of this quickstart.
+> 如果分配 Azure 数字孪生数据所有者角色框显示为灰色，则表示您在 Azure 订阅中无权管理用户对资源的访问。 您可以在此部分继续创建实例，然后应该让特定的人拥有必要的权限 [在实例上为您分配此角 - assign you this role on the instance]、(https://docs.microsoft.com/en-us/azure/digital-twins/how-to-set-up-instance-portal#assign-the-role-using-azure-identity-management-iam)，然后再完成本快速入门的其余部分。
  >
- > Common roles that meet this requirement are **Owner**, **Account admin**, or the combination of **User Access Administrator** and **Contributor**.  
+ > 满足此要求的常见角色是 **Owner**、**Account admin** 或 **User Access Administrator** 和 **Contributor** 的组合。
 
- 5. Select **Review + Create** to finish creating your instance.
+ 5. 选择 **预览+ 创建 - Review + Create** 以完成创建您的实例。
     
- 6. You will see a summary page showing the details you've entered. Confirm and create the instance by selecting **Create**.
+ 6. 您将看到一个摘要页面，显示您输入的详细信息。 通过选择 **创建 - Create** 确认并创建实例。
 
- 7. This will take you to an Overview page tracking the deployment status of the instance.
+ 7. 这将带您进入跟踪实例部署状态的概览页面。
 
 ![Screenshot of the deployment page for Azure Digital Twins in the Azure portal](./media/quickstart-azure-digital-twins-explorer/deployment-in-progress.png 'The page indicates that deployment is in progress')
 
- 8. Wait for the page to say that your deployment is complete.
+ 8. 等待页面显示您的部署已完成。
 
-### 1.2.4. Open instance in Azure Digital Twins Explorer
+### 1.2.4. 在 Azure 数字孪生资源管理器中打开实例
 
-After deployment completes, use the **Go to resource** button to navigate to the instance's Overview page in the portal.
+部署完成后，使用 **进入资源 - Go to resource** 按钮导航到门户中实例的概览页面。
 
 ![](./media/quickstart-azure-digital-twins-explorer/deployment-complete.png 'Screenshot of the deployment page for Azure Digital Twins in the Azure portal')
 
-### 1.2.5. Upload the sample materials
+### 1.2.5. 传样本材料
 
-Next, you'll import the sample models and graph into Azure Digital Twins Explorer. You'll use the model files and the graph file that you downloaded to your machine in the [Prerequisites](#prerequisites) section.
+接下来，将示例模型和图形导入 Azure 数字孪生资源管理器。 您将使用在 [#课前准备](##12-课前准备) 部分下载到计算机的模型文件和图文件。
 
-### 1.2.6. Models
+### 1.2.6. 模型
 
-The first step in an Azure Digital Twins solution is to define the vocabulary for your environment. You'll create custom *models* that describe the types of entity that exist in your environment.
+Azure 数字孪生解决方案的第一步是为你的环境定义词汇表。您将创建自定义 *模型 - models* 来描述您的环境中存在的实体类型。
 
-Each model is written in a language like [JSON-LD](https://json-ld.org/) called *Digital Twin Definition Language (DTDL)*. Each model describes a single type of entity in terms of its properties, telemetry, relationships, and components. Later, you'll use these models as the basis for digital twins that represent specific instances of these types.
+每个模型都是用一种类似于 [JSON-LD](https://json-ld.org/) 的语言编写的，称为 *数字孪生定义语言 - Digital Twin Definition Language (DTDL)*。每个模型根据其属性、遥测、关系和组件描述单一类型的实体。稍后，您将使用这些模型作为表示这些类型的特定实例的数字孪生模型的基础。
 
-Typically, when you create a model, you'll complete three steps:
+通常，当您创建模型时，您将完成三个步骤：
 
-1. Write the model definition. In the quickstart, this step is already done as part of the sample solution.
-1. Validate it to make sure the syntax is accurate. In the quickstart, this step is already done as part of the sample solution.
-1. Upload it to your Azure Digital Twins instance.
+1. 编写模型定义。在快速入门中，此步骤已作为示例解决方案的一部分完成。
+1. 验证它以确保语法准确。在快速入门中，此步骤已作为示例解决方案的一部分完成。
+1. 将其上传到您的 Azure 数字孪生实例。
  
-For this quickstart, the model files are already written and validated for you. They're included with the solution you downloaded. In this section, you'll upload two prewritten models to your instance to define these components of a building environment:
+对于这个快速入门，模型文件已为您编写和验证。它们包含在您下载的解决方案中。在本节中，您将上传两个预先编写的模型到您的实例，以定义构建环境的这些组件：
 
-* Floor
-* Room
+* 地面 - Floor
+* 房间 - Room
 
-#### 1.2.6.1. Upload the models (.json files)
+#### 1.2.6.1. 上传模型（.json 文件）
 
-Follow these steps to upload models (the *.json* files you downloaded earlier).
+按照以下步骤上传模型（您之前下载的 *.json* 文件）。
 
-1. In the **Models** panel, select the **Upload a Model** icon that shows an arrow pointing upwards.
+1. 在 **模型 - Models** 面板中，选择 **上传模型 - Upload a Model** 图标（该图标显示一个向上的箭头）
 
    ![](./media/quickstart-azure-digital-twins-explorer/upload-model.png) 
  
-1. In the Open window that appears, navigate to the folder containing the *Room.json* and *Floor.json* files that you downloaded earlier.
-1. Select *Room.json* and *Floor.json*, and select **Open** to upload them both. 
+2. 在出现的打开窗口中，导航到包含您之前下载的 *Room.json* 和 *Floor.json* 文件的文件夹。
 
-Azure Digital Twins Explorer will upload these model files to your Azure Digital Twins instance. They should show up in the **Models** panel and display their friendly names and full model IDs. 
+3. 选择 *Room.json* 和 *Floor.json*，然后选择 **打开 - Open** 将它们都上传。
 
-You can select **View Model** for either model to see the DTDL code behind it.
+Azure 数字孪生资源管理器会将这些模型文件上传到你的 Azure 数字孪生实例。 它们应该出现在 **模型 - Models** 面板中，并显示它们的友好名称和完整的模型 ID。
+
+您可以为任一模型选择 **查看模型 - View Model** 以查看其背后的 DTDL 代码。
 
 
  ![](./media/quickstart-azure-digital-twins-explorer/model-info.png 'Screenshot of the Azure Digital Twins Explorer showing the Models panel with two model definitions listed inside, Floor and Room') 
   
 
-### 1.2.7. Twins and the twin graph
+### 1.2.7. 孪生和孪生图
 
-Now that some models have been uploaded to your Azure Digital Twins instance, you can add *digital twins* based on the model definitions.
+现在一些模型已上传到您的 Azure 数字孪生实例，可以根据模型定义添加*数字孪生*。
 
-*Digital twins* represent the actual entities within your business environment. They can be things like sensors on a farm, lights in a car, or in this quickstart  rooms on a building floor. You can create many twins of any given model type, such as multiple rooms that all use the Room model. You connect them with relationships into a *twin graph* that represents the full environment.
+*数字孪生*代表您的业务环境中的实际实体。 它们可以是农场中的传感器、汽车中的灯，或者本快速入门 建筑楼层的房间。 您可以创建任何给定模型类型的多个孪生模型，例如全部使用 Room 模型的多个房间。 您将它们与关系连接成一个代表完整环境的*孪生 - twin graph*。
 
-In this section, you'll upload pre-created twins that are connected into a pre-created graph. The graph contains two floors and two rooms, connected in the following layout:
+在本节中，您将上传连接到预先创建的图表中的预先创建的双胞胎。 该图包含两个楼层和两个房间，按以下布局连接：
 
-* Floor0
-    - Contains Room0
-* Floor1
-    - Contains Room1
+* Floor0 0层
+    - 包含 Room0
+* Floor1 1楼
+    - 包含 Room1
 
-#### 1.2.7.1. Import the graph (.xlsx file)
+#### 1.2.7.1. 倒入图 (.xlsx 文件)
 
-Follow these steps to import the graph (the *.xlsx* file you downloaded earlier).
+按照以下步骤导入图形（您之前下载的 *.xlsx* 文件）
 
-1. In the **Twin Graph** panel, select the **Import Graph** icon that shows an arrow pointing into a cloud.
+1. 在 **孪生图 - Twin Graph** 面板中，选择 **导入图 - Import Graph** 图标(该图标显示一个指向云的箭头)
 
 
  ![](./media/quickstart-azure-digital-twins-explorer/twin-graph-panel-import.png 'Screenshot of Azure Digital Twins Explorer Twin Graph panel Import Graph button is highlighted')
 
 
-2. In the Open window, navigate to the *buildingScenario.xlsx* file you downloaded earlier. This file contains a description of the sample graph. Select **Open**.
+2. 在打开窗口中，导航到您之前下载的 *buildingScenario.xlsx* 文件。 此文件包含示例图的描述。 选择**打开 - Open**。
 
-   After a few seconds, Azure Digital Twins Explorer opens an **Import** view that shows a preview of the graph to be loaded.
+   几秒钟后，Azure 数字孪生资源管理器会打开一个 **倒入 - Import** 图，其中显示要加载的图的预览。
 
-3. To finish importing the graph, select the **Save** icon in the upper-right corner of the graph preview panel.
+3. 要完成导入图，请选择图预览面板右上角的**保存 - Save**图标。
 
     ![](./media/quickstart-azure-digital-twins-explorer/graph-preview-save.png 'Screenshot of the Azure Digital Twins Explorer highlighting the Save icon in the Graph Preview pane') 
 
-4. Azure Digital Twins Explorer will use the uploaded file to create the requested twins and relationships between them. Make sure you see the following dialog box indicating that the import was successful before moving on.
+4. Azure 数字孪生资源管理器将使用上传的文件来创建请求的孪生对象和它们之间的关系。 在继续之前，请确保您看到以下指示导入成功的对话框。
 
       ![](./media/quickstart-azure-digital-twins-explorer/import-success.png 'Screenshot of the Azure Digital Twins Explorer showing a dialog box indicating graph import success')
 
 
-    Select **Close**.
+    选择 **关闭 - Close**.
 
-    The graph has now been uploaded to Azure Digital Twins Explorer, and the **Twin Graph** panel will reload. It will appear empty.
+    该图现已上传到 Azure 数字孪生资源管理器，并且 **孪生图 - Twin Graph** 面板将重新加载。 它将显示为空。
  
-6. To see the graph, select the **Run Query** button in the **Query Explorer** panel, near the top of the Azure Digital Twins Explorer window.
+5. 若要查看图，请选择 **查询浏览器 - Query Explorer** 面板中的 **运行查询 - Run Query** 按钮，该面板靠近 Azure 数字孪生资源管理器窗口的顶部。
 
    ![](./media/quickstart-azure-digital-twins-explorer/run-query.png 'Screenshot of the Azure Digital Twins Explorer highlighting the Run Query button in the upper-right corner of the window')
 
-This action runs the default query to select and display all digital twins. Azure Digital Twins Explorer retrieves all twins and relationships from the service. It draws the graph defined by them in the **Twin Graph** panel.
+此操作运行默认查询以选择和显示所有数字孪生。 Azure 数字孪生资源管理器从服务中检索所有孪生和关系。 它在 **孪生图 - Twin Graph** 面板中绘制由它们定义的图。
 
-## 1.3. Explore the graph
+## 1.3. 浏览孪生图
 
-Now you can see the uploaded graph of the sample scenario.
+现在您可以看到示例场景的上传图。
 
 ![](./media/quickstart-azure-digital-twins-explorer/graph-view-full.png 'Screenshot of the Azure Digital Twins Explorer showing the Graph View panel with a twin graph inside')
 
-The circles (graph "nodes") represent digital twins. The lines represent relationships. The Floor0 twin contains Room0, and the Floor1 twin contains Room1.
+圆圈（图形“节点”）代表数字孪生。 线条代表关系。 Floor0 孪生包含 Room0，Floor1 孪生包含 Room1。
 
-If you're using a mouse, you can click and drag in the graph to move elements around.
+如果您使用鼠标，则可以在图中单击并拖动以移动元素。
 
-### 1.3.1. View twin properties
+### 1.3.1. 查看孪生属性
 
-You can select a twin to see a list of its properties and their values in the **Twin Properties** panel.
+您可以选择孪生以在 **孪生属性 - Twin Properties** 面板中查看其属性及对应值的列表。
 
-Here are the properties of Room0:
+以下是 Room0 的属性：
 
 
 ![](./media/quickstart-azure-digital-twins-explorer/properties-room0.png 'Screenshot of the Azure Digital Twins Explorer highlighting the Twin Properties panel')
     
 
-Room0 has a temperature of 70.
+Room0 的温度为 70。
 
-Here are the properties of Room1:
+以下是 Room1 的属性：
 
 ![](./media/quickstart-azure-digital-twins-explorer/properties-room1.png 'Room1 Properties')
 
-Room1 has a temperature of 80.
+Room1 的温度为 80。
 
-### 1.3.2. Query the graph
+### 1.3.2. 查询孪生图
 
-In Azure Digital Twins, you can query your twin graph to answer questions about your environment, using the SQL-style *Azure Digital Twins query language*.
+在 Azure 数字孪生中，您可以使用 SQL 风格的 *Azure 数字孪生查询语言 - Azure Digital Twins query language*查询您的孪生图以回答有关您的环境的问题。
 
-One way to query the twins in your graph is by their properties. Querying based on properties can help answer questions about your environment. For example, you can find outliers in your environment that might need attention.
+查询图表中孪生的一种方法是通过它们的属性。 基于属性的查询有助于回答有关您的环境的问题。 例如，您可以在您的环境中找到可能需要注意的异常值。
 
-In this section, you'll run a query to answer the question of how many twins in your environment have a temperature above 75.
+在本部分中，您将运行查询来回答您的环境中有多少孪生的温度高于 75 的问题。
 
-To see the answer, run the following query in the **Query Explorer** panel.
+要查看答案，请在 **查询浏览器 - Query Explorer** 面板中运行以下查询。
 
 ```bash
 SELECT * FROM DIGITALTWINS T WHERE T.Temperature > 75
 ```
 
-Recall from viewing the twin properties earlier that Room0 has a temperature of 70, and Room1 has a temperature of 80. The Floor twins don't have a Temperature property at all. For these reasons, only Room1 shows up in the results here.
+回想一下之前查看孪生属性时，Room0 的温度为 70，Room1 的温度为 80。Floor 孪生根本没有 Temperature 属性。 由于这些原因，此处的结果中仅显示 Room1。
     
 ![](./media/quickstart-azure-digital-twins-explorer/result-query-property-before.png 'Screenshot of the Azure Digital Twins Explorer showing the results of property query, which shows only Room1')
 
 >[!TIP]  
-> Other comparison operators (<,>, =, or !=) are also supported within the preceding query. You can try plugging these operators, different values, or different twin properties into the query to try out answering your own questions.
+> 前面的查询还支持其他比较运算符（<、>、= 或 !=）。 您可以尝试将这些运算符、不同的值或不同的孪生属性插入到查询中。
 
-## 1.4. Edit data in the graph
+## 1.4. 编辑图中的数据
 
-In a fully connected Azure Digital Twins solution, the twins in your graph can receive live updates from real IoT devices and update their properties to stay synchronized with your real-world environment. You can also manually set the properties of the twins in your graph, using Azure Digital Twins Explorer or another development interface (like the APIs or Azure CLI).
+在完全连接的 Azure 数字孪生解决方案中，图形中的孪生可以接收来自真实 IoT 设备的实时更新并更新其属性以与您的真实环境保持同步。 您还可以使用 Azure 数字孪生资源管理器或其他开发接口（如 API 或 Azure CLI）手动设置图形中孪生的属性。
 
-For simplicity, you'll use Azure Digital Twins Explorer here to manually set the temperature of Room0 to 76.
+为简单起见，您将在此处使用 Azure 数字孪生资源管理器将 Room0 的温度手动设置为 76。
 
-First, rerun the following query to select all digital twins. This will display the full graph once more in the **Twin Graph** panel.
+首先，重新运行以下查询以选择所有数字孪生。 这将在 **孪生图 - Twin Graph** 面板中再次显示完整的图表。
 
                
 ```
 SELECT * FROM DIGITALTWINS
 ```
 
-Select **Room0** to bring up its property list in the **Twin Properties** panel.
+选择 **Room0** 以在 **孪生属性 - Twin Properties** 面板中显示其属性列表。
 
-The properties in this list are editable. Select the temperature value of **70** to enable entering a new value. Enter *76* and select the **Save** icon to update the temperature.
+此列表中的属性是可编辑的。 选择 **70** 的温度值以启用输入新值。 输入 *76* 并选择 **保存 - Save** 图标以更新温度。
 
 
    ![](./media/quickstart-azure-digital-twins-explorer/new-properties-room0.png 'Screenshot of the Azure Digital Twins Explorer highlighting that the Twin Properties panel is showing properties that can be edited for Room0')
 
 
-After a successful property update, you'll see a **Patch Information** box showing the patch code that was used behind the scenes with the [Azure Digital Twins APIs](concepts-apis-sdks.md) to make the update.
+成功更新属性后，您将看到一个 **补丁信息 - Patch Information** 框，其中显示了在 [Azure 数字孪生 API](concepts-apis-sdks.md) 后台使用的补丁代码以进行更新。
 
 
 ![](./media/quickstart-azure-digital-twins-explorer/patch-information.png 'Screenshot of the Azure Digital Twins Explorer showing Patch Information for the temperature update')
 
 
-**Close** the patch information. 
+**关闭 - Close**补丁信息。
 
-### 1.4.1. Query to see the result
+### 1.4.1. 查询和查看结果
 
-To verify that the graph successfully registered your update to the temperature for Room0, rerun the query from earlier to get all the twins in the environment with a temperature above 75.
+要验证图是否成功注册了您对 Room0 温度的更新，请重新运行之前的查询以获取环境中温度高于 75 的所有孪生。
 
 ```
 SELECT * FROM DIGITALTWINS T WHERE T.Temperature > 75
 ```
 
-Now that the temperature of Room0 has been changed from 70 to 76, both twins should show up in the result.
+现在 Room0 的温度已从 70 更改为 76，两个孪生都应该出现在结果中。
 
 ![](./media/quickstart-azure-digital-twins-explorer/result-query-property-after.png 'Screenshot of the Azure Digital Twins Explorer showing the results of property query, which shows both Room0 and Room1') 
 
-## 1.5. Review and contextualize learnings
+## 1.5. 回顾和情境化学习
 
-In this quickstart, you created an Azure Digital Twins instance and used Azure Digital Twins Explorer to populate it with a sample scenario.
+在本快速入门中，你创建了一个 Azure 数字孪生实例并使用 Azure 数字孪生资源管理器使用了示例方案。
 
-You then explored the graph, by:
+然后，您通过以下方式探索图：
 
-* Using a query to answer a question about the scenario.
-* Editing a property on a digital twin.
-* Running the query again to see how the answer changed as a result of your update.
+* 使用查询来回答有关场景的问题。
+* 编辑数字孪生的属性。
+* 再次运行查询以查看答案因更新而发生的变化。
 
-The intent of this exercise is to demonstrate how you can use the Azure Digital Twins graph to answer questions about your environment, even as the environment continues to change.
+本动手实验的目的是演示如何使用 Azure 数字孪生图来解答有关环境的问题，即使环境继续发生变化。
 
-In this quickstart, you made the temperature update manually. It's common in Azure Digital Twins to connect digital twins to real IoT devices so that they receive updates automatically, based on telemetry data. In this way, you can build a live graph that always reflects the real state of your environment. You can use queries to get information about what's happening in your environment in real time.
+在本快速入门中，您手动进行了温度更新。 Azure 数字孪生通常将数字孪生连接到真实的 IoT 设备，以便它们根据遥测数据自动接收更新。 通过这种方式，您可以构建始终反映环境真实状态的实时图表。 您可以使用查询来实时获取有关您的环境中正在发生的事情的信息。
 
-### Move on to next <b>[lab](./hands-on-lab2.md)
+### 转到下一个动手实验中 <b>[lab](./hands-on-lab2.md)
