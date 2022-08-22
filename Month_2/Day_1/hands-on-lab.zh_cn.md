@@ -1,5 +1,5 @@
  
- Azure IoT 专题二: 动手实验一<!-- omit in toc -->
+ Azure IoT 学院专题二: 动手实验一<!-- omit in toc -->
 ==============
 
 # 1. 本次动手实验介绍
@@ -27,18 +27,18 @@
 
 课程内容
 
-- [1. Introduction](#1-introduction)
-- [2. Prerequisites](#2-prerequisites)
-- [3. Exercise: Deploy Azure Lab Resources with Bicep](#3-exercise-deploy-azure-lab-resources-with-bicep)
-- [4. Exercise: Deploy a Windows 10 Azure VM](#4-exercise-deploy-a-windows-10-azure-vm)
-- [5. Exercise: Install Azure IoT Edge for Linux on Windows (EFLOW)](#5-exercise-install-azure-iot-edge-for-linux-on-windows-eflow)
-- [6. Exercise: Create a Azure Stream Analytics Job](#6-exercise-create-a-azure-stream-analytics-job)
-- [7. Exercise: Update the Azure IoT Edge manifest to add modules and routes](#7-exercise-update-the-azure-iot-edge-manifest-to-add-modules-and-routes)
-- [8. Exercise: Review the data being sent to Grafana](#8-exercise-review-the-data-being-sent-to-grafana)
-- [9. Exercise: Monitor IoT Hub Events](#9-exercise-monitor-iot-hub-events)
-- [10. Exercise: Create an Azure Logic App to Monitor Events from IoT Hub](#10-exercise-create-an-azure-logic-app-to-monitor-events-from-iot-hub)
-- [11. Exercise: View Log Analytics data and setup an alert](#11-exercise-view-log-analytics-data-and-setup-an-alert)
-- [12. Cleanup](#12-cleanup)
+- [1. 介绍](#1-introduction)
+- [2. 课前准备](#2-prerequisites)
+- [3. 练习: 使用 Bicep 部署 Azure 实验室资源](#3-exercise-deploy-azure-lab-resources-with-bicep)
+- [4. 练习: 部署 Windows 10 Azure 虚拟机](#4-exercise-deploy-a-windows-10-azure-vm)
+- [5. 练习: 在 Windows 上安装适用于 Linux 的 Azure IoT Edge (EFLOW)](#5-exercise-install-azure-iot-edge-for-linux-on-windows-eflow)
+- [6. 练习: 创建 Azure Stream Analytics 任务](#6-exercise-create-a-azure-stream-analytics-job)
+- [7. 练习: 更新 Azure IoT Edge 配置清单以添加模块和路由](#7-exercise-update-the-azure-iot-edge-manifest-to-add-modules-and-routes)
+- [8. 练习: 查看发送到 Grafana 的数据](#8-exercise-review-the-data-being-sent-to-grafana)
+- [9. 练习: 监控 IoT Hub 事件](#9-exercise-monitor-iot-hub-events)
+- [10. 练习: 创建 Azure Logic App 以监视来自 IoT 中心的事件](#10-exercise-create-an-azure-logic-app-to-monitor-events-from-iot-hub)
+- [11. 练习: 查看 Log Analytics 数据并设置警报](#11-exercise-view-log-analytics-data-and-setup-an-alert)
+- [12. 清空资源](#12-cleanup)
 
 
 # 2. 课前准备
