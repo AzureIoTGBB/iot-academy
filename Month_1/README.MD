@@ -1,10 +1,10 @@
 # **专题一**
 ## **动手实验一**
 
-   - 学习 IoT Core Services 
-   - 学习 IoT Central
-      - 概述物联网中心
-      - 创建 IoT Central 应用程序
+   - 学习 Azure IoT Core Services 
+   - 学习 Azure IoT Central
+      - Azure IoT Central 概述
+      - 创建 Azure IoT Central 应用程序
       - 创建设备 - 冷藏车
       - 查看数据
 
