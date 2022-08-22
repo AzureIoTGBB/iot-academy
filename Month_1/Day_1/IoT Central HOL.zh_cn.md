@@ -24,14 +24,14 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 ## **动手实验步骤:** ##
 - [实验一: 创建自定义 Azure IoT Central 应用](#exercise-1-create-a-custom-iot-central-app)
   - [任务一: 创建应用](#task-1-creating-an-application)
-   - [任务二: 为您的应用添加遥测功能](#task-2-add-capabilities---telemetry)
-    - [任务三: 为您的应用添加属性](#task-3-add-capabilities---properties)
-    - [任务四: 为您的应用添加命令](#task-4-add-capabilities---commands)
+  - [任务二: 为您的应用添加遥测功能](#task-2-add-capabilities---telemetry)
+  - [任务三: 为您的应用添加特性](#task-3-add-capabilities---properties)
+  - [任务四: 为您的应用添加命令](#task-4-add-capabilities---commands)
 <br/><br/>
 
 - [实验二: 创建仪表板](#exercise-2-create-a-dashboard)
     - [任务一: 让你的设备可视化](#task-1-visualizing-the-device)
-    - [任务二: 添加可写属性视图](#task-2-writable-properties-view)
+    - [任务二: 添加可写特性视图](#task-2-writable-properties-view)
     - [任务三: 创建设备](#task-3-create-a-device)
 <br/><br/>
 
@@ -40,18 +40,18 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 - [实验四: 创建设备应用](#exercise-4-create-the-device-app)
     - [任务一: 创建你的开发环境](#task-1-set-up-your-environment)
-    - [任务二: 运行你的设备](#task-2-launch-your-device)
-    - [任务三: 设置属性](#task-3-set-up-properties)
+    - [任务二: 启动你的设备](#task-2-launch-your-device)
+    - [任务三: 设置特性](#task-3-set-up-properties)
 <br/><br/>
 
 - [实验五: 创建规则](#exercise-5-create-rules)
-    - [实验一: 冷却系统状态](#task-1-cooling-system-state)
-    - [实验二: 温度飙升](#task-2-temperature-spiking)
-    - [实验三: 卡车离开货运中心](#task-3-truck-leaves-base)
-    - [实验四: 运输物品的温度](#task-4-temperature-of-the-contents)
+    - [实验一: 设置冷却系统状态规则](#task-1-cooling-system-state)
+    - [实验二: 设置温度飙升规则](#task-2-temperature-spiking)
+    - [实验三: 设置卡车离开货运中心规则](#task-3-truck-leaves-base)
+    - [实验四: 设置运输物品的温度规则](#task-4-temperature-of-the-contents)
 <br/><br/>
 
-- [Exercise 6: Clean up](#exercise-6-clean-up)
+- [实验六: 清空资源](#exercise-6-clean-up)
 <br/><br/>
 
 ## **实验一: 创建自定义 Azure IoT Central 应用** ##
@@ -245,11 +245,11 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 <br/>
 
-### **任务三: 为您的应用添加属性** ###
+### **任务三: 为您的应用添加特性** ###
 
-将卡车货物的最佳温度定义为属性。
+将卡车货物的最佳温度定义为特性。
 
-1. 选择 "添加 - Add" 功能。 然后添加卡车 ID 属性。
+1. 选择 "添加 - Add" 功能。 然后添加卡车 ID 特性。
 
 <br/>
 
@@ -265,11 +265,11 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 <br/>
 
-您的属性设置如下:
+您的特性设置如下:
 
 ![Truck State](./media/truckid-property.png 'Truck states')
 
-2. 添加最佳温度属性
+2. 添加最佳温度的特性
 
 <br/>
 
@@ -335,7 +335,7 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 <br> 
 
-您的召回属性应如下图所示:
+您的召回特性应如下图所示:
 
 ![Command Recall](./media/command-recall.png 'Command Recall')
 
@@ -343,7 +343,7 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 3. 在继续之前，请仔细检查您的界面。 发布界面后，编辑选项受到限制。 所以你应该在发布之前把它弄好。
 
-当您选择设备模板的名称时，以“视图”选项结尾的菜单总结了功能，合共6 个基于遥测，2 个属性和 2 个命令: 
+当您选择设备模板的名称时，以“视图”选项结尾的菜单总结了功能，合共6 个基于遥测，2 个特性和 2 个命令: 
 
 ![Summary list](./media/capabilities-all.png 'Summary List')
 
@@ -355,127 +355,128 @@ Azure IoT Central 提供了处理此场景所需的一切。 例如，在下图�
 
 ![Published](./media/iotc-iface-published.png 'Published')
 
-## 实验二: 创建仪表板 ## 
+## **实验二: 创建仪表板** ## 
 
-### **Task 1: Visualizing the device** ### 
+### **任务一: 让你的设备可视化** ### 
 
-1. Select **Views**. Then select **Visualizing the device**.
+1. 选择**视图 - Views**。 然后选择**Visualizing the device - 可视化设备**
 
 ![Device](./media/dashboard-view.png 'Visualizing Device')
 
-2. Change the View name to something more specific, for example, **Truck view**
+1. 将视图名称更改为更具体的名称，如 **Truck view**
 
-3. Click **Start with devices** under **Add a tile**.
+2. 单击 - Add a tile**添加磁贴 - **下的**从设备开始 - Start with devices**。
 
 ![Create view](./media/iotc-view-1.png 'Create view')
 
-3. Under **Telemetry**, select **Location** in the dropdown, then scroll to the bottom to click **Add tile**. Dashboards are made of tiles. We choose the location tile first because we want to expand it.
+3. 在 **遥测 - Telemetry** 下，通过下拉列表选择 **位置 - Location**，然后滚动到底部以点击 **添加磁贴 - Add tile**。 仪表板由磁贴组成。 我们首先选择地理位置磁贴。
 
 ![Telemetry location tile add](./media/iotc-view-2.png 'Telemetry location tile add')
 
-4. Select each of the rest of the telemetry and property capabilities that you created, starting at the top. For each capability, select **Add tile** at the bottom.
+4. 从顶部开始，选择创建的遥测和特性功能。 对于每个功能，都需要点击底部的 **添加磁贴 - Add tile**。
 
 <br/>
 
-**Telemetry:** Location, Contents state, Contents temperature, Cooling system state, Event, Truck state<br/>
-**Property:** Optimal Temperature, Truck ID<br/>
+**遥测:** 位置, 货物状态, 货物温度, 制冷系统状态, 事件, 卡车状态<br/>
+**特性:** 最佳温度, 卡车编号<br/>
 
-Your new Dashboard should look like this one:
+您的新仪表板应如下图所示:
 
 ![Dashboard](./media/dashboard-device.png 'New Dashboard')
 
-5. Click **Save** to save this view and **Back** to return to the device template.
+5. 点击 **保存 - Save** 保存该视图并点击 **返回 - Back** 按钮回到设备模板。
 
 
-### **Task 2: Writable Properties View** ### 
+### **任务二: 添加可写特性视图** ### 
 
-We need to create a separate view. Its sole purpose will be to set writable properties.
+我们需要创建一个单独的视图。 它的目的是设置可写特性。
 
-1. Select **Views**, and then select the **Editing device and cloud data** tile.
+1. 选择 **视图 - Views**，然后选择 **编辑设备和云数据 - Editing device and cloud data** 磁贴。
 
 ![Writable properties](./media/editingdevice.png 'Properties')
 
-2. Change the form name to something like **Set properties**.
+2. 将表单名称更改为 **Set properties** 之类的名称
 
-3. Select the **Optimal temperature** property check box. Then click **Add section**.
+3. 选中 **最佳温度 - Optimal temperature** 属性复选框。 然后单击 **添加部分 - Add section** 
 
-4. Verify that your view looks similar to the following image. Then click **Save** to save this view and **Back** to return to the device template.
+4. 确认您创建的视图是否类似于下图。 然后点击 **保存 - Save** 保存该视图，点击 **返回 - Back** 返回设备模板。
 
 ![Writable properties](./media/writeable-form.png 'Properties')
 
-5. Select **Publish**. Then in the dialog box, select **Publish** again.
+5. 选择**发布 - Publish**。 然后在对话框中，再次选择 **发布 - Publish**。
 
-### **Task 3: Create a Device** ### 
+### **任务三: 创建设备** ### 
 
-1. On the menu on the left, click **Devices**, select **RefrigeratedTruck**, and click **New**.
+1. 在左侧菜单中，点击**设备 - Devices**，选择**RefrigeratedTruck**，然后点击**新建 - New**
 
 ![Create Device](./media/createdevice.png 'Create Device')
 
-2. In the Create a new device dialog box, verify that the device template is **RefrigeratedTruck**.
+2. 在 Create a new device 对话框中，验证设备模板是否为 **RefrigeratedTruck**
 
 <br/>
 
-- **Device name**: RefrigeratedTruck - 1
-- **Device ID**: RefrigeratedTruck1
-- **Device template**: RefrigeratedTruck (default)
-- **Simulate this device?**: No (default)
+- **设备名称 - Device name**: RefrigeratedTruck - 1
+- **设备 ID - Device ID**: RefrigeratedTruck1
+- **设备模版 - Device template**: RefrigeratedTruck (default)
+- **是否模拟该设备 - Simulate this device?**: No (default)
 
 <br/>
 
 ![New Device](./media/new-device.png 'New Device')
 
-4. Click **Create**. Notice that the Device status is **Registered**. Only after the device status is **Provisioned** will the IoT Central app accept a connection to the device. The coding unit that follows shows how to provision a device.
+3. 点击**创建 - Create**。 请注意，设备状态为 **Registered**。 只有在设备状态为 **已配置  - Provisioned** 后，IoT Central 应用才会接受与设备的连接。 下面的编码单元显示了如何配置设备。
 
-5. Click **RefrigeratedTruck - 1**, then **Truck view** to see the live dashboard, where all the tiles will show *No data found* because we don't have any telemetry yet. On the bar that includes **Truck view**, click **Commands** where you will see the two commands you entered are ready to run.
+4. 单击 **RefrigeratedTruck - 1**，然后单击 **Truck view** 以查看实时仪表板，其中所有图块将显示 *找不到任何数据 - No data found* 因为我们还没有任何遥测数据。 在包含 **Truck view** 的栏上，单击 **指令 - Commands**，您将看到您输入的两个命令已准备好运行。
 
-6. In the upper-right, click **Connect**.
+5. 在右上角，单击**连接 - Connect**。
 
-In the Device connection dialog box that opens, carefully copy the **ID scope**, **Device ID**, and **Primary key**. The ID scope identifies the app. The device ID identifies the real device. And the primary key gives you permission for the connection.
+在打开的设备连接对话框中，仔细复制 **ID范围 - ID scope**、**设备ID - Device ID** 和 **Primary key - 主键**。 ID 范围标识应用程序。 设备 ID 标识真实设备。 主键为您提供连接权限。
 
-Paste this information in a text file. 
+将此信息粘贴到文本文件中。
 
-Leave the Authentication type setting as **Shared access signature (SAS)**.
+将身份验证类型设置保留为 **Shared access signature (SAS) - 共享访问签名 (SAS)**。
 
-After you save the IDs and the key, select Close on the dialog box.
+保存 ID 和密钥后，在对话框中选择关闭。
 
-## Exercise 3: Azure Maps ## 
+## **实验三:  Azure 地图** ## 
 
-1. Go to Azure Portal: https://portal.azure.com/
-2. Click **Create a Resource** then in the search box type **Azure Maps**. Open the Azure Maps service page and click **Create**.
+1. 进入 Azure 门户: https://portal.azure.com/
+
+2. 点击 **创建资源 - Create a Resource**，然后在搜索框中键入 **Azure Maps**。 打开 Azure Maps 服务页面，然后单击 **创建 - Create**。
 
 ![Azure Maps](./media/azure-maps.png 'Azure Maps')
 
-Complete the creation form: 
-- **Subscription**: Select the subscription you are using for this training if it is not currently selected.
-- **Resource group**: IOTC
-- **Name**: mytrucksacademy**SUFFIX**
-- **Region**: Select the region you are using for this training. 
-- **Pricing tier**: Gen1 (S1)
-- **License and Privacy Statement** Checked
+填写创建表单: 
+- **订阅 - Subscription**: 选择你的 Azure 订阅
+- **资源组 - Resource group**: 输入 IOTC
+- **名称 - Name**: 输入 mytrucksacademy**后序**
+- **区域 - Region**: 选择你在本次练习所需要的区域 
+- **定价 - Pricing tier**: 使用 Gen1 (S1)
+- **许可和隐私声明 - License and Privacy Statement** 选中
 
 <br/>
 
-Then click **Review + create** at the bottom of the page, then click **Create** at the bottom of the review page.
+点击页面底部的 **检查+ 创建 - Review + create**，染后点击检查页面底部的**创建  - Create**。
 
 ![Create Azure Maps](./media/azure-maps-form.png 'Create Azure Maps')
 
-Once Azure Maps resource is created, click **Go to resource** then find the key on the **Authentication** blade. Copy the **Primary key** and paste it into your notepad. 
+创建 Azure Maps 资源后，单击 **进入资源 - Go to resource** 然后在 **验证 - Authentication** 边栏选项卡上找到密钥。 复制**主键**并将其粘贴到记事本中。
 
 ![Azure Maps Auth](./media/azure-maps-auth-key.png 'Azure Maps Auth')
 
-## Exercise 4: Create the device app ## 
+## **实验四: 创建设备应用** ## 
 
-### **Task 1: Set up your environment** ###
+### **任务一: 创建你的开发环境** ###
 
-1. Open Visual Studio Code locally
+1. 在本地打开 Visual Studio Code
 
-2. On the top bar select **Terminal** and then **New Terminal** in Visual Studio Code. 
+2. 在顶部栏上选择 **终端 - Terminal**，然后在 Visual Studio Code 中选择 **新的终端 - New Terminal**。
 
-3. Please make sure you are in the local directory where you want to create a new directory. (cd.. to change directory location locally)
+3. 请确保您位于要创建项目的本地目录中。 （通过 cd .. 在本地修改目录位置）
 
 ![Terminal](./media/vs-code-mkdir.png 'Terminal')
 
-4. Run the following commands to create a directory, set up a dotnet environment, and install required libraries:
+4. 运行以下命令创建目录，设置 dotnet 环境，并安装所需的库:
 
 ```
 mkdir RefrigeratedTruck
@@ -490,149 +491,147 @@ dotnet add package System.Text.Json
 
 ```
 
-5. From the File menu, open the Program.cs file just created. On the github repo month 1/day 1 there is a folder titled Code-Sample: https://github.com/AzureIoTGBB/iot-academy/tree/main/Month_1/Day_1/Code_sample Copy this content from the Prgram.cs file and paste into your Visual Studio code Program.cs file. This will replace the whole content.
+5. 从 “文件” 菜单中，打开刚刚创建的 Program.cs 文件。 在 github repo month 1/day 1 有一个名为 Code-Sample 的文件夹： 从 https://github.com/AzureIoTGBB/iot-academy/tree/main/Month_1/Day_1/Code_sample 的 Prgram.cs 文件中复制此内容并粘贴到您的Program.cs 文件中。 。
 
-6. Once you replace the content of the files, we need to add our keys to connect with our services. Look for lines **123** to **126**. Replace accordingly based on the keys you were adding to your notepad in previous exercises.
+6. 换文件内容后，我们需要添加密钥以连接我们的服务。 查找行 **123** 到 **126**。 根据您在之前的动手实验中添加到记事本的键进行相应的替换。
 
  ![Command Recall](./media/vscode-replace-keys.png 'Command Recall')
 
-After the changes are made, save the file. Click **File - Save **
-### **Task 2: Launch your device** ### 
+进行更改后，记得保存文件。 点击**文件 - 保存 -  File - Save**
 
-1. To begin testing, first open the Azure IoT Central app in a browser: https://app.azureiotcentral.com/
-    Click **My apps** on the left.
-    Click the **Refrigerated Truck IoT** tile.
+### **任务二: 启动你的设备** ### 
 
-2. In the VS Code terminal, start the device app using the following command:
+1. 要开始测试，首先在浏览器中打开 Azure IoT Central 应用程序：https://app.azureiotcentral.com/
+     点击左侧的**我的应用 - My apps**。
+     单击 **Refrigerated Truck IoT** 磁贴。
+
+2. 在 VS Code 终端中，使用以下命令启动设备应用程序：
 
 ```
 dotnet run
 ```
 
-A console screen opens with the message Starting Truck number 1.
+将打开一个控制台屏幕，其中显示消息“Starting Truck number 1”
 
  ![Command Recall](./media/register-device.png 'Command Recall')
 
-Once your device in registered through VS Code, you should see in your IoT Central an status change to **Provisioned**:
+通过 VS Code 注册您的设备后，您应该会在 IoT Central 中看到状态更改为 **Provisioned**：
 
  ![Command Recall](./media/device-provisioned.png 'Command Recall')
 
-At this point in the Truck View dashboard in IoT Central you should see data flowing thorught it, the map should show a blue dot with your truck and the chart receiving telemetry data should show some data points already.
+此时，在 IoT Central 的 Truck View 仪表板中，您应该会看到通过它的数据，地图上应该也会显示一个蓝点，并且接收遥测数据的图表并显示一些数据点。
 
-3. Select the device's **Commands** tab. This control should be under the truck name, to the right of the Truck view control.
+3. 选择设备的 **指令 - Commands** 选项卡。 此控件应位于卡车名称下，卡车视图控件的右侧。
 
-4. Enter a customer ID, say **1**. (Numerals 0 through 9 are valid customer IDs.) Then select **Run**.
+4. 输入客户 ID，例如 **1**。 （数字 0 到 9 是有效的客户 ID。）然后选择 **运行 - Run**。
 
-In the console for the device app, you see both a New customer event and a Route found message
+在设备应用程序的控制台中，您会看到新的客户事件和找到路由消息
 
  ![Command Recall](./media/new-command.png 'Command Recall')
 
 
-5. On the dashboard's Location tile, check to see whether your truck is on its way. You might have to wait a short time for the apps to sync.
+5. 在仪表板的位置磁铁上，检查您的卡车是否在路上。 可能需要等待一小段时间才能同步应用。
 
-6. Verify the event text on the Event tile. You should see a new Customer Event.
+6. 通过验证事件磁贴上的事件文本，您应该会看到一个新的客户事件。
 
-7. When the truck returns to base and is reloaded with contents, its state is ready. Try issuing another delivery command. Choose another customer ID.
+7. 当卡车返回基地并重新装载内容时，其状态准备就绪。 尝试发出另一个交付命令。 选择另一个客户 ID。
 
-8. Before the truck reaches the customer, make a recall command to check whether the truck responds.
-
-
-### **Task 3: Set up Properties** ### 
+8. 在卡车到达客户之前，发出召回命令，检查卡车是否响应。
 
 
-The next test is to check the writable property, **OptimalTemperature**. To change this value, select the **Set properties** view.
+### **任务三: 设置特性** ### 
 
-Set the optimal temperature to any value, say **-8**. Select **Save** and then notice the Pending status.
+
+下一个测试是检查可写属性**OptimalTemperature**。 要更改此值，请选择 **选择特性 - Set properties** 视图。
+
+将最佳温度设置为任何值，例如**-8**。 选择 **Save**，然后注意 Pending 状态。
 
  ![Command Recall](./media/set-property.png 'Command Recall')
 
-Now you should see the new Optimal temperature is set to -8. in the **Optimal Temperature** Tile.
+现在您应该看到新的最佳温度设置为 -8。 在 **最佳温度** 磁贴中。
 
 
-## Exercise 5: Create Rules ## 
+## **实验五: 创建规则** ## 
 
-### **Task 1: Cooling system state** ###
+### **实验一: 设置冷却系统状态规则** ###
 
-1. In the IoT portal, select **Rules** in the left-hand menu, then **+ New**. Enter a meaningful name for the rule, such as **"Cooling system failed"**. Press Enter.
+1. 在 IoT 门户中，选择左侧菜单中的 **规则 - Rules**，然后选择 **+ 新建 - New**。 为规则输入一个有意义的名称，例如 **"Cooling system failed"**。 按 Enter。
 
  ![Rules](./media/new-rule.png 'New Rule')
 
 
+2. 为 **设备模板 - device template ** 选择 **RefrigeratedTruck**。
 
- 2. Select **RefrigeratedTruck** for the **device template**.
+3. 在**条件 - Conditions **下，请注意设备模板的所有遥测元素都可用。 选择**Cooling system state**。
 
-3. Under **Conditions** notice that all the telemetry elements of the device template are available. Select **Cooling system state**.
+对于运算符，选择 **等于**。
 
-For Operator, select **Equals**.
+对于值，键入单词 **"failed"**，然后单击 Select:"failed"。
 
-For value, type the word **"failed"**, then click on Select: "failed".
+将时间聚合设置为关闭。
 
-Leave Time aggregation as Off.
+对于 **动作 - Actions**，点击 **+ 邮件 - + Email**。
 
-For **Actions**, click on **+ Email**.
+在显示名称中，输入电子邮件的标题，可能是“冷却系统失败！”
 
-In Display name, enter a title for the email, perhaps "Cooling system failed!"
+对于收件人，输入您用于 IoT Central 帐户的电子邮件。 并为内容输入一些描述性文本，这些文本将构成电子邮件的正文。
 
-For To, enter the email you've used for your IoT Central account. And for Note enter some descriptive text that will form the body of the email.
+**注意**：要接收电子邮件，您选择的帐户必须至少登录 IoT Central 一次，否则您将不会收到任何电子邮件。
 
-**Note**: To receive emails the account you select has to be login to IoT central at least one time, otherwise you will not receive any emails.
-
-Your new rule should look like the below image.
+您的新规则应如下图所示。
 
  ![Rules](./media/rule-cooling-system.png 'New Rule Cooling System')
 
 
-### **Task 2: Temperature spiking** ###
+### **实验二: 设置温度飙升规则** ###
 
-1. Create a new rule with a name such as **"Contents temperature spiking"**.
+1. 创建一个新规则，名称如**“Contents temperature spiking”**。
 
-2. Turn on **Time aggregation**, and select an interval of **5 minutes**.
+2. 开启**时间聚合**，选择**5分钟**的时间间隔。
 
-3. Select **Contents Temperature** for Telemetry.
+3. 为遥测选择**内容温度**。
 
-4. In the range Aggregation values, select **Maximum.**
+4. 在范围聚合值中，选择**最大值。**
 
-5. For Operator. select Is greater than or equal to. Then enter **"0"** for the value, and select that as the value.
+5. 对于操作员。 选择大于或等于。 然后输入**“0”**选择它作为值。
 
-6. For Actions, fire off another email. Give the email an appropriate title and note.
+6. 对于操作，发送另一封电子邮件。 给电子邮件一个适当的标题和注释。
 
-7. Make sure to click Save, to save off this rule.
-
+7. 确保单击保存，以保存此规则。
 
  ![Rules Temp](./media/temp-spiking.png 'New Rule Temp System')
 
-### **Task 3: Truck leaves base** ###
+### **实验三: 设置卡车离开货运中心规则** ###
 
-1. Select **Rules** in the left-hand menu, then **+ New**. Enter a meaningful name for the rule, such as **"Truck leaving base"**. Press Enter.
+1. 在左侧菜单中选择 **规则 - Rules**，然后选择 **+新建 - + New**。 为规则输入一个有意义的名称，例如 **"Truck leave base"**。 按 Enter。
 
-Now, enter the following conditions.
-- Location / Latitude: doesn't equal => **47.644702**
-- Location / Longitude: doesn't equal => **-122.130137**
-- Truck state: Equals => **enroute**
+现在，输入以下条件。
+- 位置/纬度：不等于 => **47.644702**
+- 位置/经度：不等于 => **-122.130137**
+- 卡车状态：等于 => **途中**
 
-2. Again, enter an appropriate **email action**, and click **Save**.
+2. 再次输入适当的 **email action**，然后单击 **保存 - Save**。
 
-### **Task 4: Temperature of the contents** ###
+### **实验四: 设置运输物品的温度规则** ###
 
-1. Enter a rule with a name such as **"Truck contents OK"**.
+1. 输入一个名称如**“Truck contents OK”**的规则。
 
-2. Turn on Time aggregation, with a period of **five minutes**.
+2. 开启时间聚合，时间为**五分钟**。
 
-3. Enter conditions that fire if the average Contents Temperature is less than **-1** degrees Celsius, and greater than **-18** degrees Celsius.
+3. 如果平均内容物温度低于 **-1** 摄氏度且高于 **-18** 摄氏度，则输入触发条件。
 
-4. Again, enter an appropriate **email action**, and click **Save**.
+4. 再次输入适当的 **email action**，然后单击 **Save**。
 
-At this point you should see all the rules listed as below:
+此时您应该会看到所有规则，如下所示：
 
  ![Rules Temp](./media/rules-all.png 'New Rule Temp System')
 
 
-At this point it is time to test your Rules Go to your Device Dashboard, sent a Command to trigger a new Customer trip, remember use numbers from 1 to 9.
-In a few minutes you should start receiving emails.
+是时候测试一下您定义的规则了 转到设备仪表板，发送命令以触发新的客户行程，记住使用 1 到 9 的数字。几分钟后，您应该开始接收电子邮件。
 
-**Note**: To receive emails the account you select has to be login to IoT central at least one time, otherwise you will not receive any emails.
+**注意**：要接收电子邮件，您选择的帐户必须至少登录 IoT Central 一次，否则您将不会收到任何电子邮件。
 
 
-## Exercise 6: Clean up ## 
+## **实验六: 清空资源** ## 
 
-**Once you completed all the exercises, go to Azure Portal, look for the azure IoT Central Application and delete resource.
+**完成所有实验后，转到 Azure 门户，查找 Azure IoT Central 应用程序并删除资源。
