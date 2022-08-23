@@ -1,58 +1,67 @@
-# Azure IoT 学院
+# Azure Internet of Things Academy
 
-Azure IoT 学院是 Microsoft 一个专题培训系列，旨在通过提升关键战略人员的技能来加快产品上市时间，从而推进数字化转型。
+The Azure IoT Academy is a Microsoft training program oriented to accelerate time-to-market through up-skilling key strategic individuals that drives changes in your digital transformation.
+Microsoft will work with your organization on the priority industry use cases or specific business challenges and help you to design state-of-the-art IoT solutions in Azure to fulfill those priorities and accelerate your transformation.
+Participants in the Academy will work side-by-side with Microsoft expert using the latest IoT technology.
 
-Microsoft 将与您的所在企业合作解决优先行业用例或特定业务挑战，并帮助您在 Azure 中设计最先进的 IoT 解决方案，以加速您所在企业的数字化转型。
+April - June 2022
 
-该系列的参与者将使用最新的物联网技术与微软专家一起完成三个专题的学习。
+## Target audience
 
-## 目标人群
+- Application Developer
+- IoT Developer
+- Architects
+- Operations
+- Device Engineers
 
-- 应用程序开发人员
-- 物联网开发人员
-- 架构师
-- 运营
-- 设备工程师
+### Academy
 
-### 课程目标
-
-完成本课程后，您将会学到：
-- 了解物联网解决方案。
-- 了解连接协议，分析和可视化遥测数据，以将预测性维护与其他算法结合起来。
-- 了解边缘智能：组件、部署和模式。
-- 了解物联网架构中涉及的 PaaS 服务。
-- 了解物联网实施中涉及的安全和监控。
+After completing this course participants will be able to:
+- Understand IoT Solutions through a hands-on experience.
+- Understand connectivity protocols, analyze and visualize telemetry data to incorporate predictive maintenance among other algorithms.
+- Understand Edge Intelligence: components, deployments and patterns.
+- Understand PaaS services involved in IoT Architectures. 
+- Understand Security and monitoring involved in IoT Implementations.
 
 
-## 课程所用的 Azure 服务以及相关的产品信息
+### Requirements to attend the Academy
 
-## 专题一
+- By invitation only. Limited seats.
+- The academy is delivered remotely, and we expect participants to actively participate
+throughout the day.
+- Bring two IoT business cases that you want to work during the academy to support your organization.
+- The Academy will be focused on hands-on labs. Hence, it will be required to have a separate subscription set up for this training. Every attendee is responsible to work this configuration with their internal Cloud Administrators. 
 
-## 动手实验一
+## Azure services and related products
+During the Academy the attendees will be working with the following services: 
+
+## April: Month One
+
+## Day 1
 
 - IoT Core Services
 - IoT Central --Overview IoT Central
 - Create IoT Central Application
-- Create Device - refrigerated truck
+- Create Device � refrigerated truck
 - View Data
 
-## 动手实验二
+## Day 2
 - Azure IoT Hub
 - Azure Device Provisioning Service (DPS)
 - Azure IoT Edge, IoT Edge Runtime & Edge Modules
 - Azure Data Explorer (ADX)
 - Azure Stream Analytics (ASA)
 
-相关工具和技术：
+Experience will also be gained with the following technologies:
 - Visual Studio Code
 - Azure Virtual Machines
 - Ubuntu 18
 - Bash
 - Github
 
-## 专题二
+## May: Month Two
 
-## 动手实验一
+## Day 1
 
    - Azure IoT Hub
    - Azure Device Provisioning Service (DPS)
@@ -63,7 +72,7 @@ Microsoft 将与您的所在企业合作解决优先行业用例或特定业务�
    - Azure Logic Apps
    - Azure Monitor & Azure Log Analytics
 
-## 动手实验二
+## Day 2
 
 - Azure Digital Twins 
 - Azure Digital Twins Explorer 
@@ -73,13 +82,34 @@ Microsoft 将与您的所在企业合作解决优先行业用例或特定业务�
 - Event Grid
 - Azure Functions
 
+# June: Month Three
 
-## 专题三
+## Day 1
 
-## 专题一
+   - Microsoft Defender
+  
+## Day 2
 
-   - 用于 IoT/OT 安全的 Microsoft Defender
+- Azure Security
+- Azure IoT X.509 certificates for authentication of devices
 
-## 专题二
+## Contact information
+If you have any questions, please contact: azureiotacademy@microsoft.com
 
-   - CA 证书
+## Azure IoT Academy Timeline
+
+- April 26th - 28th, 2022 -  10am - 4pm CST
+- May 24th - 26th, 2022 -  10am - 4pm CST
+- June 28th - 30th, 2022 - 10am - 4pm CST 
+
+## Azure IoT solution
+
+Internet of Things, Partner Enablement Team at Microsoft, USA.
+
+
+## Office Hours
+
+- April 18th 8am - 9:30am PST
+- April 22nd 8am - 9:30am PST
+- May 17th 9am - 10am PST
+- May 20th 9am - 10am PST
