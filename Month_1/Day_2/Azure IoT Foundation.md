@@ -429,7 +429,7 @@ Add the following two tags
    <br/>
    Diagram showing the tags tab while creating a VM
 
-   ![Set tags.](./media/edge-device-create-ubuntu-vm-tags.png 'Set tags')
+   ![image](https://user-images.githubusercontent.com/16296900/186990126-2b6c0d07-40f3-4821-9268-589a4624bceb.png)
 
    <br/>
 
