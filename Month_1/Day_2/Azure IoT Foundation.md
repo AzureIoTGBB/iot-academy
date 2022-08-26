@@ -483,6 +483,8 @@ For simplicity the 2nd option will be used.
    - Name: `Port_22`
 
    ![VM add inbound rule details.](./media/ubuntu-vm-networking-add-inbound-port-rule-details.png 'VM add inbound rule details')
+   
+   - Click the `Add` button
 
 <br/>
 
