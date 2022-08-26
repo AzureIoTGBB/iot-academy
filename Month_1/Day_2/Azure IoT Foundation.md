@@ -347,7 +347,8 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
 
 ### **Task 4: Gather Individual Enrollment Details**
-1. Click **Manage enrollments**, then click **Individual Enrollments**, then click your enrollment **iotacademy**
+1. Click **Manage enrollments**, then click **Individual Enrollments**, then click your enrollment name **iotacademy** (click the name not the check box)
+
    ![View Enrollment.](./media/dps-individual-enrollment-view.png 'View Enrollment')
 2. Take note of the following values in your notepad
    - Registration ID: `iotacademy`
