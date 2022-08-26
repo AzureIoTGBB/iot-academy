@@ -131,7 +131,7 @@ During this exercise you will use 3 different tools to create three different Io
       1. **Pricing and scale tier**: ensure `S1: Standard tier` is selected
       2. **Number of S1 IoT hub units**: ensure `1` is selected
       3. **Defender for IoT**: set to `On`
-      4. **Role-based access control**: set to 'Shared access policy + RBAC'
+      4. **Role-based access control**: set to `Shared access policy + RBAC`
       5. **Assign me to the IoT Hub Data Contributor role**: select the check box
       6. **Device-to-cloud partitions**: leave the default setting of `4`
 
