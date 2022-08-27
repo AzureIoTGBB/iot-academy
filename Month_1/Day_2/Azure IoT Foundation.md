@@ -131,8 +131,9 @@ During this exercise you will use 3 different tools to create three different Io
       1. **Pricing and scale tier**: ensure `S1: Standard tier` is selected
       2. **Number of S1 IoT hub units**: ensure `1` is selected
       3. **Defender for IoT**: set to `On`
-      4. **Assign me to the IoT Hub Data Contributor role**: select the check box
-      5. **Device-to-cloud partitions**: leave the default setting of `4`
+      4. **Role-based access control**: set to `Shared access policy + RBAC`
+      5. **Assign me to the IoT Hub Data Contributor role**: select the check box
+      6. **Device-to-cloud partitions**: leave the default setting of `4`
 
    - Click **Review + create**.
 
@@ -346,7 +347,8 @@ Our third way of creating an Azure resource, IoT Hub instance, is to use Visual 
 
 
 ### **Task 4: Gather Individual Enrollment Details**
-1. Click **Manage enrollments**, then click **Individual Enrollments**, then click your enrollment **iotacademy**
+1. Click **Manage enrollments**, then click **Individual Enrollments**, then click your enrollment name **iotacademy** (click the name not the check box)
+
    ![View Enrollment.](./media/dps-individual-enrollment-view.png 'View Enrollment')
 2. Take note of the following values in your notepad
    - Registration ID: `iotacademy`
@@ -428,7 +430,7 @@ Add the following two tags
    <br/>
    Diagram showing the tags tab while creating a VM
 
-   ![Set tags.](./media/edge-device-create-ubuntu-vm-tags.png 'Set tags')
+   ![image](https://user-images.githubusercontent.com/16296900/186990126-2b6c0d07-40f3-4821-9268-589a4624bceb.png)
 
    <br/>
 
@@ -481,6 +483,8 @@ For simplicity the 2nd option will be used.
    - Name: `Port_22`
 
    ![VM add inbound rule details.](./media/ubuntu-vm-networking-add-inbound-port-rule-details.png 'VM add inbound rule details')
+   
+   - Click the `Add` button
 
 <br/>
 

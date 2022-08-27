@@ -20,6 +20,7 @@ At the end of this hands-on lab, your newly-created application should look like
 **Tools Needed**
 - Azure subscription
 - Visual Studio Code
+- .Net SDK 
 
 ## **Content - Hands-on Lab:** ##
 - [Exercise 1: Create a Custom IoT Central app](#exercise-1-create-a-custom-iot-central-app)
@@ -70,7 +71,7 @@ Selct the build icon on the left, then select Create app within Custom app. You 
 
  ![Create a Custom App](./media/iotc-new-app.png 'Create a Custom App')
 
-- **Application Name:** Refrigerated Trucks
+- **Application Name:** Refrigerated Truck IoT
 
 - **URL:** refrigerated-trucks-**SUFFIX** must be a unique URL
 - **Application Template:** Custom application, default.
@@ -114,7 +115,7 @@ Once your Application is available the next step will be to **Create a device te
 
 **Note**: The interface names must be entered exactly as shown in this unit. The names and entries must exactly match in the code you'll add later in this module.
 
-1. To get started, select **Add capability** and click the carat to show all the fields.
+1. To get started, select **Add capability** and click the carat at the right of the capability fields to expand all the configurable fields.
 
  ![Add capability](./media/iotc-add-capability-1.png 'Add capability')
 
@@ -479,6 +480,7 @@ Once Azure Maps resource is created, click **Go to resource** then find the key 
 ```
 mkdir RefrigeratedTruck
 cd RefrigeratedTruck
+dotnet nuget add source --name nuget.org https://api.nuget.org/v3/index.json
 dotnet new console
 dotnet restore
 dotnet add package AzureMapsRestToolkit
@@ -498,7 +500,7 @@ dotnet add package System.Text.Json
 After the changes are made, save the file. Click **File - Save **
 ### **Task 2: Launch your device** ### 
 
-1. To begin testing, first open the Azure IoT Central app in a browser: https://app.azureiotcentral.com/
+1. To begin testing, first open the Azure IoT Central app in a browser: https://app.azureiotcentral.com/home
     Click **My apps** on the left.
     Click the **Refrigerated Truck IoT** tile.
 
