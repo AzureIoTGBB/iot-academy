@@ -37,9 +37,9 @@ Durante la Academia los asistentes estarán trabajando con los siguientes servici
 # Primer mes : Octubre
 
 ## Día 1
-
 - Servicios básicos de IoT
-- IoT Central --Descripción general de IoT Central
+- IoT Central 
+- Descripción general de IoT Central
 - Creación de una aplicación de IoT Central
 - Creación de dispositivo - camión frigorífico
 - Ver datos
@@ -62,14 +62,14 @@ También se adquirirá experiencia con las siguientes tecnologías:
 
 ## Día 1
 
-    - Azure IoT Hub
-    - Servicio de aprovisionamiento de dispositivos de Azure (DPS)
-    - Máquinas virtuales de Azure
-    - Azure Edge para Linux en Windows (EFLOW)
-    - Enrutamiento perimetral de Azure IoT
-    - Módulo Azure IoT Edge Stream Analytics (ASA)
-    - Aplicaciones lógicas de Azure
-    - Monitor de Azure y análisis de registro de Azure
+- Azure IoT Hub
+- Servicio de aprovisionamiento de dispositivos de Azure (DPS)
+- Máquinas virtuales de Azure
+- Azure Edge para Linux en Windows (EFLOW)
+- Enrutamiento perimetral de Azure IoT
+- Módulo Azure IoT Edge Stream Analytics (ASA)
+- Aplicaciones lógicas de Azure
+- Monitor de Azure y análisis de registro de Azure
 
 ## Dia 2
 
@@ -84,7 +84,7 @@ También se adquirirá experiencia con las siguientes tecnologías:
 
 ## Día 1
 
-    -Microsoft defender
+- Microsoft defender
   
 ## Dia 2
 
@@ -98,7 +98,7 @@ Si tiene alguna pregunta, comuníquese con: azureiotacademy@microsoft.com
 
 - 11 - 13 de octubre de 2022 - 10 a. m. - 4 p. m. CST
 - 8 - 10 de noviembre de 2022 - 10 a. m. - 4 p. m. CST
-- 8 al 8 de diciembre de 2022 - 10 a. m. - 4 p. m. CST
+- 6 - 8 de diciembre de 2022 - 10 a. m. - 4 p. m. CST
 
 ## Solución Azure IoT
 
