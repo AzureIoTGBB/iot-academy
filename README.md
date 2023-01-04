@@ -1,115 +1,105 @@
-# Azure Internet of Things Academy
+# Academia de Azure Internet de las Cosas 
 
-The Azure IoT Academy is a Microsoft training program oriented to accelerate time-to-market through up-skilling key strategic individuals that drives changes in your digital transformation.
-Microsoft will work with your organization on the priority industry use cases or specific business challenges and help you to design state-of-the-art IoT solutions in Azure to fulfill those priorities and accelerate your transformation.
-Participants in the Academy will work side-by-side with Microsoft expert using the latest IoT technology.
+Azure IoT Academy es un programa de capacitación de Microsoft orientado a acelerar el tiempo de comercialización a través de la mejora de las habilidades de las personas estratégicas clave que impulsan los cambios en su transformación digital.
+Microsoft trabajará con su organización en los casos de uso prioritarios de la industria o en los desafíos comerciales específicos y lo ayudará a diseñar soluciones de IoT de última generación en Azure para cumplir con esas prioridades y acelerar su transformación.
+Los participantes de la Academia trabajarán codo a codo con un experto de Microsoft utilizando la última tecnología IoT.
 
-April - June 2022
+Octubre - Diciembre 2022
 
-## Target audience
+## Audiencia objetivo
 
-- Application Developer
-- IoT Developer
-- Architects
-- Operations
-- Device Engineers
+- Desarrollador de aplicaciones
+- Desarrollador IoT
+- Arquitectos de software
+- Operaciones
+- Ingenieros de dispositivos
 
-### Academy
+### Academia
 
-After completing this course participants will be able to:
-- Understand IoT Solutions through a hands-on experience.
-- Understand connectivity protocols, analyze and visualize telemetry data to incorporate predictive maintenance among other algorithms.
-- Understand Edge Intelligence: components, deployments and patterns.
-- Understand PaaS services involved in IoT Architectures. 
-- Understand Security and monitoring involved in IoT Implementations.
+Después de completar este curso, los participantes podrán:
+- Comprender las soluciones de IoT a través de una experiencia práctica.
+- Comprender protocolos de conectividad, analizar y visualizar datos de telemetría para incorporar mantenimiento predictivo entre otros algoritmos.
+- Comprender Edge Intelligence: componentes, implementaciones y patrones.
+- Comprender los servicios PaaS involucrados en las arquitecturas IoT.
+- Comprender la seguridad y el monitoreo involucrados en las implementaciones de IoT.
 
+### Requisitos para asistir a la Academia
 
-### Requirements to attend the Academy
+- Únicamente por invitación. Plazas limitadas.
+- La academia se imparte de forma remota y esperamos que los participantes participen activamente.
+durante todo el día.
+- Trae dos casos de negocios de IoT que quieras trabajar durante la academia para apoyar a tu organización.
+- La Academia se centrará en laboratorios prácticos. Por lo tanto, será necesario tener una suscripción de Azure separada configurada para esta capacitación. Cada asistente es responsable de trabajar esta configuración con sus administradores de nube internos.
 
-- By invitation only. Limited seats.
-- The academy is delivered remotely, and we expect participants to actively participate
-throughout the day.
-- Bring two IoT business cases that you want to work during the academy to support your organization.
-- The Academy will be focused on hands-on labs. Hence, it will be required to have a separate subscription set up for this training. Every attendee is responsible to work this configuration with their internal Cloud Administrators. 
+## Servicios de Azure y productos relacionados
+Durante la Academia los asistentes estarán trabajando con los siguientes servicios:
 
-## Azure services and related products
-During the Academy the attendees will be working with the following services: 
+# Primer mes : Octubre
 
-## April: Month One
+## Día 1
+- Servicios básicos de IoT
+- IoT Central 
+- Descripción general de IoT Central
+- Creación de una aplicación de IoT Central
+- Creación de dispositivo - camión frigorífico
+- Ver datos
 
-## Day 1
-
-- IoT Core Services
-- IoT Central --Overview IoT Central
-- Create IoT Central Application
-- Create Device – refrigerated truck
-- View Data
-
-## Day 2
+## Dia 2
 - Azure IoT Hub
-- Azure Device Provisioning Service (DPS)
-- Azure IoT Edge, IoT Edge Runtime & Edge Modules
-- Azure Data Explorer (ADX)
+- Servicio de aprovisionamiento de dispositivos de Azure (DPS)
+- Azure IoT Edge, IoT Edge Runtime y módulos Edge
+- Explorador de datos de Azure (ADX)
 - Azure Stream Analytics (ASA)
 
-Experience will also be gained with the following technologies:
+También se adquirirá experiencia con las siguientes tecnologías:
 - Visual Studio Code
-- Azure Virtual Machines
+- Máquinas virtuales Azure
 - Ubuntu 18
 - Bash
 - Github
 
-## May: Month Two
+# Segundo mes : Noviembre
 
-## Day 1
+## Día 1
 
-   - Azure IoT Hub
-   - Azure Device Provisioning Service (DPS)
-   - Azure Virtual Machines
-   - Azure Edge for Linux on Windows (EFLOW)
-   - Azure IoT Edge Routing
-   - Azure IoT Edge Stream Analytics (ASA) Module
-   - Azure Logic Apps
-   - Azure Monitor & Azure Log Analytics
+- Azure IoT Hub
+- Servicio de aprovisionamiento de dispositivos de Azure (DPS)
+- Máquinas virtuales de Azure
+- Azure Edge para Linux en Windows (EFLOW)
+- Enrutamiento perimetral de Azure IoT
+- Módulo Azure IoT Edge Stream Analytics (ASA)
+- Aplicaciones lógicas de Azure
+- Monitor de Azure y análisis de registro de Azure
 
-## Day 2
+## Dia 2
 
-- Azure Digital Twins 
-- Azure Digital Twins Explorer 
-- Azure Digital Twins SDK
 - Azure Digital Twins
+- Azure Digital Twins Explorer
+- Azure Digital Twins SDK
 - Azure Cloud Shell
 - Event Grid
-- Azure Functions
+- Funciones de Azure
 
-# June: Month Three
+# Tercer mes: Diciembre
 
-## Day 1
+## Día 1
 
-   - Microsoft Defender
+- Microsoft defender
   
-## Day 2
+## Dia 2
 
 - Azure Security
-- Azure IoT X.509 certificates for authentication of devices
+- Certificados Azure IoT X.509 para autenticación de dispositivos
 
-## Contact information
-If you have any questions, please contact: azureiotacademy@microsoft.com
+## Información del contacto
+Si tiene alguna pregunta, comuníquese con: azureiotacademy@microsoft.com
 
-## Azure IoT Academy Timeline
+## Cronología de Azure IoT Academy
 
-- April 26th - 28th, 2022 -  10am - 4pm CST
-- May 24th - 26th, 2022 -  10am - 4pm CST
-- June 28th - 30th, 2022 - 10am - 4pm CST 
+- 11 - 13 de octubre de 2022 - 10 a. m. - 4 p. m. CST
+- 8 - 10 de noviembre de 2022 - 10 a. m. - 4 p. m. CST
+- 6 - 8 de diciembre de 2022 - 10 a. m. - 4 p. m. CST
 
-## Azure IoT solution
+## Solución Azure IoT
 
-Internet of Things, Partner Enablement Team at Microsoft, USA.
-
-
-## Office Hours
-
-- April 18th 8am - 9:30am PST
-- April 22nd 8am - 9:30am PST
-- May 17th 9am - 10am PST
-- May 20th 9am - 10am PST
+Internet de las cosas, equipo de habilitación de socios en Microsoft, Americas.
